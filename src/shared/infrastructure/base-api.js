@@ -8,3 +8,10 @@ export const STORAGE_KEYS = Object.freeze({
     user: 'destilatech.user',
     locale: 'destilatech.locale'
 });
+
+export class BaseApi {
+
+    #http;
+
+
+}
