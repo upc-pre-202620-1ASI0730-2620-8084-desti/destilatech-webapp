@@ -1,4 +1,5 @@
 export class BaseAssembler {
+
     toEntityFromResource(resource) {
         throw new Error(`${this.constructor.name}.toEntityFromResource is not implemented (${resource})`);
     }
@@ -6,6 +7,7 @@ export class BaseAssembler {
     toResourceFromEntity(entity) {
         return { ...entity };
     }
+
 
     toEntitiesFromResponse(response) {
         const resources = Array.isArray(response.data) ? response.data : [];
@@ -20,4 +22,7 @@ export class BaseAssembler {
     }
 
 
+    toEntityFromResponse(response) {
+        return this.toEntityFromResource(response.data);
+    }
 }
