@@ -9,6 +9,7 @@ export const STORAGE_KEYS = Object.freeze({
     locale: 'destilatech.locale'
 });
 
+
 export class BaseApi {
 
     #http;
@@ -26,5 +27,7 @@ export class BaseApi {
         this.#http.interceptors.response.use(errorInterceptor.onResponse, errorInterceptor.onError);
     }
 
-
+    get http() {
+        return this.#http;
+    }
 }
