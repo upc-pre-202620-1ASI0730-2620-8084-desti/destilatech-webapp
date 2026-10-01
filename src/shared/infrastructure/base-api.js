@@ -16,7 +16,12 @@ export class BaseApi {
     constructor() {
         this.#http = axios.create({ baseURL: platformApi });
 
-
+        this.#http.interceptors.request.use(config => {
+            const token = localStorage.getItem(STORAGE_KEYS.token);
+            if (token) config.headers.Authorization = `Bearer ${token}`;
+            config.headers['Accept-Language'] = localStorage.getItem(STORAGE_KEYS.locale) || 'es';
+            return config;
+        });
 
         this.#http.interceptors.response.use(errorInterceptor.onResponse, errorInterceptor.onError);
     }
