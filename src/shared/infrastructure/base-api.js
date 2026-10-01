@@ -13,5 +13,13 @@ export class BaseApi {
 
     #http;
 
+    constructor() {
+        this.#http = axios.create({ baseURL: platformApi });
+
+
+
+        this.#http.interceptors.response.use(errorInterceptor.onResponse, errorInterceptor.onError);
+    }
+
 
 }
