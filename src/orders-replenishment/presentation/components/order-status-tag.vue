@@ -2,12 +2,9 @@
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-/**
- * Colored tag for order and replenishment statuses.
- */
+
 const props = defineProps({
   status: { type: String, required: true },
-  /** i18n namespace: 'orders.status' or 'orders.replenishment.status'. */
   namespace: { type: String, default: 'orders.status' }
 });
 const { t } = useI18n();
