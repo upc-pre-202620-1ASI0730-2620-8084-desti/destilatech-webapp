@@ -14,9 +14,7 @@ import OrderStatusTag from '@/orders-replenishment/presentation/components/order
 import OrderFormDialog from '@/orders-replenishment/presentation/components/order-form-dialog.vue';
 import CustomerFormDialog from '@/orders-replenishment/presentation/components/customer-form-dialog.vue';
 
-/**
- * Orders history and registration (US18, US19).
- */
+
 const { t, locale } = useI18n();
 const confirm = useConfirm();
 const toast = useToast();
