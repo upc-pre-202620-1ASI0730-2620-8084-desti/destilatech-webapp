@@ -1,0 +1,2 @@
+# Shell scripts must keep LF line endings so `sh start.sh` works on every OS
+*.sh text eol=lf
