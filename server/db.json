@@ -1,0 +1,8658 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "Mario Fernández",
+      "email": "productor@destilatech.pe",
+      "password": "Destilatech2026",
+      "businessName": "Bodega Santa Rosa",
+      "businessType": "PRODUCER",
+      "createdAt": "2026-08-22T15:00:00.000Z",
+      "trialPeriod": {
+        "startDate": "2026-08-22T15:00:00.000Z",
+        "endDate": "2026-09-05T15:00:00.000Z"
+      },
+      "accessGrantedUntil": "2026-10-19T15:00:00.000Z",
+      "preferredPlanCode": "PROFESSIONAL"
+    },
+    {
+      "id": 2,
+      "fullName": "Carlos Mendoza",
+      "email": "comercializador@destilatech.pe",
+      "password": "Destilatech2026",
+      "businessName": "Licorería El Cóndor",
+      "businessType": "RETAILER",
+      "createdAt": "2026-09-20T15:00:00.000Z",
+      "trialPeriod": {
+        "startDate": "2026-09-20T15:00:00.000Z",
+        "endDate": "2026-10-04T04:59:00.000Z"
+      },
+      "accessGrantedUntil": null,
+      "preferredPlanCode": "BASIC"
+    }
+  ],
+  "plans": [
+    {
+      "id": 1,
+      "code": "BASIC",
+      "price": 60,
+      "billingCycle": "MONTHLY",
+      "maxUsers": 1,
+      "recommended": false,
+      "featureKeys": [
+        "billing.features.inventory",
+        "billing.features.stock-alerts"
+      ]
+    },
+    {
+      "id": 2,
+      "code": "PROFESSIONAL",
+      "price": 110,
+      "billingCycle": "MONTHLY",
+      "maxUsers": 5,
+      "recommended": true,
+      "featureKeys": [
+        "billing.features.iot-monitoring",
+        "billing.features.batch-traceability",
+        "billing.features.estimations"
+      ]
+    },
+    {
+      "id": 3,
+      "code": "ENTERPRISE",
+      "price": 200,
+      "billingCycle": "MONTHLY",
+      "maxUsers": null,
+      "recommended": false,
+      "featureKeys": [
+        "billing.features.everything-pro",
+        "billing.features.priority-support"
+      ]
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": 1,
+      "userId": 1,
+      "planId": 2,
+      "status": "ACTIVE",
+      "startDate": "2026-09-19T15:00:00.000Z",
+      "renewalDate": "2026-10-19T15:00:00.000Z",
+      "paymentReference": "cs_test_seed_producer_professional"
+    }
+  ],
+  "payments": [
+    {
+      "id": 1,
+      "userId": 1,
+      "planId": 2,
+      "amount": 110,
+      "currency": "PEN",
+      "provider": "STRIPE",
+      "reference": "cs_test_seed_producer_professional",
+      "status": "PAID",
+      "cardBrand": "visa",
+      "cardLast4": "4242",
+      "paidAt": "2026-09-19T15:00:00.000Z"
+    }
+  ],
+  "batches": [
+    {
+      "id": 1,
+      "userId": 1,
+      "code": "LT-2026-014",
+      "variety": "Quebranta",
+      "startDate": "2026-08-04T13:00:00.000Z",
+      "estimatedQuantity": 900,
+      "tank": "Tanque C",
+      "stage": "BOTTLED",
+      "stageHistory": [
+        {
+          "stage": "RECEIVED",
+          "changedAt": "2026-08-04T14:00:00.000Z",
+          "notes": "Recepción de uva y mosto"
+        },
+        {
+          "stage": "FERMENTATION",
+          "changedAt": "2026-08-15T15:00:00.000Z",
+          "notes": ""
+        },
+        {
+          "stage": "DISTILLATION",
+          "changedAt": "2026-08-26T16:00:00.000Z",
+          "notes": ""
+        },
+        {
+          "stage": "RESTING",
+          "changedAt": "2026-09-06T17:00:00.000Z",
+          "notes": ""
+        },
+        {
+          "stage": "BOTTLED",
+          "changedAt": "2026-09-17T18:00:00.000Z",
+          "notes": ""
+        }
+      ],
+      "productId": 1,
+      "bottledUnits": 1200,
+      "notes": ""
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "code": "LT-2026-015",
+      "variety": "Torontel",
+      "startDate": "2026-08-12T13:00:00.000Z",
+      "estimatedQuantity": 600,
+      "tank": "Tanque D",
+      "stage": "BOTTLED",
+      "stageHistory": [
+        {
+          "stage": "RECEIVED",
+          "changedAt": "2026-08-12T14:00:00.000Z",
+          "notes": "Recepción de uva y mosto"
+        },
+        {
+          "stage": "FERMENTATION",
+          "changedAt": "2026-08-22T15:00:00.000Z",
+          "notes": ""
+        },
+        {
+          "stage": "DISTILLATION",
+          "changedAt": "2026-09-01T16:00:00.000Z",
+          "notes": ""
+        },
+        {
+          "stage": "RESTING",
+          "changedAt": "2026-09-11T17:00:00.000Z",
+          "notes": ""
+        },
+        {
+          "stage": "BOTTLED",
+          "changedAt": "2026-09-21T18:00:00.000Z",
+          "notes": ""
+        }
+      ],
+      "productId": 5,
+      "bottledUnits": 800,
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "code": "LT-2026-016",
+      "variety": "Acholado",
+      "startDate": "2026-08-27T13:00:00.000Z",
+      "estimatedQuantity": 750,
+      "tank": "Tinaja 2",
+      "stage": "RESTING",
+      "stageHistory": [
+        {
+          "stage": "RECEIVED",
+          "changedAt": "2026-08-27T14:00:00.000Z",
+          "notes": "Recepción de uva y mosto"
+        },
+        {
+          "stage": "FERMENTATION",
+          "changedAt": "2026-09-04T15:00:00.000Z",
+          "notes": ""
+        },
+        {
+          "stage": "DISTILLATION",
+          "changedAt": "2026-09-12T16:00:00.000Z",
+          "notes": ""
+        },
+        {
+          "stage": "RESTING",
+          "changedAt": "2026-09-20T17:00:00.000Z",
+          "notes": ""
+        }
+      ],
+      "productId": 3,
+      "bottledUnits": 0,
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "code": "LT-2026-017",
+      "variety": "Italia",
+      "startDate": "2026-09-10T13:00:00.000Z",
+      "estimatedQuantity": 680,
+      "tank": "Alambique 1",
+      "stage": "DISTILLATION",
+      "stageHistory": [
+        {
+          "stage": "RECEIVED",
+          "changedAt": "2026-09-10T14:00:00.000Z",
+          "notes": "Recepción de uva y mosto"
+        },
+        {
+          "stage": "FERMENTATION",
+          "changedAt": "2026-09-17T15:00:00.000Z",
+          "notes": ""
+        },
+        {
+          "stage": "DISTILLATION",
+          "changedAt": "2026-09-24T16:00:00.000Z",
+          "notes": ""
+        }
+      ],
+      "productId": 2,
+      "bottledUnits": 0,
+      "notes": ""
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "code": "LT-2026-018",
+      "variety": "Quebranta",
+      "startDate": "2026-09-17T13:00:00.000Z",
+      "estimatedQuantity": 820,
+      "tank": "Tanque A",
+      "stage": "FERMENTATION",
+      "stageHistory": [
+        {
+          "stage": "RECEIVED",
+          "changedAt": "2026-09-17T14:00:00.000Z",
+          "notes": "Recepción de uva y mosto"
+        },
+        {
+          "stage": "FERMENTATION",
+          "changedAt": "2026-09-24T15:00:00.000Z",
+          "notes": ""
+        }
+      ],
+      "productId": 1,
+      "bottledUnits": 0,
+      "notes": ""
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "code": "LT-2026-019",
+      "variety": "Mosto Verde",
+      "startDate": "2026-09-22T13:00:00.000Z",
+      "estimatedQuantity": 540,
+      "tank": "Tanque B",
+      "stage": "FERMENTATION",
+      "stageHistory": [
+        {
+          "stage": "RECEIVED",
+          "changedAt": "2026-09-22T14:00:00.000Z",
+          "notes": "Recepción de uva y mosto"
+        },
+        {
+          "stage": "FERMENTATION",
+          "changedAt": "2026-09-26T15:00:00.000Z",
+          "notes": ""
+        }
+      ],
+      "productId": 4,
+      "bottledUnits": 0,
+      "notes": ""
+    },
+    {
+      "id": 7,
+      "userId": 1,
+      "code": "LT-2026-020",
+      "variety": "Italia",
+      "startDate": "2026-09-30T13:00:00.000Z",
+      "estimatedQuantity": 700,
+      "tank": "",
+      "stage": "RECEIVED",
+      "stageHistory": [
+        {
+          "stage": "RECEIVED",
+          "changedAt": "2026-09-30T14:00:00.000Z",
+          "notes": "Recepción de uva y mosto"
+        }
+      ],
+      "productId": 2,
+      "bottledUnits": 0,
+      "notes": ""
+    }
+  ],
+  "process-variables": [
+    {
+      "id": 1,
+      "batchId": 1,
+      "userId": 1,
+      "type": "TEMPERATURE",
+      "minRange": 16,
+      "maxRange": 24,
+      "sensorId": "SNS-LT-2026-014-1"
+    },
+    {
+      "id": 2,
+      "batchId": 1,
+      "userId": 1,
+      "type": "PH",
+      "minRange": 3.1,
+      "maxRange": 3.8,
+      "sensorId": "SNS-LT-2026-014-2"
+    },
+    {
+      "id": 3,
+      "batchId": 1,
+      "userId": 1,
+      "type": "HUMIDITY",
+      "minRange": 55,
+      "maxRange": 75,
+      "sensorId": "SNS-LT-2026-014-3"
+    },
+    {
+      "id": 4,
+      "batchId": 1,
+      "userId": 1,
+      "type": "DENSITY",
+      "minRange": 0.99,
+      "maxRange": 1.09,
+      "sensorId": "SNS-LT-2026-014-4"
+    },
+    {
+      "id": 5,
+      "batchId": 2,
+      "userId": 1,
+      "type": "TEMPERATURE",
+      "minRange": 16,
+      "maxRange": 24,
+      "sensorId": "SNS-LT-2026-015-1"
+    },
+    {
+      "id": 6,
+      "batchId": 2,
+      "userId": 1,
+      "type": "PH",
+      "minRange": 3.1,
+      "maxRange": 3.8,
+      "sensorId": "SNS-LT-2026-015-2"
+    },
+    {
+      "id": 7,
+      "batchId": 2,
+      "userId": 1,
+      "type": "HUMIDITY",
+      "minRange": 55,
+      "maxRange": 75,
+      "sensorId": "SNS-LT-2026-015-3"
+    },
+    {
+      "id": 8,
+      "batchId": 2,
+      "userId": 1,
+      "type": "DENSITY",
+      "minRange": 0.99,
+      "maxRange": 1.09,
+      "sensorId": "SNS-LT-2026-015-4"
+    },
+    {
+      "id": 9,
+      "batchId": 3,
+      "userId": 1,
+      "type": "TEMPERATURE",
+      "minRange": 16,
+      "maxRange": 24,
+      "sensorId": "SNS-LT-2026-016-1"
+    },
+    {
+      "id": 10,
+      "batchId": 3,
+      "userId": 1,
+      "type": "PH",
+      "minRange": 3.1,
+      "maxRange": 3.8,
+      "sensorId": "SNS-LT-2026-016-2"
+    },
+    {
+      "id": 11,
+      "batchId": 3,
+      "userId": 1,
+      "type": "HUMIDITY",
+      "minRange": 55,
+      "maxRange": 75,
+      "sensorId": "SNS-LT-2026-016-3"
+    },
+    {
+      "id": 12,
+      "batchId": 3,
+      "userId": 1,
+      "type": "DENSITY",
+      "minRange": 0.99,
+      "maxRange": 1.09,
+      "sensorId": "SNS-LT-2026-016-4"
+    },
+    {
+      "id": 13,
+      "batchId": 4,
+      "userId": 1,
+      "type": "TEMPERATURE",
+      "minRange": 16,
+      "maxRange": 24,
+      "sensorId": "SNS-LT-2026-017-1"
+    },
+    {
+      "id": 14,
+      "batchId": 4,
+      "userId": 1,
+      "type": "PH",
+      "minRange": 3.1,
+      "maxRange": 3.8,
+      "sensorId": "SNS-LT-2026-017-2"
+    },
+    {
+      "id": 15,
+      "batchId": 4,
+      "userId": 1,
+      "type": "HUMIDITY",
+      "minRange": 55,
+      "maxRange": 75,
+      "sensorId": "SNS-LT-2026-017-3"
+    },
+    {
+      "id": 16,
+      "batchId": 4,
+      "userId": 1,
+      "type": "DENSITY",
+      "minRange": 0.99,
+      "maxRange": 1.09,
+      "sensorId": "SNS-LT-2026-017-4"
+    },
+    {
+      "id": 17,
+      "batchId": 5,
+      "userId": 1,
+      "type": "TEMPERATURE",
+      "minRange": 16,
+      "maxRange": 24,
+      "sensorId": "SNS-LT-2026-018-1"
+    },
+    {
+      "id": 18,
+      "batchId": 5,
+      "userId": 1,
+      "type": "PH",
+      "minRange": 3.1,
+      "maxRange": 3.8,
+      "sensorId": "SNS-LT-2026-018-2"
+    },
+    {
+      "id": 19,
+      "batchId": 5,
+      "userId": 1,
+      "type": "HUMIDITY",
+      "minRange": 55,
+      "maxRange": 75,
+      "sensorId": "SNS-LT-2026-018-3"
+    },
+    {
+      "id": 20,
+      "batchId": 5,
+      "userId": 1,
+      "type": "DENSITY",
+      "minRange": 0.99,
+      "maxRange": 1.09,
+      "sensorId": "SNS-LT-2026-018-4"
+    },
+    {
+      "id": 21,
+      "batchId": 6,
+      "userId": 1,
+      "type": "TEMPERATURE",
+      "minRange": 16,
+      "maxRange": 24,
+      "sensorId": "SNS-LT-2026-019-1"
+    },
+    {
+      "id": 22,
+      "batchId": 6,
+      "userId": 1,
+      "type": "PH",
+      "minRange": 3.1,
+      "maxRange": 3.8,
+      "sensorId": "SNS-LT-2026-019-2"
+    },
+    {
+      "id": 23,
+      "batchId": 6,
+      "userId": 1,
+      "type": "HUMIDITY",
+      "minRange": 55,
+      "maxRange": 75,
+      "sensorId": "SNS-LT-2026-019-3"
+    },
+    {
+      "id": 24,
+      "batchId": 6,
+      "userId": 1,
+      "type": "DENSITY",
+      "minRange": 0.99,
+      "maxRange": 1.09,
+      "sensorId": "SNS-LT-2026-019-4"
+    },
+    {
+      "id": 25,
+      "batchId": 7,
+      "userId": 1,
+      "type": "TEMPERATURE",
+      "minRange": 16,
+      "maxRange": 24,
+      "sensorId": "SNS-LT-2026-020-1"
+    },
+    {
+      "id": 26,
+      "batchId": 7,
+      "userId": 1,
+      "type": "PH",
+      "minRange": 3.1,
+      "maxRange": 3.8,
+      "sensorId": "SNS-LT-2026-020-2"
+    },
+    {
+      "id": 27,
+      "batchId": 7,
+      "userId": 1,
+      "type": "HUMIDITY",
+      "minRange": 55,
+      "maxRange": 75,
+      "sensorId": "SNS-LT-2026-020-3"
+    },
+    {
+      "id": 28,
+      "batchId": 7,
+      "userId": 1,
+      "type": "DENSITY",
+      "minRange": 0.99,
+      "maxRange": 1.09,
+      "sensorId": "SNS-LT-2026-020-4"
+    }
+  ],
+  "sensor-readings": [
+    {
+      "id": 1,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.9,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 2,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.6,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 3,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.4,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 4,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.1,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 5,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.6,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 6,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.7,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 7,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.9,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 8,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 20.3,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 9,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.9,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 10,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.5,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 11,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.7,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 12,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.7,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 13,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.6,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 14,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.5,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 15,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.8,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 16,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.3,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 17,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.8,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 18,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.7,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 19,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 19.4,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 20,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 20.1,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 21,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 20.7,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 22,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 20.9,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 23,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 20.2,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 24,
+      "processVariableId": 9,
+      "batchId": 3,
+      "userId": 1,
+      "value": 20.6,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    },
+    {
+      "id": 25,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.42,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 26,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.39,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 27,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.45,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 28,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.46,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 29,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.49,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 30,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.44,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 31,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.43,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 32,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.39,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 33,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.45,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 34,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.4,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 35,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.4,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 36,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.38,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 37,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.44,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 38,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.44,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 39,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.48,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 40,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.44,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 41,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.48,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 42,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.52,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 43,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.48,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 44,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.49,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 45,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.54,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 46,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.52,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 47,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.53,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 48,
+      "processVariableId": 10,
+      "batchId": 3,
+      "userId": 1,
+      "value": 3.56,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    },
+    {
+      "id": 49,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 50,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 67,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 51,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 68,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 52,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 68,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 53,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 67,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 54,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 55,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 56,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 57,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 58,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 59,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 60,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 61,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 67,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 62,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 63,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 67,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 64,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 67,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 65,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 66,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 67,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 68,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 69,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 67,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 70,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 71,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 72,
+      "processVariableId": 11,
+      "batchId": 3,
+      "userId": 1,
+      "value": 64,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    },
+    {
+      "id": 73,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.043,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 74,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.042,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 75,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.035,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 76,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.033,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 77,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.035,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 78,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.03,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 79,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.03,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 80,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.033,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 81,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.03,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 82,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.032,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 83,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.038,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 84,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.032,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 85,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.04,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 86,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.032,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 87,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.037,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 88,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.036,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 89,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.044,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 90,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.049,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 91,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.045,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 92,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.05,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 93,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.047,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 94,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.05,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 95,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.041,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 96,
+      "processVariableId": 12,
+      "batchId": 3,
+      "userId": 1,
+      "value": 1.047,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    },
+    {
+      "id": 97,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 20.3,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 98,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.9,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 99,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.9,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 100,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.5,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 101,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.5,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 102,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.2,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 103,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 104,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.1,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 105,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.3,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 106,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 20.1,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 107,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 20,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 108,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.8,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 109,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.6,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 110,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.7,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 111,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.6,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 112,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 20,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 113,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.4,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 114,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 115,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.4,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 116,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.3,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 117,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 118,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.4,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 119,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19.3,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 120,
+      "processVariableId": 13,
+      "batchId": 4,
+      "userId": 1,
+      "value": 19,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    },
+    {
+      "id": 121,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.44,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 122,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.41,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 123,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.43,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 124,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.44,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 125,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.4,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 126,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.46,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 127,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.5,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 128,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.52,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 129,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.46,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 130,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.45,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 131,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.42,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 132,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.39,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 133,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.4,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 134,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.43,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 135,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.45,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 136,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.47,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 137,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.5,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 138,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.52,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 139,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.55,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 140,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.53,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 141,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.46,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 142,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.42,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 143,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.39,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 144,
+      "processVariableId": 14,
+      "batchId": 4,
+      "userId": 1,
+      "value": 3.41,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    },
+    {
+      "id": 145,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 146,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 147,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 148,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 149,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 67,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 150,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 151,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 67,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 152,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 153,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 67,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 154,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 155,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 156,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 64,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 157,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 158,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 159,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 160,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 161,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 162,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 163,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 164,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 165,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 166,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 167,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 168,
+      "processVariableId": 15,
+      "batchId": 4,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    },
+    {
+      "id": 169,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.044,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 170,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.042,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 171,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.047,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 172,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.05,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 173,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.054,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 174,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.059,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 175,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.05,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 176,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.045,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 177,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.048,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 178,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.045,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 179,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.044,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 180,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.037,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 181,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.033,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 182,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.027,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 183,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.028,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 184,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.031,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 185,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.035,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 186,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.043,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 187,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.04,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 188,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.041,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 189,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.044,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 190,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.051,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 191,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.048,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 192,
+      "processVariableId": 16,
+      "batchId": 4,
+      "userId": 1,
+      "value": 1.053,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    },
+    {
+      "id": 193,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.6,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 194,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.6,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 195,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 20,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 196,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 20.3,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 197,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.8,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 198,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.3,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 199,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.7,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 200,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.6,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 201,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.8,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 202,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.3,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 203,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.6,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 204,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.4,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 205,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.7,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 206,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 20.3,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 207,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.9,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 208,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.9,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 209,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.7,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 210,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.5,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 211,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.8,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 212,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.9,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 213,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 20.2,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 214,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.8,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 215,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.8,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 216,
+      "processVariableId": 17,
+      "batchId": 5,
+      "userId": 1,
+      "value": 19.6,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    },
+    {
+      "id": 217,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.44,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 218,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.43,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 219,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.44,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 220,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.4,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 221,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.45,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 222,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.41,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 223,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.45,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 224,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.42,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 225,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.48,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 226,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.48,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 227,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.49,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 228,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.46,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 229,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.43,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 230,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.48,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 231,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.46,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 232,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.42,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 233,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.4,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 234,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.39,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 235,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.37,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 236,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.37,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 237,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.41,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 238,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.42,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 239,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.47,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 240,
+      "processVariableId": 18,
+      "batchId": 5,
+      "userId": 1,
+      "value": 3.51,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    },
+    {
+      "id": 241,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 242,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 243,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 244,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 245,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 246,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 247,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 64,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 248,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 249,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 250,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 64,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 251,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 64,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 252,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 253,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 254,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 68,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 255,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 256,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 67,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 257,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 67,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 258,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 259,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 260,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 261,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 64,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 262,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 263,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 64,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 264,
+      "processVariableId": 19,
+      "batchId": 5,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    },
+    {
+      "id": 265,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.033,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 266,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.033,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 267,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.033,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 268,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.036,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 269,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.034,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 270,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.042,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 271,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.038,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 272,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.045,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 273,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.049,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 274,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.045,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 275,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.039,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 276,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.033,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 277,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.03,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 278,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.03,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 279,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.035,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 280,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.034,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 281,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.031,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 282,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.026,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 283,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.021,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 284,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.019,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 285,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.02,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 286,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.028,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 287,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.036,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 288,
+      "processVariableId": 20,
+      "batchId": 5,
+      "userId": 1,
+      "value": 1.032,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    },
+    {
+      "id": 289,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 20.5,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 290,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 20.6,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 291,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 20,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 292,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19.5,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 293,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19.2,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 294,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19.3,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 295,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19.9,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 296,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 20.1,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 297,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19.9,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 298,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 20.3,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 299,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19.6,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 300,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19.2,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 301,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 302,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19.1,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 303,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19.9,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 304,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19.9,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 305,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19.7,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 306,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 20.3,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 307,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19.6,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 308,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19.2,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 309,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19.3,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 310,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 311,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 19.6,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 312,
+      "processVariableId": 21,
+      "batchId": 6,
+      "userId": 1,
+      "value": 25.8,
+      "withinRange": false,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    },
+    {
+      "id": 313,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.45,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 314,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.44,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 315,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.43,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 316,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.41,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 317,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.44,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 318,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.44,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 319,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.39,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 320,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.4,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 321,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.38,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 322,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.41,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 323,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.43,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 324,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.46,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 325,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.48,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 326,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.45,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 327,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.46,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 328,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.46,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 329,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.48,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 330,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.43,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 331,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.47,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 332,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.51,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 333,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.49,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 334,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.46,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 335,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.41,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 336,
+      "processVariableId": 22,
+      "batchId": 6,
+      "userId": 1,
+      "value": 3.41,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    },
+    {
+      "id": 337,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 338,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 66,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 339,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 340,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 341,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 64,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 342,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 343,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 344,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 64,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 345,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 346,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 347,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 348,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 62,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 349,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 350,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 351,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 62,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 352,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 62,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 353,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 354,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 62,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 355,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 62,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 356,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 62,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 357,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 62,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 358,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 62,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 359,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 63,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 360,
+      "processVariableId": 23,
+      "batchId": 6,
+      "userId": 1,
+      "value": 65,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    },
+    {
+      "id": 361,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.047,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:26:54.680Z"
+    },
+    {
+      "id": 362,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.043,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T13:56:54.680Z"
+    },
+    {
+      "id": 363,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.044,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:26:54.680Z"
+    },
+    {
+      "id": 364,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.045,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T14:56:54.680Z"
+    },
+    {
+      "id": 365,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.044,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:26:54.680Z"
+    },
+    {
+      "id": 366,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.042,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T15:56:54.680Z"
+    },
+    {
+      "id": 367,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.045,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:26:54.680Z"
+    },
+    {
+      "id": 368,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.051,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T16:56:54.680Z"
+    },
+    {
+      "id": 369,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.054,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:26:54.680Z"
+    },
+    {
+      "id": 370,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.058,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T17:56:54.680Z"
+    },
+    {
+      "id": 371,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.056,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:26:54.680Z"
+    },
+    {
+      "id": 372,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.053,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T18:56:54.680Z"
+    },
+    {
+      "id": 373,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.056,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:26:54.680Z"
+    },
+    {
+      "id": 374,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.054,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T19:56:54.680Z"
+    },
+    {
+      "id": 375,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.054,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:26:54.680Z"
+    },
+    {
+      "id": 376,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.051,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T20:56:54.680Z"
+    },
+    {
+      "id": 377,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.045,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:26:54.680Z"
+    },
+    {
+      "id": 378,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.051,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T21:56:54.680Z"
+    },
+    {
+      "id": 379,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.055,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:26:54.680Z"
+    },
+    {
+      "id": 380,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.049,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T22:56:54.680Z"
+    },
+    {
+      "id": 381,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.042,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:26:54.680Z"
+    },
+    {
+      "id": 382,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.045,
+      "withinRange": true,
+      "recordedAt": "2026-10-01T23:56:54.680Z"
+    },
+    {
+      "id": 383,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.047,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:26:54.680Z"
+    },
+    {
+      "id": 384,
+      "processVariableId": 24,
+      "batchId": 6,
+      "userId": 1,
+      "value": 1.053,
+      "withinRange": true,
+      "recordedAt": "2026-10-02T00:56:54.680Z"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "userId": 1,
+      "name": "Pisco Quebranta",
+      "presentation": "750 ml",
+      "unit": "BOTTLE",
+      "category": "Quebranta",
+      "unitPrice": 45,
+      "sku": "BSR-QUE-750"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "name": "Pisco Italia",
+      "presentation": "750 ml",
+      "unit": "BOTTLE",
+      "category": "Italia",
+      "unitPrice": 55,
+      "sku": "BSR-ITA-750"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "name": "Acholado Reserva",
+      "presentation": "500 ml",
+      "unit": "BOTTLE",
+      "category": "Acholado",
+      "unitPrice": 48,
+      "sku": "BSR-ACH-500"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "name": "Mosto Verde",
+      "presentation": "750 ml",
+      "unit": "BOTTLE",
+      "category": "Mosto Verde",
+      "unitPrice": 85,
+      "sku": "BSR-MV-750"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "name": "Pisco Torontel",
+      "presentation": "750 ml",
+      "unit": "BOTTLE",
+      "category": "Torontel",
+      "unitPrice": 60,
+      "sku": "BSR-TOR-750"
+    },
+    {
+      "id": 6,
+      "userId": 2,
+      "name": "Pisco Quebranta Santa Rosa",
+      "presentation": "750 ml",
+      "unit": "BOTTLE",
+      "category": "Quebranta",
+      "unitPrice": 39.9,
+      "sku": "LEC-001"
+    },
+    {
+      "id": 7,
+      "userId": 2,
+      "name": "Pisco Italia Tabernero",
+      "presentation": "700 ml",
+      "unit": "BOTTLE",
+      "category": "Italia",
+      "unitPrice": 42.5,
+      "sku": "LEC-002"
+    },
+    {
+      "id": 8,
+      "userId": 2,
+      "name": "Pisco Acholado Queirolo",
+      "presentation": "750 ml",
+      "unit": "BOTTLE",
+      "category": "Acholado",
+      "unitPrice": 36,
+      "sku": "LEC-003"
+    },
+    {
+      "id": 9,
+      "userId": 2,
+      "name": "Mosto Verde Italia Reserva",
+      "presentation": "500 ml",
+      "unit": "BOTTLE",
+      "category": "Mosto Verde",
+      "unitPrice": 79,
+      "sku": "LEC-004"
+    },
+    {
+      "id": 10,
+      "userId": 2,
+      "name": "Pisco Torontel Portón",
+      "presentation": "750 ml",
+      "unit": "BOTTLE",
+      "category": "Torontel",
+      "unitPrice": 58,
+      "sku": "LEC-005"
+    },
+    {
+      "id": 11,
+      "userId": 2,
+      "name": "Pisco Quebranta Vargas",
+      "presentation": "1 L",
+      "unit": "BOTTLE",
+      "category": "Quebranta",
+      "unitPrice": 34,
+      "sku": "LEC-006"
+    }
+  ],
+  "stock-items": [
+    {
+      "id": 1,
+      "productId": 1,
+      "userId": 1,
+      "currentQuantity": 42,
+      "lowStockThreshold": 50
+    },
+    {
+      "id": 2,
+      "productId": 2,
+      "userId": 1,
+      "currentQuantity": 126,
+      "lowStockThreshold": 40
+    },
+    {
+      "id": 3,
+      "productId": 3,
+      "userId": 1,
+      "currentQuantity": 68,
+      "lowStockThreshold": 30
+    },
+    {
+      "id": 4,
+      "productId": 4,
+      "userId": 1,
+      "currentQuantity": 18,
+      "lowStockThreshold": 40
+    },
+    {
+      "id": 5,
+      "productId": 5,
+      "userId": 1,
+      "currentQuantity": 94,
+      "lowStockThreshold": 30
+    },
+    {
+      "id": 6,
+      "productId": 6,
+      "userId": 2,
+      "currentQuantity": 18,
+      "lowStockThreshold": 24
+    },
+    {
+      "id": 7,
+      "productId": 7,
+      "userId": 2,
+      "currentQuantity": 42,
+      "lowStockThreshold": 20
+    },
+    {
+      "id": 8,
+      "productId": 8,
+      "userId": 2,
+      "currentQuantity": 15,
+      "lowStockThreshold": 20
+    },
+    {
+      "id": 9,
+      "productId": 9,
+      "userId": 2,
+      "currentQuantity": 24,
+      "lowStockThreshold": 10
+    },
+    {
+      "id": 10,
+      "productId": 10,
+      "userId": 2,
+      "currentQuantity": 60,
+      "lowStockThreshold": 15
+    },
+    {
+      "id": 11,
+      "productId": 11,
+      "userId": 2,
+      "currentQuantity": 8,
+      "lowStockThreshold": 20
+    }
+  ],
+  "stock-movements": [
+    {
+      "id": 1,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 54,
+      "reason": "INITIAL",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-02T13:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-04T00:51:00.000Z"
+    },
+    {
+      "id": 3,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 4,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-07T20:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 4,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-08T16:49:00.000Z"
+    },
+    {
+      "id": 5,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-11T18:32:00.000Z"
+    },
+    {
+      "id": 6,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-12T16:30:00.000Z"
+    },
+    {
+      "id": 7,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-17T01:15:00.000Z"
+    },
+    {
+      "id": 8,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 4,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-17T18:18:00.000Z"
+    },
+    {
+      "id": 9,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 4,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-19T00:07:00.000Z"
+    },
+    {
+      "id": 10,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-20T19:10:00.000Z"
+    },
+    {
+      "id": 11,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-21T20:11:00.000Z"
+    },
+    {
+      "id": 12,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-23T21:51:00.000Z"
+    },
+    {
+      "id": 13,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-24T15:45:00.000Z"
+    },
+    {
+      "id": 14,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 48,
+      "reason": "PRODUCTION",
+      "notes": "",
+      "reference": "LT-2026-012",
+      "movementDate": "2026-08-26T13:30:00.000Z"
+    },
+    {
+      "id": 15,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-27T20:33:00.000Z"
+    },
+    {
+      "id": 16,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 4,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-29T00:13:00.000Z"
+    },
+    {
+      "id": 17,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-29T23:45:00.000Z"
+    },
+    {
+      "id": 18,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-30T20:20:00.000Z"
+    },
+    {
+      "id": 19,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 4,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-31T19:53:00.000Z"
+    },
+    {
+      "id": 20,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 4,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-01T15:48:00.000Z"
+    },
+    {
+      "id": 21,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-03T22:04:00.000Z"
+    },
+    {
+      "id": 22,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-05T16:47:00.000Z"
+    },
+    {
+      "id": 23,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 48,
+      "reason": "PRODUCTION",
+      "notes": "",
+      "reference": "LT-2026-015",
+      "movementDate": "2026-09-07T13:30:00.000Z"
+    },
+    {
+      "id": 24,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-08T22:16:00.000Z"
+    },
+    {
+      "id": 25,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 18,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1037",
+      "movementDate": "2026-09-12T16:15:00.000Z"
+    },
+    {
+      "id": 26,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 4,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-13T20:03:00.000Z"
+    },
+    {
+      "id": 27,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-15T16:59:00.000Z"
+    },
+    {
+      "id": 28,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 48,
+      "reason": "PRODUCTION",
+      "notes": "",
+      "reference": "LT-2026-015",
+      "movementDate": "2026-09-19T13:30:00.000Z"
+    },
+    {
+      "id": 29,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 12,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1038",
+      "movementDate": "2026-09-19T19:20:00.000Z"
+    },
+    {
+      "id": 30,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-21T20:18:00.000Z"
+    },
+    {
+      "id": 31,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-22T22:32:00.000Z"
+    },
+    {
+      "id": 32,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-23T21:06:00.000Z"
+    },
+    {
+      "id": 33,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 4,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-24T23:41:00.000Z"
+    },
+    {
+      "id": 34,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 4,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-26T00:05:00.000Z"
+    },
+    {
+      "id": 35,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 12,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1040",
+      "movementDate": "2026-09-26T20:13:00.000Z"
+    },
+    {
+      "id": 36,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 4,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-26T22:38:00.000Z"
+    },
+    {
+      "id": 37,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-27T20:19:00.000Z"
+    },
+    {
+      "id": 38,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-28T21:23:00.000Z"
+    },
+    {
+      "id": 39,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 4,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-29T18:59:00.000Z"
+    },
+    {
+      "id": 40,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-30T18:33:00.000Z"
+    },
+    {
+      "id": 41,
+      "stockItemId": 1,
+      "productId": 1,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 24,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1042",
+      "movementDate": "2026-10-01T19:26:00.000Z"
+    },
+    {
+      "id": 42,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 134,
+      "reason": "INITIAL",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-02T13:00:00.000Z"
+    },
+    {
+      "id": 43,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-04T18:24:00.000Z"
+    },
+    {
+      "id": 44,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-05T22:55:00.000Z"
+    },
+    {
+      "id": 45,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-07T15:37:00.000Z"
+    },
+    {
+      "id": 46,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-09T18:26:00.000Z"
+    },
+    {
+      "id": 47,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-12T15:11:00.000Z"
+    },
+    {
+      "id": 48,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-15T01:08:00.000Z"
+    },
+    {
+      "id": 49,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 45,
+      "reason": "PRODUCTION",
+      "notes": "",
+      "reference": "LT-2026-012",
+      "movementDate": "2026-08-17T13:30:00.000Z"
+    },
+    {
+      "id": 50,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-19T20:46:00.000Z"
+    },
+    {
+      "id": 51,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-20T23:28:00.000Z"
+    },
+    {
+      "id": 52,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-22T00:55:00.000Z"
+    },
+    {
+      "id": 53,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-23T16:32:00.000Z"
+    },
+    {
+      "id": 54,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-24T20:46:00.000Z"
+    },
+    {
+      "id": 55,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-25T18:50:00.000Z"
+    },
+    {
+      "id": 56,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-26T22:57:00.000Z"
+    },
+    {
+      "id": 57,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-27T19:10:00.000Z"
+    },
+    {
+      "id": 58,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-28T15:27:00.000Z"
+    },
+    {
+      "id": 59,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-30T20:21:00.000Z"
+    },
+    {
+      "id": 60,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 45,
+      "reason": "PRODUCTION",
+      "notes": "",
+      "reference": "LT-2026-012",
+      "movementDate": "2026-09-01T13:30:00.000Z"
+    },
+    {
+      "id": 61,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-01T15:54:00.000Z"
+    },
+    {
+      "id": 62,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-04T22:50:00.000Z"
+    },
+    {
+      "id": 63,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 24,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1036",
+      "movementDate": "2026-09-05T17:44:00.000Z"
+    },
+    {
+      "id": 64,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-06T23:55:00.000Z"
+    },
+    {
+      "id": 65,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-08T20:09:00.000Z"
+    },
+    {
+      "id": 66,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-11T00:45:00.000Z"
+    },
+    {
+      "id": 67,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-11T19:05:00.000Z"
+    },
+    {
+      "id": 68,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-12T16:20:00.000Z"
+    },
+    {
+      "id": 69,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-13T16:34:00.000Z"
+    },
+    {
+      "id": 70,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-15T22:48:00.000Z"
+    },
+    {
+      "id": 71,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 45,
+      "reason": "PRODUCTION",
+      "notes": "",
+      "reference": "LT-2026-011",
+      "movementDate": "2026-09-16T13:30:00.000Z"
+    },
+    {
+      "id": 72,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-16T18:43:00.000Z"
+    },
+    {
+      "id": 73,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-19T19:36:00.000Z"
+    },
+    {
+      "id": 74,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-20T23:03:00.000Z"
+    },
+    {
+      "id": 75,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-23T00:44:00.000Z"
+    },
+    {
+      "id": 76,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 12,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1039",
+      "movementDate": "2026-09-23T20:07:00.000Z"
+    },
+    {
+      "id": 77,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-23T20:33:00.000Z"
+    },
+    {
+      "id": 78,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-24T18:36:00.000Z"
+    },
+    {
+      "id": 79,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-25T19:33:00.000Z"
+    },
+    {
+      "id": 80,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-28T21:37:00.000Z"
+    },
+    {
+      "id": 81,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-29T16:04:00.000Z"
+    },
+    {
+      "id": 82,
+      "stockItemId": 2,
+      "productId": 2,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 36,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1041",
+      "movementDate": "2026-09-29T20:55:00.000Z"
+    },
+    {
+      "id": 83,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 15,
+      "reason": "INITIAL",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-02T13:00:00.000Z"
+    },
+    {
+      "id": 84,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-09T01:16:00.000Z"
+    },
+    {
+      "id": 85,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-11T22:55:00.000Z"
+    },
+    {
+      "id": 86,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-13T00:11:00.000Z"
+    },
+    {
+      "id": 87,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-13T19:30:00.000Z"
+    },
+    {
+      "id": 88,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-14T18:39:00.000Z"
+    },
+    {
+      "id": 89,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-16T01:50:00.000Z"
+    },
+    {
+      "id": 90,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 42,
+      "reason": "PRODUCTION",
+      "notes": "",
+      "reference": "LT-2026-014",
+      "movementDate": "2026-08-16T13:30:00.000Z"
+    },
+    {
+      "id": 91,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-16T18:36:00.000Z"
+    },
+    {
+      "id": 92,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-20T01:26:00.000Z"
+    },
+    {
+      "id": 93,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-20T15:06:00.000Z"
+    },
+    {
+      "id": 94,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-21T18:09:00.000Z"
+    },
+    {
+      "id": 95,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-22T23:59:00.000Z"
+    },
+    {
+      "id": 96,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-23T20:13:00.000Z"
+    },
+    {
+      "id": 97,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-26T19:19:00.000Z"
+    },
+    {
+      "id": 98,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-27T22:24:00.000Z"
+    },
+    {
+      "id": 99,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-28T16:16:00.000Z"
+    },
+    {
+      "id": 100,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-29T19:29:00.000Z"
+    },
+    {
+      "id": 101,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 42,
+      "reason": "PRODUCTION",
+      "notes": "",
+      "reference": "LT-2026-012",
+      "movementDate": "2026-08-30T13:30:00.000Z"
+    },
+    {
+      "id": 102,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-30T21:00:00.000Z"
+    },
+    {
+      "id": 103,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-01T22:26:00.000Z"
+    },
+    {
+      "id": 104,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-02T18:06:00.000Z"
+    },
+    {
+      "id": 105,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-04T20:11:00.000Z"
+    },
+    {
+      "id": 106,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 12,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1036",
+      "movementDate": "2026-09-05T17:44:00.000Z"
+    },
+    {
+      "id": 107,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-07T00:42:00.000Z"
+    },
+    {
+      "id": 108,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-07T16:34:00.000Z"
+    },
+    {
+      "id": 109,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-09T23:50:00.000Z"
+    },
+    {
+      "id": 110,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-11T21:14:00.000Z"
+    },
+    {
+      "id": 111,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-12T15:17:00.000Z"
+    },
+    {
+      "id": 112,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 42,
+      "reason": "PRODUCTION",
+      "notes": "",
+      "reference": "LT-2026-013",
+      "movementDate": "2026-09-13T13:30:00.000Z"
+    },
+    {
+      "id": 113,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-14T17:16:00.000Z"
+    },
+    {
+      "id": 114,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-15T16:33:00.000Z"
+    },
+    {
+      "id": 115,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-16T15:30:00.000Z"
+    },
+    {
+      "id": 116,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-18T18:58:00.000Z"
+    },
+    {
+      "id": 117,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 6,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1038",
+      "movementDate": "2026-09-19T19:20:00.000Z"
+    },
+    {
+      "id": 118,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-20T19:01:00.000Z"
+    },
+    {
+      "id": 119,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-21T17:53:00.000Z"
+    },
+    {
+      "id": 120,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-25T18:37:00.000Z"
+    },
+    {
+      "id": 121,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-26T17:23:00.000Z"
+    },
+    {
+      "id": 122,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 42,
+      "reason": "PRODUCTION",
+      "notes": "",
+      "reference": "LT-2026-010",
+      "movementDate": "2026-09-27T13:30:00.000Z"
+    },
+    {
+      "id": 123,
+      "stockItemId": 3,
+      "productId": 3,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 24,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1041",
+      "movementDate": "2026-09-29T20:55:00.000Z"
+    },
+    {
+      "id": 124,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 44,
+      "reason": "INITIAL",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-02T13:00:00.000Z"
+    },
+    {
+      "id": 125,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-04T19:34:00.000Z"
+    },
+    {
+      "id": 126,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-07T16:13:00.000Z"
+    },
+    {
+      "id": 127,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-10T18:26:00.000Z"
+    },
+    {
+      "id": 128,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-13T18:58:00.000Z"
+    },
+    {
+      "id": 129,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-21T17:14:00.000Z"
+    },
+    {
+      "id": 130,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-22T15:11:00.000Z"
+    },
+    {
+      "id": 131,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-24T21:05:00.000Z"
+    },
+    {
+      "id": 132,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-25T18:46:00.000Z"
+    },
+    {
+      "id": 133,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-31T19:03:00.000Z"
+    },
+    {
+      "id": 134,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-02T15:48:00.000Z"
+    },
+    {
+      "id": 135,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-04T18:09:00.000Z"
+    },
+    {
+      "id": 136,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-06T17:42:00.000Z"
+    },
+    {
+      "id": 137,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-07T19:02:00.000Z"
+    },
+    {
+      "id": 138,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-08T20:20:00.000Z"
+    },
+    {
+      "id": 139,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-09T17:59:00.000Z"
+    },
+    {
+      "id": 140,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 40,
+      "reason": "PRODUCTION",
+      "notes": "",
+      "reference": "LT-2026-010",
+      "movementDate": "2026-09-11T13:30:00.000Z"
+    },
+    {
+      "id": 141,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-11T23:26:00.000Z"
+    },
+    {
+      "id": 142,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-12T19:31:00.000Z"
+    },
+    {
+      "id": 143,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-13T20:39:00.000Z"
+    },
+    {
+      "id": 144,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-14T21:49:00.000Z"
+    },
+    {
+      "id": 145,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-16T22:34:00.000Z"
+    },
+    {
+      "id": 146,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-17T22:44:00.000Z"
+    },
+    {
+      "id": 147,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-18T16:25:00.000Z"
+    },
+    {
+      "id": 148,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-19T16:54:00.000Z"
+    },
+    {
+      "id": 149,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-21T00:53:00.000Z"
+    },
+    {
+      "id": 150,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-21T20:14:00.000Z"
+    },
+    {
+      "id": 151,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-23T15:25:00.000Z"
+    },
+    {
+      "id": 152,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 12,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1039",
+      "movementDate": "2026-09-23T20:07:00.000Z"
+    },
+    {
+      "id": 153,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-27T00:28:00.000Z"
+    },
+    {
+      "id": 154,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-28T22:58:00.000Z"
+    },
+    {
+      "id": 155,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-29T17:45:00.000Z"
+    },
+    {
+      "id": 156,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-30T20:44:00.000Z"
+    },
+    {
+      "id": 157,
+      "stockItemId": 4,
+      "productId": 4,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 6,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1042",
+      "movementDate": "2026-10-01T19:26:00.000Z"
+    },
+    {
+      "id": 158,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 57,
+      "reason": "INITIAL",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-02T13:00:00.000Z"
+    },
+    {
+      "id": 159,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-03T16:48:00.000Z"
+    },
+    {
+      "id": 160,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-04T15:51:00.000Z"
+    },
+    {
+      "id": 161,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-08T16:01:00.000Z"
+    },
+    {
+      "id": 162,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-09T16:49:00.000Z"
+    },
+    {
+      "id": 163,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-10T21:51:00.000Z"
+    },
+    {
+      "id": 164,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-11T21:00:00.000Z"
+    },
+    {
+      "id": 165,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-14T15:07:00.000Z"
+    },
+    {
+      "id": 166,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-15T15:15:00.000Z"
+    },
+    {
+      "id": 167,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-16T23:24:00.000Z"
+    },
+    {
+      "id": 168,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-18T18:22:00.000Z"
+    },
+    {
+      "id": 169,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-19T17:39:00.000Z"
+    },
+    {
+      "id": 170,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 36,
+      "reason": "PRODUCTION",
+      "notes": "",
+      "reference": "LT-2026-013",
+      "movementDate": "2026-08-20T13:30:00.000Z"
+    },
+    {
+      "id": 171,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-22T18:06:00.000Z"
+    },
+    {
+      "id": 172,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-24T23:59:00.000Z"
+    },
+    {
+      "id": 173,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-25T17:17:00.000Z"
+    },
+    {
+      "id": 174,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-27T19:43:00.000Z"
+    },
+    {
+      "id": 175,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-08-31T15:06:00.000Z"
+    },
+    {
+      "id": 176,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-06T00:05:00.000Z"
+    },
+    {
+      "id": 177,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-06T16:21:00.000Z"
+    },
+    {
+      "id": 178,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 36,
+      "reason": "PRODUCTION",
+      "notes": "",
+      "reference": "LT-2026-013",
+      "movementDate": "2026-09-07T13:30:00.000Z"
+    },
+    {
+      "id": 179,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-07T16:14:00.000Z"
+    },
+    {
+      "id": 180,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-08T20:09:00.000Z"
+    },
+    {
+      "id": 181,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-09T23:55:00.000Z"
+    },
+    {
+      "id": 182,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-10T23:59:00.000Z"
+    },
+    {
+      "id": 183,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-11T18:33:00.000Z"
+    },
+    {
+      "id": 184,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 12,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1037",
+      "movementDate": "2026-09-12T16:15:00.000Z"
+    },
+    {
+      "id": 185,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-12T20:17:00.000Z"
+    },
+    {
+      "id": 186,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-15T23:28:00.000Z"
+    },
+    {
+      "id": 187,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-16T18:33:00.000Z"
+    },
+    {
+      "id": 188,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-17T21:11:00.000Z"
+    },
+    {
+      "id": 189,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-19T01:23:00.000Z"
+    },
+    {
+      "id": 190,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-21T01:43:00.000Z"
+    },
+    {
+      "id": 191,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-21T19:27:00.000Z"
+    },
+    {
+      "id": 192,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-23T22:37:00.000Z"
+    },
+    {
+      "id": 193,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-24T18:58:00.000Z"
+    },
+    {
+      "id": 194,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "IN",
+      "quantity": 36,
+      "reason": "PRODUCTION",
+      "notes": "",
+      "reference": "LT-2026-012",
+      "movementDate": "2026-09-25T13:30:00.000Z"
+    },
+    {
+      "id": 195,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-25T15:20:00.000Z"
+    },
+    {
+      "id": 196,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 6,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1040",
+      "movementDate": "2026-09-26T20:13:00.000Z"
+    },
+    {
+      "id": 197,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-28T01:28:00.000Z"
+    },
+    {
+      "id": 198,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-29T01:10:00.000Z"
+    },
+    {
+      "id": 199,
+      "stockItemId": 5,
+      "productId": 5,
+      "userId": 1,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-29T19:20:00.000Z"
+    },
+    {
+      "id": 200,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "IN",
+      "quantity": 41,
+      "reason": "INITIAL",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-01T13:00:00.000Z"
+    },
+    {
+      "id": 201,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-03T20:18:00.000Z"
+    },
+    {
+      "id": 202,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-04T20:50:00.000Z"
+    },
+    {
+      "id": 203,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-06T22:13:00.000Z"
+    },
+    {
+      "id": 204,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-08T23:05:00.000Z"
+    },
+    {
+      "id": 205,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-09T20:50:00.000Z"
+    },
+    {
+      "id": 206,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-10T15:15:00.000Z"
+    },
+    {
+      "id": 207,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-11T21:45:00.000Z"
+    },
+    {
+      "id": 208,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-12T17:47:00.000Z"
+    },
+    {
+      "id": 209,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-13T23:56:00.000Z"
+    },
+    {
+      "id": 210,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-14T16:16:00.000Z"
+    },
+    {
+      "id": 211,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-15T16:34:00.000Z"
+    },
+    {
+      "id": 212,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-17T20:49:00.000Z"
+    },
+    {
+      "id": 213,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-19T23:14:00.000Z"
+    },
+    {
+      "id": 214,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-21T00:08:00.000Z"
+    },
+    {
+      "id": 215,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "IN",
+      "quantity": 30,
+      "reason": "PURCHASE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-21T13:30:00.000Z"
+    },
+    {
+      "id": 216,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 6,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1001",
+      "movementDate": "2026-09-22T21:43:00.000Z"
+    },
+    {
+      "id": 217,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-25T17:32:00.000Z"
+    },
+    {
+      "id": 218,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-28T01:11:00.000Z"
+    },
+    {
+      "id": 219,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-28T19:48:00.000Z"
+    },
+    {
+      "id": 220,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 6,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1004",
+      "movementDate": "2026-09-28T21:08:00.000Z"
+    },
+    {
+      "id": 221,
+      "stockItemId": 6,
+      "productId": 6,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-29T19:43:00.000Z"
+    },
+    {
+      "id": 222,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "IN",
+      "quantity": 48,
+      "reason": "INITIAL",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-01T13:00:00.000Z"
+    },
+    {
+      "id": 223,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-03T17:05:00.000Z"
+    },
+    {
+      "id": 224,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-04T21:38:00.000Z"
+    },
+    {
+      "id": 225,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-06T19:00:00.000Z"
+    },
+    {
+      "id": 226,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-07T18:03:00.000Z"
+    },
+    {
+      "id": 227,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-08T17:15:00.000Z"
+    },
+    {
+      "id": 228,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-11T17:49:00.000Z"
+    },
+    {
+      "id": 229,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-12T19:11:00.000Z"
+    },
+    {
+      "id": 230,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-13T17:50:00.000Z"
+    },
+    {
+      "id": 231,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "IN",
+      "quantity": 28,
+      "reason": "PURCHASE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-15T13:30:00.000Z"
+    },
+    {
+      "id": 232,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-16T00:40:00.000Z"
+    },
+    {
+      "id": 233,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-19T21:44:00.000Z"
+    },
+    {
+      "id": 234,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-22T00:39:00.000Z"
+    },
+    {
+      "id": 235,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-22T20:32:00.000Z"
+    },
+    {
+      "id": 236,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 6,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1001",
+      "movementDate": "2026-09-22T21:43:00.000Z"
+    },
+    {
+      "id": 237,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-26T18:17:00.000Z"
+    },
+    {
+      "id": 238,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-27T18:43:00.000Z"
+    },
+    {
+      "id": 239,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-28T20:24:00.000Z"
+    },
+    {
+      "id": 240,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-29T18:13:00.000Z"
+    },
+    {
+      "id": 241,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-30T15:03:00.000Z"
+    },
+    {
+      "id": 242,
+      "stockItemId": 7,
+      "productId": 7,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1005",
+      "movementDate": "2026-09-30T17:10:00.000Z"
+    },
+    {
+      "id": 243,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "IN",
+      "quantity": 27,
+      "reason": "INITIAL",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-01T13:00:00.000Z"
+    },
+    {
+      "id": 244,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-03T15:05:00.000Z"
+    },
+    {
+      "id": 245,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-07T23:49:00.000Z"
+    },
+    {
+      "id": 246,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-09T23:41:00.000Z"
+    },
+    {
+      "id": 247,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-10T20:35:00.000Z"
+    },
+    {
+      "id": 248,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-12T00:56:00.000Z"
+    },
+    {
+      "id": 249,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-12T22:23:00.000Z"
+    },
+    {
+      "id": 250,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-14T23:44:00.000Z"
+    },
+    {
+      "id": 251,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-16T21:09:00.000Z"
+    },
+    {
+      "id": 252,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-18T00:28:00.000Z"
+    },
+    {
+      "id": 253,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-18T21:14:00.000Z"
+    },
+    {
+      "id": 254,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-19T23:43:00.000Z"
+    },
+    {
+      "id": 255,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-20T19:17:00.000Z"
+    },
+    {
+      "id": 256,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-21T17:21:00.000Z"
+    },
+    {
+      "id": 257,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-23T01:52:00.000Z"
+    },
+    {
+      "id": 258,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-23T15:23:00.000Z"
+    },
+    {
+      "id": 259,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-24T15:56:00.000Z"
+    },
+    {
+      "id": 260,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "IN",
+      "quantity": 24,
+      "reason": "PURCHASE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-25T13:30:00.000Z"
+    },
+    {
+      "id": 261,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 4,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1002",
+      "movementDate": "2026-09-25T14:18:00.000Z"
+    },
+    {
+      "id": 262,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-25T15:52:00.000Z"
+    },
+    {
+      "id": 263,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-29T15:44:00.000Z"
+    },
+    {
+      "id": 264,
+      "stockItemId": 8,
+      "productId": 8,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-30T22:43:00.000Z"
+    },
+    {
+      "id": 265,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "IN",
+      "quantity": 17,
+      "reason": "INITIAL",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-01T13:00:00.000Z"
+    },
+    {
+      "id": 266,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-02T22:05:00.000Z"
+    },
+    {
+      "id": 267,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-05T17:01:00.000Z"
+    },
+    {
+      "id": 268,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-06T18:41:00.000Z"
+    },
+    {
+      "id": 269,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-08T19:09:00.000Z"
+    },
+    {
+      "id": 270,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-09T21:16:00.000Z"
+    },
+    {
+      "id": 271,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-10T18:28:00.000Z"
+    },
+    {
+      "id": 272,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-15T00:29:00.000Z"
+    },
+    {
+      "id": 273,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-19T01:19:00.000Z"
+    },
+    {
+      "id": 274,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-19T22:08:00.000Z"
+    },
+    {
+      "id": 275,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-22T01:24:00.000Z"
+    },
+    {
+      "id": 276,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "IN",
+      "quantity": 21,
+      "reason": "PURCHASE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-22T13:30:00.000Z"
+    },
+    {
+      "id": 277,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-22T21:59:00.000Z"
+    },
+    {
+      "id": 278,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-23T16:55:00.000Z"
+    },
+    {
+      "id": 279,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-25T18:11:00.000Z"
+    },
+    {
+      "id": 280,
+      "stockItemId": 9,
+      "productId": 9,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-29T19:38:00.000Z"
+    },
+    {
+      "id": 281,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "IN",
+      "quantity": 58,
+      "reason": "INITIAL",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-01T13:00:00.000Z"
+    },
+    {
+      "id": 282,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-02T17:56:00.000Z"
+    },
+    {
+      "id": 283,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-03T15:15:00.000Z"
+    },
+    {
+      "id": 284,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-06T23:33:00.000Z"
+    },
+    {
+      "id": 285,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-07T19:11:00.000Z"
+    },
+    {
+      "id": 286,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-08T21:21:00.000Z"
+    },
+    {
+      "id": 287,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-09T20:53:00.000Z"
+    },
+    {
+      "id": 288,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-10T17:42:00.000Z"
+    },
+    {
+      "id": 289,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-11T17:43:00.000Z"
+    },
+    {
+      "id": 290,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-12T22:15:00.000Z"
+    },
+    {
+      "id": 291,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-15T00:14:00.000Z"
+    },
+    {
+      "id": 292,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-15T16:18:00.000Z"
+    },
+    {
+      "id": 293,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-17T01:22:00.000Z"
+    },
+    {
+      "id": 294,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-17T17:29:00.000Z"
+    },
+    {
+      "id": 295,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-18T15:41:00.000Z"
+    },
+    {
+      "id": 296,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-21T01:01:00.000Z"
+    },
+    {
+      "id": 297,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "IN",
+      "quantity": 40,
+      "reason": "PURCHASE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-21T13:30:00.000Z"
+    },
+    {
+      "id": 298,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-21T20:35:00.000Z"
+    },
+    {
+      "id": 299,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-24T20:21:00.000Z"
+    },
+    {
+      "id": 300,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-25T18:53:00.000Z"
+    },
+    {
+      "id": 301,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 6,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1004",
+      "movementDate": "2026-09-28T21:08:00.000Z"
+    },
+    {
+      "id": 302,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-29T21:15:00.000Z"
+    },
+    {
+      "id": 303,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-30T19:58:00.000Z"
+    },
+    {
+      "id": 304,
+      "stockItemId": 10,
+      "productId": 10,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-10-01T23:46:00.000Z"
+    },
+    {
+      "id": 305,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "IN",
+      "quantity": 25,
+      "reason": "INITIAL",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-01T13:00:00.000Z"
+    },
+    {
+      "id": 306,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-02T17:50:00.000Z"
+    },
+    {
+      "id": 307,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-04T19:41:00.000Z"
+    },
+    {
+      "id": 308,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-05T17:33:00.000Z"
+    },
+    {
+      "id": 309,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-06T23:14:00.000Z"
+    },
+    {
+      "id": 310,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-08T00:33:00.000Z"
+    },
+    {
+      "id": 311,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-08T15:54:00.000Z"
+    },
+    {
+      "id": 312,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-11T01:31:00.000Z"
+    },
+    {
+      "id": 313,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "IN",
+      "quantity": 30,
+      "reason": "PURCHASE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-11T13:30:00.000Z"
+    },
+    {
+      "id": 314,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-11T23:53:00.000Z"
+    },
+    {
+      "id": 315,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-13T23:15:00.000Z"
+    },
+    {
+      "id": 316,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-16T19:24:00.000Z"
+    },
+    {
+      "id": 317,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-18T21:54:00.000Z"
+    },
+    {
+      "id": 318,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 3,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-20T22:45:00.000Z"
+    },
+    {
+      "id": 319,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-23T00:38:00.000Z"
+    },
+    {
+      "id": 320,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-23T17:24:00.000Z"
+    },
+    {
+      "id": 321,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 6,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1002",
+      "movementDate": "2026-09-25T14:18:00.000Z"
+    },
+    {
+      "id": 322,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-25T16:34:00.000Z"
+    },
+    {
+      "id": 323,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 1,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-09-27T22:09:00.000Z"
+    },
+    {
+      "id": 324,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 4,
+      "reason": "ORDER",
+      "notes": "",
+      "reference": "#1005",
+      "movementDate": "2026-09-30T17:10:00.000Z"
+    },
+    {
+      "id": 325,
+      "stockItemId": 11,
+      "productId": 11,
+      "userId": 2,
+      "type": "OUT",
+      "quantity": 2,
+      "reason": "SALE",
+      "notes": "",
+      "reference": "",
+      "movementDate": "2026-10-01T23:39:00.000Z"
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "userId": 1,
+      "name": "Licorería Barranco",
+      "contactName": "Rosa Quispe",
+      "phone": "987 654 321",
+      "email": "compras@licoreriabarranco.pe",
+      "address": "Av. Grau 245, Barranco, Lima",
+      "customerType": "LIQUOR_STORE"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "name": "Distribuidora Sur",
+      "contactName": "Jorge Salas",
+      "phone": "956 112 334",
+      "email": "pedidos@distribuidorasur.pe",
+      "address": "Panamericana Sur km 302, Ica",
+      "customerType": "DISTRIBUTOR"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "name": "Bodega Central",
+      "contactName": "Ana Torres",
+      "phone": "944 887 120",
+      "email": "",
+      "address": "Jr. Lima 410, Pisco",
+      "customerType": "MARKET"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "name": "La Cava Perú",
+      "contactName": "Luis Paredes",
+      "phone": "",
+      "email": "ventas@lacavaperu.pe",
+      "address": "Calle Berlín 890, Miraflores, Lima",
+      "customerType": "LIQUOR_STORE"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "name": "Market Mala",
+      "contactName": "Pedro Huamán",
+      "phone": "933 456 789",
+      "email": "",
+      "address": "Av. Real 120, Mala",
+      "customerType": "MARKET"
+    },
+    {
+      "id": 6,
+      "userId": 2,
+      "name": "Restaurante El Muelle",
+      "contactName": "Diana Rojas",
+      "phone": "999 321 456",
+      "email": "reservas@elmuelle.pe",
+      "address": "Av. Costanera 1500, San Miguel",
+      "customerType": "RESTAURANT"
+    },
+    {
+      "id": 7,
+      "userId": 2,
+      "name": "Bar La Esquina",
+      "contactName": "Miguel Chávez",
+      "phone": "988 120 450",
+      "email": "",
+      "address": "Jr. Ucayali 330, Cercado de Lima",
+      "customerType": "RESTAURANT"
+    },
+    {
+      "id": 8,
+      "userId": 2,
+      "name": "Juan Pérez",
+      "contactName": "",
+      "phone": "977 555 010",
+      "email": "",
+      "address": "",
+      "customerType": "FINAL_CONSUMER"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "userId": 1,
+      "code": "#1036",
+      "customerId": 2,
+      "customerName": "Distribuidora Sur",
+      "orderDate": "2026-09-05T17:44:00.000Z",
+      "status": "DELIVERED",
+      "lines": [
+        {
+          "productId": 2,
+          "productName": "Pisco Italia · 750 ml",
+          "quantity": 24,
+          "unitPrice": 55
+        },
+        {
+          "productId": 3,
+          "productName": "Acholado Reserva · 500 ml",
+          "quantity": 12,
+          "unitPrice": 48
+        }
+      ],
+      "total": 1896,
+      "notes": ""
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "code": "#1037",
+      "customerId": 4,
+      "customerName": "La Cava Perú",
+      "orderDate": "2026-09-12T16:15:00.000Z",
+      "status": "DELIVERED",
+      "lines": [
+        {
+          "productId": 1,
+          "productName": "Pisco Quebranta · 750 ml",
+          "quantity": 18,
+          "unitPrice": 45
+        },
+        {
+          "productId": 5,
+          "productName": "Pisco Torontel · 750 ml",
+          "quantity": 12,
+          "unitPrice": 60
+        }
+      ],
+      "total": 1530,
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "code": "#1038",
+      "customerId": 5,
+      "customerName": "Market Mala",
+      "orderDate": "2026-09-19T19:20:00.000Z",
+      "status": "DELIVERED",
+      "lines": [
+        {
+          "productId": 1,
+          "productName": "Pisco Quebranta · 750 ml",
+          "quantity": 12,
+          "unitPrice": 45
+        },
+        {
+          "productId": 3,
+          "productName": "Acholado Reserva · 500 ml",
+          "quantity": 6,
+          "unitPrice": 48
+        }
+      ],
+      "total": 828,
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "code": "#1039",
+      "customerId": 4,
+      "customerName": "La Cava Perú",
+      "orderDate": "2026-09-23T20:07:00.000Z",
+      "status": "DELIVERED",
+      "lines": [
+        {
+          "productId": 4,
+          "productName": "Mosto Verde · 750 ml",
+          "quantity": 12,
+          "unitPrice": 85
+        },
+        {
+          "productId": 2,
+          "productName": "Pisco Italia · 750 ml",
+          "quantity": 12,
+          "unitPrice": 55
+        }
+      ],
+      "total": 1680,
+      "notes": ""
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "code": "#1040",
+      "customerId": 3,
+      "customerName": "Bodega Central",
+      "orderDate": "2026-09-26T20:13:00.000Z",
+      "status": "SHIPPED",
+      "lines": [
+        {
+          "productId": 1,
+          "productName": "Pisco Quebranta · 750 ml",
+          "quantity": 12,
+          "unitPrice": 45
+        },
+        {
+          "productId": 5,
+          "productName": "Pisco Torontel · 750 ml",
+          "quantity": 6,
+          "unitPrice": 60
+        }
+      ],
+      "total": 900,
+      "notes": ""
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "code": "#1041",
+      "customerId": 2,
+      "customerName": "Distribuidora Sur",
+      "orderDate": "2026-09-29T20:55:00.000Z",
+      "status": "PREPARING",
+      "lines": [
+        {
+          "productId": 2,
+          "productName": "Pisco Italia · 750 ml",
+          "quantity": 36,
+          "unitPrice": 55
+        },
+        {
+          "productId": 3,
+          "productName": "Acholado Reserva · 500 ml",
+          "quantity": 24,
+          "unitPrice": 48
+        }
+      ],
+      "total": 3132,
+      "notes": ""
+    },
+    {
+      "id": 7,
+      "userId": 1,
+      "code": "#1042",
+      "customerId": 1,
+      "customerName": "Licorería Barranco",
+      "orderDate": "2026-10-01T19:26:00.000Z",
+      "status": "PENDING",
+      "lines": [
+        {
+          "productId": 1,
+          "productName": "Pisco Quebranta · 750 ml",
+          "quantity": 24,
+          "unitPrice": 45
+        },
+        {
+          "productId": 4,
+          "productName": "Mosto Verde · 750 ml",
+          "quantity": 6,
+          "unitPrice": 85
+        }
+      ],
+      "total": 1590,
+      "notes": ""
+    },
+    {
+      "id": 8,
+      "userId": 2,
+      "code": "#1001",
+      "customerId": 6,
+      "customerName": "Restaurante El Muelle",
+      "orderDate": "2026-09-22T21:43:00.000Z",
+      "status": "DELIVERED",
+      "lines": [
+        {
+          "productId": 6,
+          "productName": "Pisco Quebranta Santa Rosa · 750 ml",
+          "quantity": 6,
+          "unitPrice": 39.9
+        },
+        {
+          "productId": 7,
+          "productName": "Pisco Italia Tabernero · 700 ml",
+          "quantity": 6,
+          "unitPrice": 42.5
+        }
+      ],
+      "total": 494.4,
+      "notes": ""
+    },
+    {
+      "id": 9,
+      "userId": 2,
+      "code": "#1002",
+      "customerId": 7,
+      "customerName": "Bar La Esquina",
+      "orderDate": "2026-09-25T14:18:00.000Z",
+      "status": "DELIVERED",
+      "lines": [
+        {
+          "productId": 8,
+          "productName": "Pisco Acholado Queirolo · 750 ml",
+          "quantity": 4,
+          "unitPrice": 36
+        },
+        {
+          "productId": 11,
+          "productName": "Pisco Quebranta Vargas · 1 L",
+          "quantity": 6,
+          "unitPrice": 34
+        }
+      ],
+      "total": 348,
+      "notes": ""
+    },
+    {
+      "id": 10,
+      "userId": 2,
+      "code": "#1003",
+      "customerId": 8,
+      "customerName": "Juan Pérez",
+      "orderDate": "2026-09-27T16:19:00.000Z",
+      "status": "CANCELLED",
+      "lines": [
+        {
+          "productId": 9,
+          "productName": "Mosto Verde Italia Reserva · 500 ml",
+          "quantity": 1,
+          "unitPrice": 79
+        }
+      ],
+      "total": 79,
+      "notes": ""
+    },
+    {
+      "id": 11,
+      "userId": 2,
+      "code": "#1004",
+      "customerId": 6,
+      "customerName": "Restaurante El Muelle",
+      "orderDate": "2026-09-28T21:08:00.000Z",
+      "status": "SHIPPED",
+      "lines": [
+        {
+          "productId": 10,
+          "productName": "Pisco Torontel Portón · 750 ml",
+          "quantity": 6,
+          "unitPrice": 58
+        },
+        {
+          "productId": 6,
+          "productName": "Pisco Quebranta Santa Rosa · 750 ml",
+          "quantity": 6,
+          "unitPrice": 39.9
+        }
+      ],
+      "total": 587.4,
+      "notes": ""
+    },
+    {
+      "id": 12,
+      "userId": 2,
+      "code": "#1005",
+      "customerId": 7,
+      "customerName": "Bar La Esquina",
+      "orderDate": "2026-09-30T17:10:00.000Z",
+      "status": "PENDING",
+      "lines": [
+        {
+          "productId": 11,
+          "productName": "Pisco Quebranta Vargas · 1 L",
+          "quantity": 4,
+          "unitPrice": 34
+        },
+        {
+          "productId": 7,
+          "productName": "Pisco Italia Tabernero · 700 ml",
+          "quantity": 2,
+          "unitPrice": 42.5
+        }
+      ],
+      "total": 221,
+      "notes": ""
+    }
+  ],
+  "replenishment-orders": [
+    {
+      "id": 1,
+      "userId": 2,
+      "code": "RP-0001",
+      "supplierName": "Distribuidora Santa Rosa",
+      "supplierContact": "956 000 111",
+      "productId": 7,
+      "productName": "Pisco Italia Tabernero · 700 ml",
+      "quantity": 24,
+      "orderDate": "2026-09-23T15:00:00.000Z",
+      "expectedDate": "2026-09-26T15:00:00.000Z",
+      "receivedDate": "2026-09-26T15:00:00.000Z",
+      "status": "RECEIVED",
+      "notes": ""
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "code": "RP-0002",
+      "supplierName": "Bodega Santa Rosa",
+      "supplierContact": "944 222 333",
+      "productId": 6,
+      "productName": "Pisco Quebranta Santa Rosa · 750 ml",
+      "quantity": 36,
+      "orderDate": "2026-09-30T15:00:00.000Z",
+      "expectedDate": "2026-10-03T15:00:00.000Z",
+      "receivedDate": null,
+      "status": "REQUESTED",
+      "notes": "Coordinado por WhatsApp"
+    }
+  ],
+  "alerts": [
+    {
+      "id": 1,
+      "userId": 1,
+      "type": "ANOMALY",
+      "sourceId": 18,
+      "messageKey": "alerts.messages.anomaly",
+      "messageParams": {
+        "variableType": "PH",
+        "batch": "LT-2026-018",
+        "value": "3.92",
+        "unit": "pH",
+        "min": 3.1,
+        "max": 3.8
+      },
+      "severity": "WARNING",
+      "status": "ATTENDED",
+      "createdAt": "2026-09-28T19:20:00.000Z",
+      "attendedAt": "2026-09-28T20:05:00.000Z",
+      "link": "/production/batches/5"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "type": "ANOMALY",
+      "sourceId": 21,
+      "messageKey": "alerts.messages.anomaly",
+      "messageParams": {
+        "variableType": "TEMPERATURE",
+        "batch": "LT-2026-019",
+        "value": "25.8",
+        "unit": "°C",
+        "min": 16,
+        "max": 24
+      },
+      "severity": "WARNING",
+      "status": "PENDING",
+      "createdAt": "2026-10-02T00:56:54.680Z",
+      "attendedAt": null,
+      "link": "/production/batches/6"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "type": "LOW_STOCK",
+      "sourceId": 4,
+      "messageKey": "alerts.messages.low-stock",
+      "messageParams": {
+        "product": "Mosto Verde · 750 ml",
+        "quantity": 18,
+        "threshold": 40
+      },
+      "severity": "CRITICAL",
+      "status": "PENDING",
+      "createdAt": "2026-09-30T17:00:00.000Z",
+      "attendedAt": null,
+      "link": "/inventory/products/4"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "type": "LOW_STOCK",
+      "sourceId": 1,
+      "messageKey": "alerts.messages.low-stock",
+      "messageParams": {
+        "product": "Pisco Quebranta · 750 ml",
+        "quantity": 42,
+        "threshold": 50
+      },
+      "severity": "WARNING",
+      "status": "PENDING",
+      "createdAt": "2026-10-01T21:00:00.000Z",
+      "attendedAt": null,
+      "link": "/inventory/products/1"
+    },
+    {
+      "id": 5,
+      "userId": 2,
+      "type": "LOW_STOCK",
+      "sourceId": 11,
+      "messageKey": "alerts.messages.low-stock",
+      "messageParams": {
+        "product": "Pisco Quebranta Vargas · 1 L",
+        "quantity": 8,
+        "threshold": 20
+      },
+      "severity": "CRITICAL",
+      "status": "PENDING",
+      "createdAt": "2026-10-01T18:00:00.000Z",
+      "attendedAt": null,
+      "link": "/inventory/products/11"
+    },
+    {
+      "id": 6,
+      "userId": 2,
+      "type": "LOW_STOCK",
+      "sourceId": 8,
+      "messageKey": "alerts.messages.low-stock",
+      "messageParams": {
+        "product": "Pisco Acholado Queirolo · 750 ml",
+        "quantity": 15,
+        "threshold": 20
+      },
+      "severity": "WARNING",
+      "status": "PENDING",
+      "createdAt": "2026-09-30T22:00:00.000Z",
+      "attendedAt": null,
+      "link": "/inventory/products/8"
+    },
+    {
+      "id": 7,
+      "userId": 2,
+      "type": "LOW_STOCK",
+      "sourceId": 6,
+      "messageKey": "alerts.messages.low-stock",
+      "messageParams": {
+        "product": "Pisco Quebranta Santa Rosa · 750 ml",
+        "quantity": 18,
+        "threshold": 24
+      },
+      "severity": "WARNING",
+      "status": "PENDING",
+      "createdAt": "2026-09-29T17:00:00.000Z",
+      "attendedAt": null,
+      "link": "/inventory/products/6"
+    }
+  ]
+}
