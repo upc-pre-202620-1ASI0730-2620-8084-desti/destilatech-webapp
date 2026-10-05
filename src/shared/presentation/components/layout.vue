@@ -22,7 +22,7 @@ watch(() => route.fullPath, () => {
 });
 
 onMounted(() => {
-  if (iamStore.isSignedIn) alertsStore.fetchAlerts();
+  if (iamStore.currentUser) alertsStore.fetchAlerts();
 });
 </script>
 

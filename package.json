@@ -8,8 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "fake-api": "node --env-file-if-exists=server/.env server/index.js",
-    "fake-api:seed": "node server/generate-db.js"
+
   },
   "keywords": ["vue", "vite", "primevue", "pinia", "vue-i18n", "ddd", "destilatech", "pisco"],
   "dependencies": {

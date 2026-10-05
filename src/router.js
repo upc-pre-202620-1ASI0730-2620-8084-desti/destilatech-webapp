@@ -9,6 +9,7 @@ import ordersReplenishmentRoutes from './orders-replenishment/presentation/order
 import alertsNotificationsRoutes from './alerts-notifications/presentation/alerts-notifications-routes.js';
 import analyticsEstimationsRoutes from './analytics-estimations/presentation/analytics-estimations-routes.js';
 import { authenticationGuard } from './iam/infrastructure/authentication.guard.js';
+import { useIamStore } from './iam/application/iam.store.js';
 
 const pageNotFound = () => import('./shared/presentation/views/page-not-found.vue');
 
@@ -39,7 +40,11 @@ const router = createRouter({
     scrollBehavior: () => ({ top: 0 })
 });
 
-router.beforeEach(authenticationGuard);
+router.beforeEach(async (to, from) => {
+
+    await useIamStore().loadDemoAccount();
+    return true;
+});
 
 router.afterEach(to => {
     const baseTitle = 'Destilatech';

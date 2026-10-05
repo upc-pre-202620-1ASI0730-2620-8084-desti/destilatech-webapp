@@ -112,6 +112,11 @@ export const useIamStore = defineStore('iam', () => {
         persistSession(userAssembler.toEntityFromResource(resource), token.value);
     }
 
+    async function loadDemoAccount(userId = 1) {
+        if (currentUser.value) return;
+        currentUser.value = userAssembler.toEntityFromResponse(await iamApi.getUserById(userId));
+    }
+
     return {
         currentUser,
         token,
@@ -127,6 +132,7 @@ export const useIamStore = defineStore('iam', () => {
         signOut,
         restoreSession,
         updateProfile,
-        extendAccountAccess
+        extendAccountAccess,
+        loadDemoAccount
     };
 });
