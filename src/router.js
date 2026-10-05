@@ -42,7 +42,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from) => {
 
-    await useIamStore().loadDemoAccount();
+    if (to.matched.some(record => record.meta['requiresAuth'])) await useIamStore().loadDemoAccount();
     return true;
 });
 
