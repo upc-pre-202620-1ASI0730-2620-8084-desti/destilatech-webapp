@@ -5,10 +5,7 @@ import { ProductionBatch } from '@/production-monitoring/domain/model/production
 import { BatchStage } from '@/production-monitoring/domain/model/batch-stage.js';
 import BatchStageTag from './batch-stage-tag.vue';
 
-/**
- * Dialog to move a batch to its next stage (US07). When the next stage is
- * BOTTLED, it also captures the bottled units that will enter the inventory.
- */
+
 const props = defineProps({
   visible: { type: Boolean, default: false },
   batch: { type: ProductionBatch, default: null },
