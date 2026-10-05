@@ -2,12 +2,9 @@
 import { computed, reactive, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-/**
- * Dialog to register a new production batch (US06).
- */
+
 const props = defineProps({
   visible: { type: Boolean, default: false },
-  /** Inventory products that can receive the bottled units: [{value, label}]. */
   productOptions: { type: Array, default: () => [] },
   saving: { type: Boolean, default: false }
 });
