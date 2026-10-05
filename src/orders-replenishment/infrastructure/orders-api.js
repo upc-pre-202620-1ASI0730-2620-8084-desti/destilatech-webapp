@@ -5,9 +5,7 @@ const customersEndpointPath = import.meta.env.VITE_CUSTOMERS_ENDPOINT_PATH;
 const ordersEndpointPath = import.meta.env.VITE_ORDERS_ENDPOINT_PATH;
 const replenishmentOrdersEndpointPath = import.meta.env.VITE_REPLENISHMENT_ORDERS_ENDPOINT_PATH;
 
-/**
- * Infrastructure adapter for the Orders & Replenishment bounded context.
- */
+
 export class OrdersApi extends BaseApi {
     #customersEndpoint;
     #ordersEndpoint;
