@@ -5,7 +5,6 @@ defineProps({
   value: { type: [String, Number], required: true },
   caption: { type: String, default: '' },
   icon: { type: String, default: '' },
-  /** One of: neutral, success, warn, danger. Colors the caption. */
   tone: { type: String, default: 'neutral' },
   loading: { type: Boolean, default: false }
 });
