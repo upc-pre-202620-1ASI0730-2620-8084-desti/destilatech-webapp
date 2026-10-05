@@ -3,9 +3,7 @@ import { computed, reactive, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Customer, CustomerType } from '@/orders-replenishment/domain/model/customer.entity.js';
 
-/**
- * Dialog to register or edit a customer (US17).
- */
+
 const props = defineProps({
   visible: { type: Boolean, default: false },
   customer: { type: Customer, default: null },
