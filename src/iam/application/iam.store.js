@@ -113,7 +113,7 @@ export const useIamStore = defineStore('iam', () => {
     }
 
     async function loadDemoAccount(userId = 1) {
-        if (currentUser.value) return;
+        if (currentUser.value || restoreSession()) return;
         currentUser.value = userAssembler.toEntityFromResponse(await iamApi.getUserById(userId));
     }
 
