@@ -1,7 +1,9 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+
 </script>
 
 <template>
-  <HelloWorld />
+  <pv-toast position="top-right"/>
+  <pv-confirm-dialog/>
+  <router-view/>
 </template>
