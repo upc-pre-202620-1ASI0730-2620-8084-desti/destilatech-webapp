@@ -1,22 +1,14 @@
 import { BaseAssembler } from '@/shared/infrastructure/base-assembler.js';
 import { ProductionBatch } from '@/production-monitoring/domain/model/production-batch.entity.js';
 
-/**
- * Maps batch resources into {@link ProductionBatch} entities and back.
- */
+
 export class ProductionBatchAssembler extends BaseAssembler {
-    /**
-     * @param {Object} resource
-     * @returns {ProductionBatch}
-     */
+
     toEntityFromResource(resource) {
         return new ProductionBatch({ ...resource });
     }
 
-    /**
-     * @param {ProductionBatch} entity
-     * @returns {Object}
-     */
+
     toResourceFromEntity(entity) {
         const resource = {
             userId: entity.userId,
