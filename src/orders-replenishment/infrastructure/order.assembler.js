@@ -1,22 +1,13 @@
 import { BaseAssembler } from '@/shared/infrastructure/base-assembler.js';
 import { Order } from '@/orders-replenishment/domain/model/order.entity.js';
 
-/**
- * Maps order resources (with embedded lines) into {@link Order} entities and back.
- */
 export class OrderAssembler extends BaseAssembler {
-    /**
-     * @param {Object} resource
-     * @returns {Order}
-     */
+
     toEntityFromResource(resource) {
         return new Order({ ...resource });
     }
 
-    /**
-     * @param {Order} entity
-     * @returns {Object}
-     */
+
     toResourceFromEntity(entity) {
         const resource = {
             userId: entity.userId,
