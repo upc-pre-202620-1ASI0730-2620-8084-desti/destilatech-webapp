@@ -3,18 +3,10 @@ import { computed, reactive, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Money } from '@/shared/domain/model/money.js';
 
-/**
- * Dialog to register a customer order with one or more product lines (US18).
- *
- * @remarks
- * Shows a warning before confirming when a line exceeds the available stock
- * and blocks the confirmation (stock can never be negative).
- */
+
 const props = defineProps({
   visible: { type: Boolean, default: false },
-  /** @type {import('@/orders-replenishment/domain/model/customer.entity.js').Customer[]} */
   customers: { type: Array, required: true },
-  /** @type {import('@/inventory-stock/application/inventory.store.js').InventoryItem[]} */
   inventoryItems: { type: Array, required: true },
   saving: { type: Boolean, default: false }
 });
@@ -39,16 +31,13 @@ const productOptions = computed(() => props.inventoryItems.map(item => ({
   disabled: item.stockItem.currentQuantity === 0
 })));
 
-/** @param {number} productId */
 const itemFor = productId => props.inventoryItems.find(item => item.product.id === productId);
 
-/** @param {{productId: number, quantity: number}} line */
 const lineExceedsStock = line => {
   const item = itemFor(line.productId);
   return item ? line.quantity > item.stockItem.currentQuantity : false;
 };
 
-/** @param {{productId: number, quantity: number}} line */
 const lineSubtotal = line => {
   const item = itemFor(line.productId);
   return item ? item.product.unitPrice.multiply(line.quantity || 0) : new Money(0);
