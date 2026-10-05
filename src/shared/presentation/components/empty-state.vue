@@ -8,7 +8,12 @@ defineProps({
 </script>
 
 <template>
-
+  <div class="empty-state">
+    <i :class="icon" class="empty-state__icon" aria-hidden="true"></i>
+    <h3>{{ title }}</h3>
+    <p v-if="description" class="text-muted">{{ description }}</p>
+    <slot/>
+  </div>
 </template>
 
 <style scoped>
