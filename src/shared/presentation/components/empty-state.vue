@@ -17,5 +17,21 @@ defineProps({
 </template>
 
 <style scoped>
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.6rem;
+  padding: var(--spacing-04) var(--spacing-02);
+}
 
+.empty-state__icon {
+  font-size: 2.2rem;
+  color: var(--color-accent);
+}
+
+.empty-state p {
+  max-width: 28rem;
+}
 </style>
