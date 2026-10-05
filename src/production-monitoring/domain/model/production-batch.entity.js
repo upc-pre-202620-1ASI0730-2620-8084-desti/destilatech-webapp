@@ -1,12 +1,6 @@
 import { DateTime } from '@/shared/domain/model/date-time.js';
 import { BatchStage, BATCH_STAGE_SEQUENCE, nextStageOf } from '@/production-monitoring/domain/model/batch-stage.js';
 
-/**
- * @typedef {Object} StageChange
- * @property {string} stage
- * @property {DateTime} changedAt
- * @property {string} [notes]
- */
 
 
 export class ProductionBatch {
