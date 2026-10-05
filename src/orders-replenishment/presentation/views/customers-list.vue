@@ -9,9 +9,7 @@ import PageHeader from '@/shared/presentation/components/page-header.vue';
 import EmptyState from '@/shared/presentation/components/empty-state.vue';
 import CustomerFormDialog from '@/orders-replenishment/presentation/components/customer-form-dialog.vue';
 
-/**
- * Customers registry (US17) with their purchase summary.
- */
+
 const { t, locale } = useI18n();
 const toast = useToast();
 const ordersStore = useOrdersStore();
@@ -21,7 +19,6 @@ const dialogVisible = ref(false);
 const customerToEdit = ref(null);
 const saving = ref(false);
 
-/** Customers enriched with their order count and total purchased. */
 const customerRows = computed(() => {
   const term = search.value.trim().toLowerCase();
   return ordersStore.customers
