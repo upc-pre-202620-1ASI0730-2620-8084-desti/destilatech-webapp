@@ -1,0 +1,697 @@
+{
+  "common": {
+    "actions": "Actions",
+    "all": "All",
+    "back": "Back",
+    "cancel": "Cancel",
+    "date": "Date",
+    "delete": "Delete",
+    "edit": "Edit",
+    "error": "Something went wrong",
+    "save": "Save",
+    "save-changes": "Save changes",
+    "saved": "Saved",
+    "view-all": "View all",
+    "view-detail": "View detail"
+  },
+  "validation": {
+    "required": "This field is required.",
+    "email": "Enter a valid email address.",
+    "min-length": "Must have at least {length} characters."
+  },
+  "shared": {
+    "language-switcher": "Language selector",
+    "footer": {
+      "rights": "All rights reserved.",
+      "website": "Visit website"
+    }
+  },
+  "page-not-found": {
+    "title": "Page Not Found",
+    "content": "The path {unavailable-route} is not available.",
+    "go-home": "Go Home"
+  },
+  "navigation": {
+    "aria-label": "Main navigation",
+    "toggle": "Open or close the menu",
+    "dashboard": "Dashboard",
+    "monitoring": "IoT Monitoring",
+    "batches": "Batches",
+    "inventory": "Inventory",
+    "orders": "Orders",
+    "customers": "Customers",
+    "replenishment": "Replenishment",
+    "alerts": "Alerts",
+    "indicators": "Indicators",
+    "subscription": "Subscription",
+    "profile": "My profile",
+    "sections": {
+      "overview": "Overview",
+      "production": "Production",
+      "operations": "Operations",
+      "analytics": "Analytics",
+      "account": "Account"
+    }
+  },
+  "iam": {
+    "account-menu": "Account menu",
+    "sign-out": "Sign out",
+    "brand": {
+      "headline": "Smart management for the Peruvian pisco ecosystem.",
+      "lead": "Monitor your production, control your inventory and anticipate replenishments from a single place.",
+      "highlight-monitoring": "IoT monitoring of fermentation and distillation",
+      "highlight-inventory": "Inventory, orders and stock alerts",
+      "highlight-estimations": "Replenishment estimates from your history"
+    },
+    "sign-in": {
+      "title": "Welcome",
+      "subtitle": "Sign in to manage your operation.",
+      "submit": "Sign in",
+      "no-account": "Don't have an account yet?",
+      "create-account": "Try it free for 14 days"
+    },
+    "sign-up": {
+      "title": "Create your account",
+      "subtitle": "Start your {days}-day free trial, no credit card required.",
+      "selected-plan": "Plan chosen on our website: {plan}. You can activate it when your trial ends.",
+      "submit": "Start {days}-day trial",
+      "have-account": "Already have an account?",
+      "sign-in": "Sign in",
+      "success-title": "Account created!",
+      "success-detail": "Your {days}-day trial is now active."
+    },
+    "fields": {
+      "full-name": "Full name",
+      "business-name": "Winery / company name",
+      "email": "Email address",
+      "password": "Password",
+      "business-type": "Business type"
+    },
+    "business-type": {
+      "PRODUCER": "Producer",
+      "RETAILER": "Retailer",
+      "PRODUCER-description": "Winery that produces pisco: batches, IoT monitoring and inventory.",
+      "RETAILER-description": "Liquor store, shop or distributor: inventory, orders and replenishment."
+    },
+    "password": {
+      "prompt": "Enter a password",
+      "weak": "Weak",
+      "medium": "Medium",
+      "strong": "Strong"
+    },
+    "errors": {
+      "invalid-credentials": "Incorrect email or password.",
+      "email-already-in-use": "This email is already registered. Sign in or use another email.",
+      "unexpected": "We could not complete the operation: {detail}",
+      "server-unreachable": "The server is not reachable. Start the Fake API in another terminal (cd server, then sh start.sh) and try again."
+    },
+    "profile": {
+      "title": "My profile",
+      "subtitle": "Update your account information and review your access.",
+      "account-data": "Account details",
+      "saved": "Your profile was updated.",
+      "member-since": "Member since",
+      "access": "Access",
+      "access-trial": "Free trial · {days} days left",
+      "access-paid": "Active subscription until {date}",
+      "access-expired": "Trial ended, no subscription",
+      "manage-subscription": "Manage subscription"
+    }
+  },
+  "billing": {
+    "title": "Subscription",
+    "subtitle": "Choose the plan that best fits your operation.",
+    "trial-expired-message": "Your trial period has ended. Subscribe to a plan to keep using Destilatech.",
+    "per-month": "month",
+    "subscribe": "Subscribe",
+    "active": "Active plan",
+    "current-plan": "Current plan",
+    "preferred-plan": "Chosen on the website",
+    "recommended": "Most popular",
+    "payment-note": "Secure card payment processed by Stripe (test mode). Destilatech never sees or stores your card details.",
+    "status": {
+      "title": "Your access status",
+      "trial": "You are on your free trial: {days} day left. | You are on your free trial: {days} days left.",
+      "subscribed": "{plan} active · renews on {date}.",
+      "expired": "Your free trial has ended and you have no active subscription."
+    },
+    "confirm": {
+      "header": "Pay subscription",
+      "message": "You will be redirected to the secure Stripe payment page to pay the {plan} ({price} for 30 days) with your card.",
+      "accept": "Go to payment"
+    },
+    "cancel": {
+      "action": "Cancel subscription",
+      "header": "Cancel subscription",
+      "message": "You will keep access until the renewal date. Do you want to continue?",
+      "accept": "Yes, cancel",
+      "done": "Subscription cancelled"
+    },
+    "trial-banner": {
+      "message": "Your free trial ends in {days} day. | Your free trial ends in {days} days.",
+      "action": "See plans"
+    },
+    "plans": {
+      "BASIC": {
+        "name": "Basic Plan",
+        "description": "Ideal for small wineries or liquor stores that are starting to digitize their inventory."
+      },
+      "PROFESSIONAL": {
+        "name": "Professional Plan",
+        "description": "For growing producers and retailers with several batches or points of sale."
+      },
+      "ENTERPRISE": {
+        "name": "Enterprise Plan",
+        "description": "For multiple operations that need priority support and advanced integration."
+      }
+    },
+    "features": {
+      "inventory": "Inventory and orders",
+      "stock-alerts": "Stock alerts",
+      "iot-monitoring": "Production monitoring (IoT)",
+      "batch-traceability": "Batch traceability",
+      "estimations": "Predictive estimates",
+      "everything-pro": "Everything in the Professional plan",
+      "priority-support": "Priority support",
+      "users": "{count} user | Up to {count} users",
+      "unlimited-users": "Unlimited users"
+    },
+    "payments": {
+      "title": "Payment history",
+      "empty": "No payments registered yet.",
+      "plan": "Plan",
+      "amount": "Amount",
+      "card": "Card",
+      "provider": "Gateway",
+      "reference": "Reference",
+      "status": {
+        "PAID": "Paid",
+        "REFUNDED": "Refunded"
+      }
+    },
+    "checkout": {
+      "redirecting": "Redirecting to the payment gateway…",
+      "confirming": "Confirming your payment…",
+      "success-title": "Payment confirmed!",
+      "success-detail": "Your {plan} is active until {date}.",
+      "error-title": "We could not confirm the payment",
+      "cancelled-title": "Payment cancelled",
+      "cancelled-detail": "No charge was made. You can choose a plan whenever you want.",
+      "go-dashboard": "Go to dashboard",
+      "back-to-plans": "Back to plans"
+    },
+    "errors": {
+      "payment-gateway-not-configured": "The payment gateway is not configured. Add your Stripe test key to server/.env and restart the Fake API.",
+      "payment-not-completed": "The payment has not been completed in the gateway yet.",
+      "missing-session": "No payment session was received.",
+      "user-or-plan-not-found": "We could not find the account or the plan.",
+      "server-unreachable": "The server is not reachable. Start the Fake API in another terminal (cd server, then sh start.sh) and try again."
+    }
+  },
+  "dashboard": {
+    "greeting": {
+      "morning": "Good morning, {name}. Here is the status of your operation.",
+      "afternoon": "Good afternoon, {name}. Here is the status of your operation.",
+      "evening": "Good evening, {name}. Here is the status of your operation."
+    },
+    "recent-activity": "Recent activity",
+    "no-activity": "No activity recorded yet.",
+    "pending-alerts": "Pending alerts",
+    "priority-replenishment": "Priority replenishment",
+    "no-replenishment": "No products need replenishment.",
+    "below-threshold": "Below the {threshold} threshold",
+    "activity": {
+      "order": "Order {code} registered · {customer}"
+    },
+    "producer": {
+      "title": "Producer Dashboard",
+      "active-batches": "Active batches",
+      "in-fermentation": "{count} in fermentation",
+      "inventory": "Inventory",
+      "products": "{count} products",
+      "alerts": "Alerts",
+      "need-attention": "Need attention",
+      "all-clear": "All clear",
+      "orders": "Orders",
+      "to-dispatch": "{count} to dispatch",
+      "batch-yield": "Volume per active batch",
+      "no-active-batches": "You have no active batches.",
+      "empty-title": "Register your first batch",
+      "empty-description": "You have no batches or products yet. Register a batch to start monitoring your production or add your products to the inventory."
+    },
+    "retailer": {
+      "title": "Commercial Dashboard",
+      "month-sales": "Sales this month",
+      "month-sales-caption": "Non-cancelled orders",
+      "orders": "Open orders",
+      "pending": "{count} pending",
+      "low-stock": "Low stock",
+      "replenish-today": "Replenish today",
+      "products": "Products",
+      "suppliers": "{count} suppliers",
+      "inventory-movement": "Inventory movement",
+      "recent-orders": "Recent orders",
+      "empty-title": "Register your products",
+      "empty-description": "Add the products you sell to control your stock, receive alerts and register orders."
+    }
+  },
+  "production": {
+    "new-batch": "New batch",
+    "configure-range": "Configure normal range",
+    "range": "Range {min} – {max} {unit}",
+    "stages": {
+      "RECEIVED": "Reception",
+      "FERMENTATION": "Fermentation",
+      "DISTILLATION": "Distillation",
+      "RESTING": "Resting",
+      "BOTTLED": "Bottled"
+    },
+    "variables": {
+      "TEMPERATURE": "Temperature",
+      "PH": "pH",
+      "HUMIDITY": "Humidity",
+      "DENSITY": "Density",
+      "BRIX": "Brix degrees",
+      "ALCOHOL": "Alcohol content"
+    },
+    "reading-status": {
+      "within-range": "Within range",
+      "out-of-range": "Out of range",
+      "no-data": "No readings"
+    },
+    "fields": {
+      "batch": "Batch",
+      "variety": "Grape variety",
+      "stage": "Stage",
+      "start-date": "Start date",
+      "estimated-quantity": "Estimated quantity",
+      "tank": "Tank / still",
+      "product": "Inventory product",
+      "notes": "Notes",
+      "bottled-units": "Bottled units",
+      "min-range": "Minimum",
+      "max-range": "Maximum",
+      "variable": "Variable",
+      "value": "Value"
+    },
+    "filters": {
+      "active": "Active batches"
+    },
+    "kpis": {
+      "active-batches": "Active batches",
+      "in-fermentation": "{count} in fermentation",
+      "in-distillation": "In distillation",
+      "resting": "{count} resting",
+      "liters": "Liters in process",
+      "liters-caption": "Sum of active batches",
+      "bottled": "Bottled batches",
+      "bottled-caption": "Finished processes"
+    },
+    "batches": {
+      "title": "Batch management",
+      "subtitle": "{count} registered batches",
+      "back": "Back to batches",
+      "empty-title": "No batches yet",
+      "empty-description": "Register your first batch to keep an organized history of your production."
+    },
+    "batch-form": {
+      "title": "Register production batch",
+      "submit": "Register batch",
+      "tank-placeholder": "E.g. Tank A",
+      "product-placeholder": "Select a product (optional)",
+      "product-help": "When the batch is bottled, the bottles will be added to this product's stock."
+    },
+    "advance-stage": {
+      "title": "Update batch stage",
+      "action": "Advance stage",
+      "to": "Move to {stage}",
+      "submit": "Confirm change",
+      "notes-placeholder": "Notes about the stage change (optional)",
+      "bottling-help": "The bottles will be registered as an inventory entry of the selected product."
+    },
+    "range-form": {
+      "title": "Variable normal range",
+      "description": "{variable} readings outside this range will raise an anomaly alert."
+    },
+    "monitoring": {
+      "title": "IoT Monitoring",
+      "subtitle": "Real-time process variables reported by the (simulated) sensors of your batches.",
+      "stable": "Stable operation",
+      "anomaly": "Anomaly detected",
+      "live": "Live simulation",
+      "simulate": "Simulate reading",
+      "watching": "Monitoring batch",
+      "chart-title": "{variable} · recent readings",
+      "last-readings": "Last {count} readings",
+      "no-readings": "No readings for this variable yet",
+      "no-readings-description": "Use “Simulate reading” or enable live simulation to receive sensor data.",
+      "no-batches": "You have no active batches to monitor",
+      "no-batches-description": "Register a batch and move it to fermentation to start receiving readings.",
+      "anomaly-toast-title": "Anomaly detected",
+      "anomaly-toast-detail": "{count} variable(s) out of the normal range. An alert was raised."
+    },
+    "detail": {
+      "page-title": "Batch detail",
+      "title": "Batch {code}",
+      "traceability": "Batch traceability",
+      "pending-stage": "Pending stage",
+      "summary": "Summary",
+      "anomalies": "Recorded anomalies",
+      "variables": "Monitored variables",
+      "anomaly-history": "Anomaly history",
+      "no-anomalies": "No anomalies recorded",
+      "not-found": "We could not find this batch."
+    },
+    "toasts": {
+      "batch-registered": "Batch {code} registered",
+      "stage-updated": "{code} moved to {stage}",
+      "range-saved": "Normal range updated"
+    },
+    "errors": {
+      "start-date-required": "The start date is required.",
+      "variety-required": "The grape variety is required.",
+      "quantity-required": "The estimated quantity must be greater than zero.",
+      "invalid-range": "The minimum must be lower than the maximum.",
+      "batch-already-finished": "The batch has already been bottled.",
+      "server-unreachable": "The server is not reachable. Start the Fake API in another terminal (cd server, then sh start.sh) and try again."
+    }
+  },
+  "inventory": {
+    "title": "Inventory",
+    "subtitle": "Current stock of your products, sorted from the lowest to the highest level.",
+    "detail-title": "Product sheet",
+    "new-product": "New product",
+    "register-movement": "Register entry/exit",
+    "configure-threshold": "Configure low-stock threshold",
+    "search-placeholder": "Search by name, variety or SKU",
+    "back": "Back to inventory",
+    "not-found": "We could not find this product.",
+    "status": {
+      "OPTIMAL": "Optimal",
+      "LOW": "Low",
+      "CRITICAL": "Critical"
+    },
+    "units": {
+      "BOTTLE": "bottles",
+      "BOX": "boxes",
+      "LITER": "liters",
+      "UNIT": "units"
+    },
+    "movement-type": {
+      "IN": "Entry",
+      "OUT": "Exit"
+    },
+    "movement-reason": {
+      "PURCHASE": "Supplier purchase",
+      "PRODUCTION": "Production / bottling",
+      "SALE": "Direct sale",
+      "ORDER": "Customer order",
+      "RETURN": "Return",
+      "ADJUSTMENT": "Inventory adjustment",
+      "WASTE": "Waste or loss",
+      "INITIAL": "Initial stock"
+    },
+    "fields": {
+      "name": "Name",
+      "product": "Product",
+      "presentation": "Presentation",
+      "unit": "Unit of measure",
+      "category": "Variety / category",
+      "unit-price": "Unit price",
+      "sku": "SKU",
+      "stock": "Stock",
+      "threshold": "Minimum threshold",
+      "status": "Status",
+      "initial-quantity": "Initial stock",
+      "low-stock-threshold": "Low-stock threshold",
+      "movement-type": "Movement type",
+      "quantity": "Quantity",
+      "reason": "Reason",
+      "notes": "Notes",
+      "reference": "Reference"
+    },
+    "kpis": {
+      "products": "Products",
+      "categories": "{count} categories",
+      "units": "Units",
+      "units-caption": "Across the whole inventory",
+      "low-stock": "Low stock",
+      "low-stock-caption": "Replenish soon",
+      "value": "Stock value",
+      "value-caption": "Based on reference price",
+      "threshold-caption": "Raises an alert when reached"
+    },
+    "product-form": {
+      "new-title": "Register product",
+      "edit-title": "Edit product",
+      "name-placeholder": "E.g. Pisco Quebranta",
+      "category-placeholder": "Select or type"
+    },
+    "movement-form": {
+      "title": "Register inventory movement",
+      "select-product": "Select a product",
+      "submit": "Register movement",
+      "insufficient-stock": "The exit exceeds the available stock ({available}). Stock cannot become negative.",
+      "resulting-stock": "Current stock: {current} → resulting stock: {result}"
+    },
+    "threshold-form": {
+      "title": "Low-stock threshold",
+      "description": "You will receive an alert when the stock of {product} reaches or falls below this value."
+    },
+    "movements": {
+      "title": "Movement history",
+      "count": "{count} movements",
+      "empty": "No movements for this product yet."
+    },
+    "empty": {
+      "title": "Your inventory is empty",
+      "description": "Register your first product to start controlling your stock."
+    },
+    "toasts": {
+      "product-registered": "Product registered",
+      "product-updated": "Product updated",
+      "movement-registered": "Movement registered and stock updated",
+      "threshold-saved": "Low-stock threshold updated"
+    },
+    "errors": {
+      "insufficient-stock": "The exit exceeds the available stock.",
+      "stock-item-not-found": "The product has no stock record.",
+      "server-unreachable": "The server is not reachable. Start the Fake API in another terminal (cd server, then sh start.sh) and try again."
+    }
+  },
+  "orders": {
+    "title": "Orders",
+    "subtitle": "Register your customers' orders and track their status.",
+    "new-order": "New order",
+    "new-customer": "New customer",
+    "search-placeholder": "Search by code or customer",
+    "status": {
+      "PENDING": "Pending",
+      "PREPARING": "Preparing",
+      "SHIPPED": "Shipped",
+      "DELIVERED": "Delivered",
+      "CANCELLED": "Cancelled"
+    },
+    "advance": {
+      "PREPARING": "Prepare",
+      "SHIPPED": "Ship",
+      "DELIVERED": "Deliver"
+    },
+    "customer-type": {
+      "LIQUOR_STORE": "Liquor store",
+      "DISTRIBUTOR": "Distributor",
+      "RESTAURANT": "Restaurant / bar",
+      "MARKET": "Convenience store",
+      "FINAL_CONSUMER": "Final consumer"
+    },
+    "filters": {
+      "open": "In progress",
+      "completed": "Completed"
+    },
+    "fields": {
+      "order": "Order",
+      "code": "Code",
+      "customer": "Customer",
+      "customer-name": "Name or company name",
+      "customer-type": "Customer type",
+      "contact": "Contact",
+      "contact-name": "Contact person",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "status": "Status",
+      "total": "Total",
+      "subtotal": "Subtotal",
+      "notes": "Notes",
+      "supplier": "Supplier",
+      "supplier-contact": "Supplier contact",
+      "expected-date": "Expected arrival date"
+    },
+    "kpis": {
+      "month-sales": "Sales this month",
+      "month-sales-caption": "Non-cancelled orders",
+      "open": "Orders in progress",
+      "pending": "{count} pending",
+      "total": "Registered orders",
+      "customers": "{count} customers"
+    },
+    "order-form": {
+      "title": "Register order",
+      "select-customer": "Select a customer",
+      "products": "Order products",
+      "select-product": "Select a product",
+      "available": "{count} avail.",
+      "add-line": "Add product",
+      "stock-warning": "One or more products exceed the available stock. Adjust the quantities before confirming.",
+      "duplicated": "There are repeated products. Merge the quantities into a single line.",
+      "submit": "Confirm order"
+    },
+    "empty": {
+      "title": "No orders yet",
+      "description": "Register a customer's first order to keep track of your sales."
+    },
+    "customer-form": {
+      "new-title": "Register customer",
+      "edit-title": "Edit customer"
+    },
+    "cancel": {
+      "action": "Cancel order",
+      "header": "Cancel order {code}",
+      "message": "The order units will be returned to the inventory. Do you want to continue?",
+      "accept": "Yes, cancel"
+    },
+    "customers": {
+      "title": "Customers",
+      "subtitle": "{count} registered customers",
+      "search-placeholder": "Search by name, contact, phone or email",
+      "orders": "Orders",
+      "purchased": "Total purchased",
+      "empty-title": "You have no customers yet",
+      "empty-description": "Register your customers to link them to your orders."
+    },
+    "replenishment": {
+      "title": "Replenishment",
+      "subtitle": "Detect low stock, request the replenishment to your supplier and update your stock when it arrives.",
+      "new": "New replenishment",
+      "form-title": "Request replenishment from supplier",
+      "submit": "Send request",
+      "contact-placeholder": "Phone or WhatsApp",
+      "suggestions": "Replenishment suggestions",
+      "suggestions-caption": "Low-stock products without a replenishment in progress",
+      "no-suggestions": "No products are pending replenishment.",
+      "stock-vs-threshold": "Stock {stock} · threshold {threshold}",
+      "request": "Request {quantity} units",
+      "history": "Replenishment orders",
+      "empty": "No replenishment orders yet.",
+      "expected": "Arrives: {date}",
+      "receive": "Received",
+      "status": {
+        "REQUESTED": "Requested",
+        "RECEIVED": "Received",
+        "CANCELLED": "Cancelled"
+      }
+    },
+    "toasts": {
+      "order-registered": "Order {code} registered",
+      "stock-discounted": "The products' stock was discounted.",
+      "status-updated": "Order {code}: {status}",
+      "order-cancelled": "Order {code} cancelled and stock returned",
+      "customer-saved": "Customer saved",
+      "replenishment-requested": "Replenishment {code} requested",
+      "replenishment-received": "{quantity} units were added to the inventory",
+      "replenishment-cancelled": "Replenishment cancelled"
+    },
+    "errors": {
+      "customer-required": "Select a customer.",
+      "lines-required": "Add at least one product with a quantity.",
+      "insufficient-stock": "The order exceeds the available stock.",
+      "product-required": "Select a valid product.",
+      "contact-required": "Enter at least a phone number or an email.",
+      "supplier-required": "Enter the supplier.",
+      "quantity-required": "The quantity must be greater than zero.",
+      "order-closed": "The order is already closed.",
+      "replenishment-closed": "The replenishment is already closed.",
+      "server-unreachable": "The server is not reachable. Start the Fake API in another terminal (cd server, then sh start.sh) and try again."
+    }
+  },
+  "alerts": {
+    "title": "Alerts center",
+    "subtitle": "Production anomaly and low-stock alerts, sorted by date.",
+    "pending-count": "{count} pending alerts",
+    "mark-attended": "Mark as attended",
+    "attended-toast": "Alert marked as attended",
+    "attended-on": "attended on {date}",
+    "view-source": "View source",
+    "titles": {
+      "LOW_STOCK": "Low stock",
+      "ANOMALY": "Anomalous condition"
+    },
+    "severity": {
+      "WARNING": "Warning",
+      "CRITICAL": "Critical"
+    },
+    "status": {
+      "PENDING": "Pending",
+      "ATTENDED": "Attended"
+    },
+    "filters": {
+      "all": "All",
+      "pending": "Pending",
+      "attended": "Attended",
+      "production": "Production",
+      "inventory": "Inventory",
+      "type": "Filter by source",
+      "status": "Filter by status"
+    },
+    "messages": {
+      "low-stock": "{product}: {quantity} units left (threshold {threshold}).",
+      "anomaly": "{variable} of batch {batch} read {value} {unit}, outside the {min} – {max} range."
+    },
+    "empty": {
+      "title": "No alerts here",
+      "description": "When a variable leaves its range or a product reaches its threshold, you will see it in this inbox."
+    }
+  },
+  "analytics": {
+    "periods": {
+      "7": "7 days",
+      "30": "30 days",
+      "90": "90 days",
+      "365": "12 months"
+    },
+    "estimate": {
+      "title": "Replenishment estimate",
+      "replenish-now": "Replenish now",
+      "in-days": "Replenish in {days} day | Replenish in {days} days",
+      "estimated-date": "Estimated date",
+      "daily-consumption": "Average consumption",
+      "units-per-day": "units/day",
+      "suggested-quantity": "Suggested quantity",
+      "units": "units",
+      "confidence": "Estimate confidence: {value}%",
+      "method": "Based on the consumption of the last {window} days ({exits} exits), to cover {coverage} days.",
+      "not-enough-data": "Not enough data yet: at least {minimum} sale or order exits in the last {window} days are required."
+    },
+    "indicators": {
+      "title": "Historical indicators",
+      "subtitle": "Evolution of your inventory, sales and production in the selected period.",
+      "period": "Period",
+      "entries": "Entries",
+      "exits": "Exits",
+      "units-in-period": "Units in the period",
+      "sales": "Sales",
+      "sales-caption": "Non-cancelled orders",
+      "production": "Production",
+      "production-caption": "Liters of started batches",
+      "stock-evolution": "Total stock evolution",
+      "units-in-stock": "Units in stock",
+      "top-products": "Best-selling products",
+      "no-exits": "No exits in the period",
+      "entries-vs-exits": "Entries vs. exits",
+      "sales-evolution": "Sales evolution",
+      "production-evolution": "Production volume",
+      "empty-title": "Not enough history yet",
+      "empty-description": "Register movements, orders or batches to see how your indicators evolve."
+    }
+  }
+}
