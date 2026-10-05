@@ -11,10 +11,7 @@ import OrderStatusTag from '@/orders-replenishment/presentation/components/order
 import ReplenishmentFormDialog from '@/orders-replenishment/presentation/components/replenishment-form-dialog.vue';
 import StockStatusTag from '@/inventory-stock/presentation/components/stock-status-tag.vue';
 
-/**
- * Replenishment flow (section 4.4.4): detect low stock, request the
- * replenishment to a supplier and update the stock when it is received.
- */
+
 const { t, locale } = useI18n();
 const toast = useToast();
 const ordersStore = useOrdersStore();
@@ -27,7 +24,6 @@ const saving = ref(false);
 
 const suppliers = computed(() => [...new Set(ordersStore.replenishmentOrders.map(order => order.supplierName))]);
 
-/** Low-stock products without a pending replenishment, with a suggested quantity. */
 const suggestions = computed(() => {
   const pendingProductIds = new Set(ordersStore.pendingReplenishments.map(order => order.productId));
   return inventoryStore.lowStockItems
