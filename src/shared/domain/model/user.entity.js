@@ -1,5 +1,5 @@
-import { BusinessType, isValidBusinessType } from '@/iam/domain/model/business-type.js';
-import { TrialPeriod } from '@/iam/domain/model/trial-period.entity.js';
+import { BusinessType, isValidBusinessType } from '@/shared/domain/model/business-type.js';
+import { TrialPeriod } from '@/shared/domain/model/trial-period.entity.js';
 import { DateTime } from '@/shared/domain/model/date-time.js';
 
 export class User {

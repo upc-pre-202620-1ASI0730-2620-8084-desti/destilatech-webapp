@@ -8,7 +8,7 @@ import { Customer } from '@/orders-replenishment/domain/model/customer.entity.js
 import { Order, OrderStatus } from '@/orders-replenishment/domain/model/order.entity.js';
 import { OrderLine } from '@/orders-replenishment/domain/model/order-line.js';
 import { ReplenishmentOrder } from '@/orders-replenishment/domain/model/replenishment-order.entity.js';
-import { useIamStore } from '@/iam/application/iam.store.js';
+import { useUserStore } from '@/shared/application/user.store.js';
 import { useInventoryStore } from '@/inventory-stock/application/inventory.store.js';
 import { MovementReason } from '@/inventory-stock/domain/model/stock-movement.entity.js';
 
@@ -47,14 +47,15 @@ export const useOrdersStore = defineStore('orders', () => {
 
     async function fetchOrders({ force = false } = {}) {
         if (loaded.value && !force) return;
-        const iamStore = useIamStore();
+        const userStore = useUserStore
+();
         errors.value = [];
         loading.value = true;
         try {
             const [customersResponse, ordersResponse, replenishmentResponse] = await Promise.all([
-                ordersApi.getCustomersByUserId(iamStore.currentUserId),
-                ordersApi.getOrdersByUserId(iamStore.currentUserId),
-                ordersApi.getReplenishmentOrdersByUserId(iamStore.currentUserId)
+                ordersApi.getCustomersByUserId(userStore.currentUserId),
+                ordersApi.getOrdersByUserId(userStore.currentUserId),
+                ordersApi.getReplenishmentOrdersByUserId(userStore.currentUserId)
             ]);
             customers.value = customerAssembler.toEntitiesFromResponse(customersResponse);
             orders.value = orderAssembler.toEntitiesFromResponse(ordersResponse);
@@ -69,10 +70,11 @@ export const useOrdersStore = defineStore('orders', () => {
 
 
     async function saveCustomer(data) {
-        const iamStore = useIamStore();
+        const userStore = useUserStore
+();
         errors.value = [];
         try {
-            const customer = new Customer({ ...data, userId: iamStore.currentUserId });
+            const customer = new Customer({ ...data, userId: userStore.currentUserId });
             const resource = customerAssembler.toResourceFromEntity(customer);
             const response = customer.id
                 ? await ordersApi.updateCustomer(customer.id, resource)
@@ -95,7 +97,8 @@ export const useOrdersStore = defineStore('orders', () => {
 
 
     async function registerOrder(command) {
-        const iamStore = useIamStore();
+        const userStore = useUserStore
+();
         const inventoryStore = useInventoryStore();
         errors.value = [];
         try {
@@ -113,7 +116,7 @@ export const useOrdersStore = defineStore('orders', () => {
                 });
             });
             const order = new Order({
-                userId: iamStore.currentUserId,
+                userId: userStore.currentUserId,
                 code: nextOrderCode(),
                 customerId: command.customerId,
                 customerName: customer?.name ?? '',
@@ -170,7 +173,8 @@ export const useOrdersStore = defineStore('orders', () => {
 
 
     async function requestReplenishment(command) {
-        const iamStore = useIamStore();
+        const userStore = useUserStore
+();
         const inventoryStore = useInventoryStore();
         errors.value = [];
         try {
@@ -178,7 +182,7 @@ export const useOrdersStore = defineStore('orders', () => {
             const sequence = replenishmentOrders.value.length + 1;
             const replenishment = new ReplenishmentOrder({
                 ...command,
-                userId: iamStore.currentUserId,
+                userId: userStore.currentUserId,
                 code: `RP-${String(sequence).padStart(4, '0')}`,
                 productName: product?.displayName ?? ''
             });

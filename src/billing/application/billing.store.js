@@ -6,7 +6,7 @@ import { SubscriptionAssembler } from '@/billing/infrastructure/subscription.ass
 import { PaymentAssembler } from '@/billing/infrastructure/payment.assembler.js';
 import { Payment } from '@/billing/domain/model/payment.entity.js';
 import { Subscription } from '@/billing/domain/model/subscription.entity.js';
-import { useIamStore } from '@/iam/application/iam.store.js';
+import { useUserStore } from '@/shared/application/user.store.js';
 
 const billingApi = new BillingApi();
 const planAssembler = new PlanAssembler();
@@ -27,14 +27,15 @@ export const useBillingStore = defineStore('billing', () => {
     const findPlan = planId => plans.value.find(plan => plan.id === planId) ?? null;
 
     async function fetchBillingOverview() {
-        const iamStore = useIamStore();
+        const userStore = useUserStore
+();
         errors.value = [];
         loading.value = true;
         try {
             const [plansResponse, subscriptionsResponse, paymentsResponse] = await Promise.all([
                 billingApi.getPlans(),
-                billingApi.getSubscriptionsByUserId(iamStore.currentUserId),
-                billingApi.getPaymentsByUserId(iamStore.currentUserId)
+                billingApi.getSubscriptionsByUserId(userStore.currentUserId),
+                billingApi.getPaymentsByUserId(userStore.currentUserId)
             ]);
             plans.value = planAssembler.toEntitiesFromResponse(plansResponse);
             currentSubscription.value = subscriptionAssembler.toEntitiesFromResponse(subscriptionsResponse)[0] ?? null;
@@ -48,12 +49,13 @@ export const useBillingStore = defineStore('billing', () => {
 
 
     async function startCheckout(plan) {
-        const iamStore = useIamStore();
+        const userStore = useUserStore
+();
         errors.value = [];
         try {
             const origin = window.location.origin;
             const response = await billingApi.createCheckoutSession({
-                userId: iamStore.currentUserId,
+                userId: userStore.currentUserId,
                 planId: plan.id,
                 successUrl: `${origin}/billing/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
                 cancelUrl: `${origin}/billing/checkout/cancelled`
@@ -66,7 +68,8 @@ export const useBillingStore = defineStore('billing', () => {
     }
 
     async function confirmCheckout(sessionId) {
-        const iamStore = useIamStore();
+        const userStore = useUserStore
+();
         errors.value = [];
         try {
             const alreadyRegistered = paymentAssembler.toEntitiesFromResponse(await billingApi.getPaymentsByReference(sessionId));
@@ -77,7 +80,7 @@ export const useBillingStore = defineStore('billing', () => {
 
             const sessionResponse = await billingApi.getCheckoutSession(sessionId);
             const payment = Payment.fromConfirmedCheckout(sessionResponse.data);
-            if (payment.userId !== iamStore.currentUserId) throw new Error('payment-not-completed');
+            if (payment.userId !== userStore.currentUserId) throw new Error('payment-not-completed');
 
             await fetchBillingOverview();
             if (currentSubscription.value?.isActive()) await cancelSubscription();
@@ -85,7 +88,7 @@ export const useBillingStore = defineStore('billing', () => {
             const subscription = Subscription.activate(payment.userId, payment.planId, payment.reference);
             await billingApi.createSubscription(subscriptionAssembler.toResourceFromEntity(subscription));
             const paymentResponse = await billingApi.createPayment(paymentAssembler.toResourceFromEntity(payment));
-            await iamStore.extendAccountAccess(subscription.renewalDate);
+            await userStore.extendAccountAccess(subscription.renewalDate);
             await fetchBillingOverview();
             return paymentAssembler.toEntityFromResponse(paymentResponse);
         } catch (error) {

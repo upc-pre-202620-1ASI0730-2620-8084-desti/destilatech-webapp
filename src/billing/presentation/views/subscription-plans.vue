@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router';
 import { useConfirm } from 'primevue/useconfirm';
 import { useToast } from 'primevue/usetoast';
 import { useBillingStore } from '@/billing/application/billing.store.js';
-import { useIamStore } from '@/iam/application/iam.store.js';
+import { useUserStore } from '@/shared/application/user.store.js';
 import PageHeader from '@/shared/presentation/components/page-header.vue';
 import PlanCard from '@/billing/presentation/components/plan-card.vue';
 import PaymentHistory from '@/billing/presentation/components/payment-history.vue';
@@ -16,10 +16,11 @@ const route = useRoute();
 const confirm = useConfirm();
 const toast = useToast();
 const billingStore = useBillingStore();
-const iamStore = useIamStore();
+const userStore = useUserStore
+();
 
-const user = computed(() => iamStore.currentUser);
-const trialExpired = computed(() => route.query.reason === 'trial-expired' || !iamStore.hasActiveAccess);
+const user = computed(() => userStore.currentUser);
+const trialExpired = computed(() => route.query.reason === 'trial-expired' || !userStore.hasActiveAccess);
 const activeSubscription = computed(() =>
     billingStore.currentSubscription?.isActive() ? billingStore.currentSubscription : null);
 

@@ -9,7 +9,7 @@ import { ProductionBatch } from '@/production-monitoring/domain/model/production
 import { DEFAULT_BATCH_VARIABLES, ProcessVariable } from '@/production-monitoring/domain/model/process-variable.entity.js';
 import { SensorReading } from '@/production-monitoring/domain/model/sensor-reading.entity.js';
 import { BatchStage } from '@/production-monitoring/domain/model/batch-stage.js';
-import { useIamStore } from '@/iam/application/iam.store.js';
+import { useUserStore } from '@/shared/application/user.store.js';
 import { useAlertsStore } from '@/alerts-notifications/application/alerts.store.js';
 import { RaiseAlertCommand } from '@/alerts-notifications/domain/model/raise-alert.command.js';
 import { AlertSeverity, AlertType } from '@/alerts-notifications/domain/model/alert.entity.js';
@@ -51,14 +51,15 @@ export const useProductionStore = defineStore('production', () => {
 
     async function fetchProduction({ force = false } = {}) {
         if (loaded.value && !force) return;
-        const iamStore = useIamStore();
+        const userStore = useUserStore
+();
         errors.value = [];
         loading.value = true;
         try {
             const [batchesResponse, variablesResponse, readingsResponse] = await Promise.all([
-                productionApi.getBatchesByUserId(iamStore.currentUserId),
-                productionApi.getProcessVariablesByUserId(iamStore.currentUserId),
-                productionApi.getSensorReadingsByUserId(iamStore.currentUserId)
+                productionApi.getBatchesByUserId(userStore.currentUserId),
+                productionApi.getProcessVariablesByUserId(userStore.currentUserId),
+                productionApi.getSensorReadingsByUserId(userStore.currentUserId)
             ]);
             batches.value = batchAssembler.toEntitiesFromResponse(batchesResponse);
             variables.value = variableAssembler.toEntitiesFromResponse(variablesResponse);
@@ -84,17 +85,18 @@ export const useProductionStore = defineStore('production', () => {
 
 
     async function registerBatch(command) {
-        const iamStore = useIamStore();
+        const userStore = useUserStore
+();
         errors.value = [];
         try {
-            const batch = new ProductionBatch({ ...command, userId: iamStore.currentUserId, code: nextBatchCode() });
+            const batch = new ProductionBatch({ ...command, userId: userStore.currentUserId, code: nextBatchCode() });
             const response = await productionApi.createBatch(batchAssembler.toResourceFromEntity(batch));
             const createdBatch = batchAssembler.toEntityFromResponse(response);
             batches.value = [createdBatch, ...batches.value];
 
             const createdVariables = await Promise.all(DEFAULT_BATCH_VARIABLES.map((type, index) => {
                 const variable = new ProcessVariable({
-                    batchId: createdBatch.id, userId: iamStore.currentUserId, type,
+                    batchId: createdBatch.id, userId: userStore.currentUserId, type,
                     sensorId: `SNS-${createdBatch.code}-${index + 1}`
                 });
                 return productionApi.createProcessVariable(variableAssembler.toResourceFromEntity(variable));

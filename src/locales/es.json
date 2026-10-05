@@ -24,6 +24,13 @@
     "footer": {
       "rights": "Todos los derechos reservados.",
       "website": "Visitar sitio web"
+    },
+    "business-type": {
+      "PRODUCER": "Productor",
+      "RETAILER": "Comercializador"
+    },
+    "user-switcher": {
+      "label": "Ver como"
     }
   },
   "page-not-found": {
@@ -44,78 +51,12 @@
     "alerts": "Alertas",
     "indicators": "Indicadores",
     "subscription": "Suscripción",
-    "profile": "Mi perfil",
     "sections": {
       "overview": "General",
       "production": "Producción",
       "operations": "Operaciones",
       "analytics": "Análisis",
       "account": "Cuenta"
-    }
-  },
-  "iam": {
-    "account-menu": "Menú de la cuenta",
-    "sign-out": "Cerrar sesión",
-    "brand": {
-      "headline": "Gestión inteligente para el ecosistema peruano del pisco.",
-      "lead": "Monitorea tu producción, controla tu inventario y anticipa tus reposiciones desde un solo lugar.",
-      "highlight-monitoring": "Monitoreo IoT de fermentación y destilación",
-      "highlight-inventory": "Inventario, pedidos y alertas de stock",
-      "highlight-estimations": "Estimaciones de reposición con tu historial"
-    },
-    "sign-in": {
-      "title": "Bienvenido",
-      "subtitle": "Ingresa para administrar tu operación.",
-      "submit": "Ingresar",
-      "no-account": "¿Aún no tienes cuenta?",
-      "create-account": "Prueba gratis 14 días"
-    },
-    "sign-up": {
-      "title": "Crea tu cuenta",
-      "subtitle": "Empieza tu prueba gratuita de {days} días, sin tarjeta de crédito.",
-      "selected-plan": "Plan elegido en nuestra web: {plan}. Podrás activarlo cuando termine tu prueba.",
-      "submit": "Comenzar prueba de {days} días",
-      "have-account": "¿Ya tienes una cuenta?",
-      "sign-in": "Inicia sesión",
-      "success-title": "¡Cuenta creada!",
-      "success-detail": "Tu periodo de prueba de {days} días ya está activo."
-    },
-    "fields": {
-      "full-name": "Nombre completo",
-      "business-name": "Nombre de la bodega / empresa",
-      "email": "Correo electrónico",
-      "password": "Contraseña",
-      "business-type": "Tipo de negocio"
-    },
-    "business-type": {
-      "PRODUCER": "Productor",
-      "RETAILER": "Comercializador",
-      "PRODUCER-description": "Bodega que elabora pisco: lotes, monitoreo IoT e inventario.",
-      "RETAILER-description": "Licorería, bodega o distribuidor: inventario, pedidos y reposición."
-    },
-    "password": {
-      "prompt": "Ingresa una contraseña",
-      "weak": "Débil",
-      "medium": "Media",
-      "strong": "Fuerte"
-    },
-    "errors": {
-      "invalid-credentials": "Correo o contraseña incorrectos.",
-      "email-already-in-use": "Este correo ya está registrado. Inicia sesión o usa otro correo.",
-      "unexpected": "No pudimos completar la operación: {detail}",
-      "server-unreachable": "No hay conexión con el servidor. Inicia el Fake API en otra terminal (cd server, luego sh start.sh) y vuelve a intentarlo."
-    },
-    "profile": {
-      "title": "Mi perfil",
-      "subtitle": "Actualiza la información de tu cuenta y revisa tu acceso.",
-      "account-data": "Datos de la cuenta",
-      "saved": "Tu perfil fue actualizado.",
-      "member-since": "Miembro desde",
-      "access": "Acceso",
-      "access-trial": "Prueba gratuita · {days} días restantes",
-      "access-paid": "Suscripción activa hasta el {date}",
-      "access-expired": "Prueba finalizada, sin suscripción",
-      "manage-subscription": "Gestionar suscripción"
     }
   },
   "billing": {
