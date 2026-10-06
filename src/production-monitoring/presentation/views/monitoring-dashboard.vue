@@ -107,7 +107,7 @@ onBeforeUnmount(stopSimulation);
 <template>
   <section class="flex flex-column gap-4">
     <page-header :title="t('production.monitoring.title')" :subtitle="t('production.monitoring.subtitle')"
-                 :badge="t('iam.business-type.PRODUCER')"/>
+                 :badge="t('shared.business-type.PRODUCER')"/>
 
     <div v-if="productionStore.activeBatches.length" class="surface-panel monitoring-toolbar">
       <div class="form-field monitoring-toolbar__batch">

@@ -3,7 +3,7 @@ import { computed, onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useAnalyticsStore } from '@/analytics-estimations/application/analytics.store.js';
 import { useInventoryStore } from '@/inventory-stock/application/inventory.store.js';
-import { useIamStore } from '@/iam/application/iam.store.js';
+import { useUserStore } from '@/shared/application/user.store.js';
 import { Money } from '@/shared/domain/model/money.js';
 import { formatPeriodLabel } from '@/analytics-estimations/presentation/period-label.js';
 import PageHeader from '@/shared/presentation/components/page-header.vue';
@@ -15,7 +15,8 @@ import TrendChart from '@/analytics-estimations/presentation/components/trend-ch
 const { t, locale } = useI18n();
 const analyticsStore = useAnalyticsStore();
 const inventoryStore = useInventoryStore();
-const iamStore = useIamStore();
+const userStore = useUserStore
+();
 
 const periodDays = ref(30);
 const periodOptions = computed(() => [
@@ -70,7 +71,7 @@ onMounted(() => {
                 :caption="t('analytics.indicators.units-in-period')" tone="warn" :loading="analyticsStore.loading"/>
       <kpi-card :label="t('analytics.indicators.sales')" :value="formatMoney(totals.sales)" icon="pi pi-wallet"
                 :caption="t('analytics.indicators.sales-caption')" :loading="analyticsStore.loading"/>
-      <kpi-card v-if="iamStore.isProducer" :label="t('analytics.indicators.production')" :value="formatLiters(totals.production)"
+      <kpi-card v-if="userStore.isProducer" :label="t('analytics.indicators.production')" :value="formatLiters(totals.production)"
                 icon="pi pi-objects-column" :caption="t('analytics.indicators.production-caption')" :loading="analyticsStore.loading"/>
     </div>
 
@@ -115,7 +116,7 @@ onMounted(() => {
                          :series="[{ label: t('analytics.indicators.sales'), data: indicators.sales.map(point => point.value) }]"/>
           </div>
         </div>
-        <div v-if="iamStore.isProducer" class="col-12">
+        <div v-if="userStore.isProducer" class="col-12">
           <div class="surface-panel">
             <h2 class="mb-3">{{ t('analytics.indicators.production-evolution') }}</h2>
             <trend-chart :labels="labels" :value-formatter="formatLiters"

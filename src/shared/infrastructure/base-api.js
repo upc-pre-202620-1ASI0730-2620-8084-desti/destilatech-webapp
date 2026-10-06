@@ -4,8 +4,7 @@ import { errorInterceptor } from '@/shared/infrastructure/error.interceptor.js';
 const platformApi = import.meta.env.VITE_DESTILATECH_API_URL;
 
 export const STORAGE_KEYS = Object.freeze({
-    token: 'destilatech.token',
-    user: 'destilatech.user',
+    userId: 'destilatech.user-id',
     locale: 'destilatech.locale'
 });
 
@@ -18,9 +17,7 @@ export class BaseApi {
         this.#http = axios.create({ baseURL: platformApi });
 
         this.#http.interceptors.request.use(config => {
-            const token = localStorage.getItem(STORAGE_KEYS.token);
-            if (token) config.headers.Authorization = `Bearer ${token}`;
-            config.headers['Accept-Language'] = localStorage.getItem(STORAGE_KEYS.locale) || 'es';
+            config.headers['Accept-Language'] = localStorage.getItem(STORAGE_KEYS.locale) || 'en';
             return config;
         });
 

@@ -1,13 +1,14 @@
 <script setup>
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useIamStore } from '@/iam/application/iam.store.js';
+import { useUserStore } from '@/shared/application/user.store.js';
 
 
 const { t } = useI18n();
-const iamStore = useIamStore();
+const userStore = useUserStore
+();
 
-const user = computed(() => iamStore.currentUser);
+const user = computed(() => userStore.currentUser);
 const isVisible = computed(() => user.value && !user.value.hasPaidAccess() && user.value.trialPeriod.isExpiringSoon());
 const daysRemaining = computed(() => user.value?.trialPeriod.daysRemaining() ?? 0);
 </script>

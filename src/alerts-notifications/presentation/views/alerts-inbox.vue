@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n';
 import { useToast } from 'primevue/usetoast';
 import { useAlertsStore } from '@/alerts-notifications/application/alerts.store.js';
 import { AlertStatus, AlertType } from '@/alerts-notifications/domain/model/alert.entity.js';
-import { useIamStore } from '@/iam/application/iam.store.js';
+import { useUserStore } from '@/shared/application/user.store.js';
 import PageHeader from '@/shared/presentation/components/page-header.vue';
 import EmptyState from '@/shared/presentation/components/empty-state.vue';
 import AlertItem from '@/alerts-notifications/presentation/components/alert-item.vue';
@@ -13,7 +13,8 @@ import AlertItem from '@/alerts-notifications/presentation/components/alert-item
 const { t } = useI18n();
 const toast = useToast();
 const alertsStore = useAlertsStore();
-const iamStore = useIamStore();
+const userStore = useUserStore
+();
 
 const typeFilter = ref('ALL');
 const statusFilter = ref(AlertStatus.PENDING);
@@ -22,7 +23,7 @@ const countByType = type => alertsStore.alerts.filter(alert => type === 'ALL' ||
 
 const typeOptions = computed(() => {
   const options = [{ value: 'ALL', label: `${t('alerts.filters.all')} ${countByType('ALL')}` }];
-  if (iamStore.isProducer) {
+  if (userStore.isProducer) {
     options.push({ value: AlertType.ANOMALY, label: `${t('alerts.filters.production')} ${countByType(AlertType.ANOMALY)}` });
   }
   options.push({ value: AlertType.LOW_STOCK, label: `${t('alerts.filters.inventory')} ${countByType(AlertType.LOW_STOCK)}` });

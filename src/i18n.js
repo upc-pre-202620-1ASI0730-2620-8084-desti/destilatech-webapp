@@ -5,7 +5,7 @@ import { STORAGE_KEYS } from '@/shared/infrastructure/base-api.js';
 
 const resolveInitialLocale = () => {
     const storedLocale = localStorage.getItem(STORAGE_KEYS.locale);
-    return storedLocale === 'en' || storedLocale === 'es' ? storedLocale : 'es';
+    return storedLocale === 'en' || storedLocale === 'es' ? storedLocale : 'en';
 };
 
 const i18n = createI18n({

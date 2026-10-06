@@ -1,14 +1,14 @@
 <script setup>
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useIamStore } from '@/iam/application/iam.store.js';
+import { useUserStore } from '@/shared/application/user.store.js';
 import { useAlertsStore } from '@/alerts-notifications/application/alerts.store.js';
 import LanguageSwitcher from './language-switcher.vue';
-import UserMenu from '@/iam/presentation/components/user-menu.vue';
+import UserSwitcher from './user-switcher.vue';
 
 const emit = defineEmits(['toggle-navigation']);
 const { t } = useI18n();
-const iamStore = useIamStore();
+const userStore = useUserStore();
 const alertsStore = useAlertsStore();
 
 const pendingAlerts = computed(() => alertsStore.pendingCount);
@@ -20,8 +20,8 @@ const pendingAlerts = computed(() => alertsStore.pendingCount);
       <pv-button class="top-bar__menu-toggle" icon="pi pi-bars" text rounded
                  :aria-label="t('navigation.toggle')" @click="emit('toggle-navigation')"/>
       <div class="top-bar__business">
-        <span class="top-bar__business-name">{{ iamStore.currentUser?.businessName }}</span>
-        <pv-tag v-if="iamStore.currentUser" :value="t(`iam.business-type.${iamStore.currentUser.businessType}`)"
+        <span class="top-bar__business-name">{{ userStore.currentUser?.businessName }}</span>
+        <pv-tag v-if="userStore.currentUser" :value="t(`shared.business-type.${userStore.currentUser.businessType}`)"
                 class="top-bar__role"/>
       </div>
     </div>
@@ -33,7 +33,7 @@ const pendingAlerts = computed(() => alertsStore.pendingCount);
         <pv-badge v-if="pendingAlerts > 0" :value="pendingAlerts" severity="danger" class="top-bar__alerts-badge"/>
       </router-link>
       <language-switcher/>
-      <user-menu/>
+      <user-switcher/>
     </div>
   </header>
 </template>

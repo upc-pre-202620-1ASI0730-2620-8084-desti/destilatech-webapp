@@ -24,6 +24,13 @@
     "footer": {
       "rights": "All rights reserved.",
       "website": "Visit website"
+    },
+    "business-type": {
+      "PRODUCER": "Producer",
+      "RETAILER": "Retailer"
+    },
+    "user-switcher": {
+      "label": "View as"
     }
   },
   "page-not-found": {
@@ -44,78 +51,12 @@
     "alerts": "Alerts",
     "indicators": "Indicators",
     "subscription": "Subscription",
-    "profile": "My profile",
     "sections": {
       "overview": "Overview",
       "production": "Production",
       "operations": "Operations",
       "analytics": "Analytics",
       "account": "Account"
-    }
-  },
-  "iam": {
-    "account-menu": "Account menu",
-    "sign-out": "Sign out",
-    "brand": {
-      "headline": "Smart management for the Peruvian pisco ecosystem.",
-      "lead": "Monitor your production, control your inventory and anticipate replenishments from a single place.",
-      "highlight-monitoring": "IoT monitoring of fermentation and distillation",
-      "highlight-inventory": "Inventory, orders and stock alerts",
-      "highlight-estimations": "Replenishment estimates from your history"
-    },
-    "sign-in": {
-      "title": "Welcome",
-      "subtitle": "Sign in to manage your operation.",
-      "submit": "Sign in",
-      "no-account": "Don't have an account yet?",
-      "create-account": "Try it free for 14 days"
-    },
-    "sign-up": {
-      "title": "Create your account",
-      "subtitle": "Start your {days}-day free trial, no credit card required.",
-      "selected-plan": "Plan chosen on our website: {plan}. You can activate it when your trial ends.",
-      "submit": "Start {days}-day trial",
-      "have-account": "Already have an account?",
-      "sign-in": "Sign in",
-      "success-title": "Account created!",
-      "success-detail": "Your {days}-day trial is now active."
-    },
-    "fields": {
-      "full-name": "Full name",
-      "business-name": "Winery / company name",
-      "email": "Email address",
-      "password": "Password",
-      "business-type": "Business type"
-    },
-    "business-type": {
-      "PRODUCER": "Producer",
-      "RETAILER": "Retailer",
-      "PRODUCER-description": "Winery that produces pisco: batches, IoT monitoring and inventory.",
-      "RETAILER-description": "Liquor store, shop or distributor: inventory, orders and replenishment."
-    },
-    "password": {
-      "prompt": "Enter a password",
-      "weak": "Weak",
-      "medium": "Medium",
-      "strong": "Strong"
-    },
-    "errors": {
-      "invalid-credentials": "Incorrect email or password.",
-      "email-already-in-use": "This email is already registered. Sign in or use another email.",
-      "unexpected": "We could not complete the operation: {detail}",
-      "server-unreachable": "The server is not reachable. Start the Fake API in another terminal (cd server, then sh start.sh) and try again."
-    },
-    "profile": {
-      "title": "My profile",
-      "subtitle": "Update your account information and review your access.",
-      "account-data": "Account details",
-      "saved": "Your profile was updated.",
-      "member-since": "Member since",
-      "access": "Access",
-      "access-trial": "Free trial · {days} days left",
-      "access-paid": "Active subscription until {date}",
-      "access-expired": "Trial ended, no subscription",
-      "manage-subscription": "Manage subscription"
     }
   },
   "billing": {

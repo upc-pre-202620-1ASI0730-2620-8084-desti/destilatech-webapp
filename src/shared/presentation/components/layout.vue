@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { useIamStore } from '@/iam/application/iam.store.js';
+import { useUserStore } from '@/shared/application/user.store.js';
 import { useAlertsStore } from '@/alerts-notifications/application/alerts.store.js';
 import SideNavigation from './side-navigation.vue';
 import TopBar from './top-bar.vue';
@@ -9,7 +9,8 @@ import FooterContent from './footer-content.vue';
 import TrialBanner from '@/billing/presentation/components/trial-banner.vue';
 
 const route = useRoute();
-const iamStore = useIamStore();
+const userStore = useUserStore
+();
 const alertsStore = useAlertsStore();
 const drawerVisible = ref(false);
 
@@ -22,7 +23,7 @@ watch(() => route.fullPath, () => {
 });
 
 onMounted(() => {
-  if (iamStore.currentUser) alertsStore.fetchAlerts();
+  if (userStore.currentUser) alertsStore.fetchAlerts();
 });
 </script>
 

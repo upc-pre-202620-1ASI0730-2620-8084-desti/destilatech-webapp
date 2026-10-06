@@ -95,7 +95,7 @@ onMounted(() => {
   <section class="flex flex-column gap-4">
     <page-header :title="t('production.batches.title')"
                  :subtitle="t('production.batches.subtitle', { count: productionStore.batches.length })"
-                 :badge="t('iam.business-type.PRODUCER')">
+                 :badge="t('shared.business-type.PRODUCER')">
       <template #actions>
         <pv-button icon="pi pi-plus" :label="t('production.new-batch')" @click="batchDialogVisible = true"/>
       </template>

@@ -8,7 +8,7 @@ import { Product } from '@/inventory-stock/domain/model/product.entity.js';
 import { StockItem, StockStatus } from '@/inventory-stock/domain/model/stock-item.entity.js';
 import { MovementReason, MovementType, StockMovement } from '@/inventory-stock/domain/model/stock-movement.entity.js';
 import { RegisterStockMovementCommand } from '@/inventory-stock/domain/model/register-stock-movement.command.js';
-import { useIamStore } from '@/iam/application/iam.store.js';
+import { useUserStore } from '@/shared/application/user.store.js';
 import { useAlertsStore } from '@/alerts-notifications/application/alerts.store.js';
 import { RaiseAlertCommand } from '@/alerts-notifications/domain/model/raise-alert.command.js';
 import { AlertSeverity, AlertType } from '@/alerts-notifications/domain/model/alert.entity.js';
@@ -47,14 +47,15 @@ export const useInventoryStore = defineStore('inventory', () => {
 
     async function fetchInventory({ force = false } = {}) {
         if (loaded.value && !force) return;
-        const iamStore = useIamStore();
+        const userStore = useUserStore
+();
         errors.value = [];
         loading.value = true;
         try {
             const [productsResponse, stockItemsResponse, movementsResponse] = await Promise.all([
-                inventoryApi.getProductsByUserId(iamStore.currentUserId),
-                inventoryApi.getStockItemsByUserId(iamStore.currentUserId),
-                inventoryApi.getStockMovementsByUserId(iamStore.currentUserId)
+                inventoryApi.getProductsByUserId(userStore.currentUserId),
+                inventoryApi.getStockItemsByUserId(userStore.currentUserId),
+                inventoryApi.getStockMovementsByUserId(userStore.currentUserId)
             ]);
             products.value = productAssembler.toEntitiesFromResponse(productsResponse);
             stockItems.value = stockItemAssembler.toEntitiesFromResponse(stockItemsResponse);
@@ -89,15 +90,16 @@ export const useInventoryStore = defineStore('inventory', () => {
 
 
     async function registerProduct(productData, initialQuantity = 0, lowStockThreshold = 0) {
-        const iamStore = useIamStore();
+        const userStore = useUserStore
+();
         errors.value = [];
         try {
-            const product = new Product({ ...productData, userId: iamStore.currentUserId });
+            const product = new Product({ ...productData, userId: userStore.currentUserId });
             const productResponse = await inventoryApi.createProduct(productAssembler.toResourceFromEntity(product));
             const createdProduct = productAssembler.toEntityFromResponse(productResponse);
             products.value = [...products.value, createdProduct];
 
-            const stockItem = new StockItem({ productId: createdProduct.id, userId: iamStore.currentUserId, lowStockThreshold });
+            const stockItem = new StockItem({ productId: createdProduct.id, userId: userStore.currentUserId, lowStockThreshold });
             const stockItemResponse = await inventoryApi.createStockItem(stockItemAssembler.toResourceFromEntity(stockItem));
             stockItems.value = [...stockItems.value, stockItemAssembler.toEntityFromResponse(stockItemResponse)];
 
@@ -132,7 +134,8 @@ export const useInventoryStore = defineStore('inventory', () => {
 
 
     async function registerStockMovement(command) {
-        const iamStore = useIamStore();
+        const userStore = useUserStore
+();
         errors.value = [];
         let stockItem = null;
         let movement = null;
@@ -141,7 +144,7 @@ export const useInventoryStore = defineStore('inventory', () => {
             stockItem = stockItems.value.find(item => item.productId === command.productId);
             if (!stockItem) throw new Error('stock-item-not-found');
 
-            movement = new StockMovement({ ...command, stockItemId: stockItem.id, userId: iamStore.currentUserId });
+            movement = new StockMovement({ ...command, stockItemId: stockItem.id, userId: userStore.currentUserId });
             stockItem.applyMovement(movement);
         } catch (error) {
             errors.value.push(error instanceof Error ? error.message : error);

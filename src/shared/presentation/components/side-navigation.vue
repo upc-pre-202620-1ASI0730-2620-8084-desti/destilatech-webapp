@@ -2,12 +2,12 @@
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
-import { useIamStore } from '@/iam/application/iam.store.js';
-import { BusinessType } from '@/iam/domain/model/business-type.js';
+import { useUserStore } from '@/shared/application/user.store.js';
+import { BusinessType } from '@/shared/domain/model/business-type.js';
 
 const emit = defineEmits(['navigate']);
 const { t } = useI18n();
-const iamStore = useIamStore();
+const userStore = useUserStore();
 const route = useRoute();
 
 const { PRODUCER, RETAILER } = BusinessType;
@@ -46,14 +46,13 @@ const navigationSections = [
   {
     section: 'navigation.sections.account',
     items: [
-      { label: 'navigation.subscription', icon: 'pi pi-credit-card', to: '/billing/plans', businessTypes: [PRODUCER, RETAILER] },
-      { label: 'navigation.profile', icon: 'pi pi-user', to: '/account/profile', businessTypes: [PRODUCER, RETAILER] }
+      { label: 'navigation.subscription', icon: 'pi pi-credit-card', to: '/billing/plans', businessTypes: [PRODUCER, RETAILER] }
     ]
   }
 ];
 
 const visibleSections = computed(() => {
-  const businessType = iamStore.currentUser?.businessType;
+  const businessType = userStore.currentUser?.businessType;
   return navigationSections
       .map(section => ({ ...section, items: section.items.filter(item => item.businessTypes.includes(businessType)) }))
       .filter(section => section.items.length > 0);
@@ -69,7 +68,7 @@ const isActive = path => {
 };
 
 const roleLabel = computed(() =>
-    iamStore.currentUser ? t(`iam.business-type.${iamStore.currentUser.businessType}`) : '');
+    userStore.currentUser ? t(`shared.business-type.${userStore.currentUser.businessType}`) : '');
 </script>
 
 <template>
@@ -96,9 +95,9 @@ const roleLabel = computed(() =>
       </div>
     </div>
 
-    <div v-if="iamStore.currentUser" class="side-navigation__user">
-      <strong>{{ iamStore.currentUser.fullName }}</strong>
-      <span>{{ iamStore.currentUser.businessName }} · {{ roleLabel }}</span>
+    <div v-if="userStore.currentUser" class="side-navigation__user">
+      <strong>{{ userStore.currentUser.fullName }}</strong>
+      <span>{{ userStore.currentUser.businessName }} · {{ roleLabel }}</span>
     </div>
   </nav>
 </template>

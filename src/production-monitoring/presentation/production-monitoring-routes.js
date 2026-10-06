@@ -1,4 +1,4 @@
-import { BusinessType } from '@/iam/domain/model/business-type.js';
+import { BusinessType } from '@/shared/domain/model/business-type.js';
 
 const monitoringDashboard = () => import('./views/monitoring-dashboard.vue');
 const batchManagement = () => import('./views/batch-management.vue');

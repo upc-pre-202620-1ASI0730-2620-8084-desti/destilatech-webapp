@@ -1,5 +1,5 @@
 import { BaseAssembler } from '@/shared/infrastructure/base-assembler.js';
-import { User } from '@/iam/domain/model/user.entity.js';
+import { User } from '@/shared/domain/model/user.entity.js';
 
 export class UserAssembler extends BaseAssembler {
 

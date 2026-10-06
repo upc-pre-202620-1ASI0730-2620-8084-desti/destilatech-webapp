@@ -3,7 +3,7 @@ import { computed, ref } from 'vue';
 import { AlertsApi } from '@/alerts-notifications/infrastructure/alerts-api.js';
 import { AlertAssembler } from '@/alerts-notifications/infrastructure/alert.assembler.js';
 import { Alert } from '@/alerts-notifications/domain/model/alert.entity.js';
-import { useIamStore } from '@/iam/application/iam.store.js';
+import { useUserStore } from '@/shared/application/user.store.js';
 
 const alertsApi = new AlertsApi();
 const alertAssembler = new AlertAssembler();
@@ -19,12 +19,13 @@ export const useAlertsStore = defineStore('alerts', () => {
     const pendingCount = computed(() => pendingAlerts.value.length);
 
     async function fetchAlerts() {
-        const iamStore = useIamStore();
-        if (!iamStore.currentUserId) return;
+        const userStore = useUserStore
+();
+        if (!userStore.currentUserId) return;
         errors.value = [];
         loading.value = true;
         try {
-            const response = await alertsApi.getAlertsByUserId(iamStore.currentUserId);
+            const response = await alertsApi.getAlertsByUserId(userStore.currentUserId);
             alerts.value = alertAssembler.toEntitiesFromResponse(response);
             loaded.value = true;
         } catch (error) {

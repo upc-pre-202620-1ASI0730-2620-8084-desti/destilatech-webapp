@@ -8,7 +8,7 @@ import {
     generateSumSeries,
     MetricType
 } from '@/analytics-estimations/domain/model/historical-indicator.entity.js';
-import { useIamStore } from '@/iam/application/iam.store.js';
+import { useUserStore } from '@/shared/application/user.store.js';
 
 const analyticsApi = new AnalyticsApi();
 const recordAssembler = new AnalyticsRecordAssembler();
@@ -45,8 +45,9 @@ export const useAnalyticsStore = defineStore('analytics', () => {
 
     async function fetchAnalytics({ force = false } = {}) {
         if (loaded.value && !force) return;
-        const iamStore = useIamStore();
-        const userId = iamStore.currentUserId;
+        const userStore = useUserStore
+();
+        const userId = userStore.currentUserId;
         errors.value = [];
         loading.value = true;
         try {
@@ -55,7 +56,7 @@ export const useAnalyticsStore = defineStore('analytics', () => {
                 analyticsApi.getStockLevels(userId),
                 analyticsApi.getOrderHistory(userId)
             ];
-            if (iamStore.isProducer) requests.push(analyticsApi.getBatchHistory(userId));
+            if (userStore.isProducer) requests.push(analyticsApi.getBatchHistory(userId));
             const [movementsResponse, levelsResponse, ordersResponse, batchesResponse] = await Promise.all(requests);
             movementRecords.value = recordAssembler.toMovementRecords(movementsResponse);
             stockLevels.value = recordAssembler.toStockLevelRecords(levelsResponse);

@@ -72,32 +72,24 @@ Abre `http://localhost:5173`.
 Ambos archivos definen la licencia de PrimeUI (`VITE_PRIME_UI_LICENSE_KEY`) y la ruta de cada endpoint
 (`VITE_*_ENDPOINT_PATH`).
 
-## Autenticación (IAM)
+## Usuarios (sin IAM en este sprint)
 
-El contexto IAM ya tiene sus capas completas (`SignInCommand`, `SignUpCommand`, `SignInResource`, `SignUpResource`,
-assemblers, `iam.interceptor.js` y `authentication.guard.js`), pero aún **no hay un backend de autenticación**. Por ello,
-igual que en el proyecto de referencia del curso:
+El inicio de sesión y el registro (bounded context **IAM**) no forman parte de este sprint. Mientras tanto, la app trabaja
+con los usuarios de `db.json` y se cambia de uno a otro con los botones **Productor / Comercializador** de la barra
+superior. El usuario elegido se recuerda al recargar la página.
 
-- `router.js` no aplica el `authenticationGuard`. La app abre directamente con la cuenta de productor de `db.json`.
-- `iam-api.js` emula el inicio de sesión y el registro con el recurso `/users` de json-server.
-
-Cuando exista la RESTful API se descomentan las llamadas a `/authentication/sign-in` y `/authentication/sign-up` en
-`iam-api.js`, y `return authenticationGuard(to, from);` en `router.js`.
-
-### Cuentas de demostración
-
-| Cuenta | Contraseña | Perfil |
+| Botón | Usuario | Qué ve |
 | :--- | :--- | :--- |
-| `productor@destilatech.pe` | `Destilatech2026` | Productor (Bodega Santa Rosa): lotes, monitoreo IoT, inventario y pedidos. |
-| `comercializador@destilatech.pe` | `Destilatech2026` | Comercializador (Licorería El Cóndor): inventario, pedidos y reposición. |
+| Productor | Mario Fernández · Bodega Santa Rosa | Lotes, monitoreo IoT, inventario, pedidos, alertas e indicadores. |
+| Comercializador | Carlos Mendoza · Licorería El Cóndor | Inventario, pedidos, clientes, reposición, alertas e indicadores. |
 
-Para cambiar de perfil: menú de usuario → **Cerrar sesión** → iniciar sesión con la otra cuenta. También puedes crear
-una cuenta nueva desde `/sign-up`; se guarda en `db.json` con su prueba gratuita de 14 días.
+El usuario actual vive en `src/shared/application/user.store.js` y se carga desde `/users` con
+`src/shared/infrastructure/users-api.js`.
 
 ## Arquitectura (Domain-Driven Design)
 
-El frontend replica los **7 bounded contexts** definidos en el Design-Level Event Storming del reporte.
-Cada uno se organiza en cuatro capas:
+El reporte define **7 bounded contexts** en el Design-Level Event Storming; en este sprint se implementan 6 (IAM queda
+para un sprint posterior). Cada uno se organiza en cuatro capas:
 
 | Capa | Contenido |
 | :--- | :--- |
@@ -109,11 +101,11 @@ Cada uno se organiza en cuatro capas:
 ```
 src/
 ├── shared/                        # Shared Kernel
-│   ├── domain/model/              # DateTime, Money (value objects)
-│   ├── infrastructure/            # BaseApi, BaseEndpoint, BaseAssembler, error.interceptor
-│   └── presentation/              # layout, side-navigation, top-bar, language-switcher, kpi-card, page-header,
+│   ├── domain/model/              # DateTime, Money (value objects), User, TrialPeriod, BusinessType
+│   ├── application/               # user.store (usuario actual)
+│   ├── infrastructure/            # BaseApi, BaseEndpoint, BaseAssembler, error.interceptor, users-api, user.assembler
+│   └── presentation/              # layout, side-navigation, top-bar, user-switcher, language-switcher, kpi-card, page-header,
 │                                  # empty-state, footer-content, page-not-found
-├── iam/                           # Sign-in/sign-up, interceptor, guard, prueba gratuita, perfil
 ├── billing/                       # Planes, suscripción, historial de pagos, aviso de fin de prueba
 ├── production-monitoring/         # Lotes, etapas, variables de proceso, lecturas IoT (simulador), anomalías
 ├── inventory-stock/               # Productos, stock, movimientos, umbrales de stock bajo
@@ -132,7 +124,6 @@ server/                            # Fake API (json-server)
 
 | Policy | Origen → destino |
 | :--- | :--- |
-| `StartTrialOnRegistration` | IAM: al registrar la cuenta se crea la prueba de 14 días. |
 | `RaiseAlertOnAnomaly` | Production → Alerts: una lectura fuera de rango genera una alerta. |
 | `AddBottledStock` | Production → Inventory: al embotellar un lote se suman las botellas al producto vinculado. |
 | `RaiseAlertOnLowStock` | Inventory → Alerts: stock en o bajo el umbral genera una alerta. |
@@ -144,7 +135,6 @@ server/                            # Fake API (json-server)
 
 | Ruta | Vista | Perfil |
 | :--- | :--- | :--- |
-| `/sign-in`, `/sign-up`, `/registro` | Inicio de sesión y registro | Público |
 | `/dashboard` | Dashboard Productor / Comercial | Ambos |
 | `/production/monitoring` | Monitoreo IoT (simulación en vivo) | Productor |
 | `/production/batches`, `/production/batches/:id` | Gestión y trazabilidad de lotes | Productor |
@@ -152,9 +142,8 @@ server/                            # Fake API (json-server)
 | `/orders`, `/orders/customers`, `/orders/replenishment` | Pedidos, clientes y reposición | Ambos |
 | `/alerts` | Centro de alertas | Ambos |
 | `/analytics/indicators` | Indicadores históricos | Ambos |
-| `/billing/plans`, `/account/profile` | Suscripción y perfil | Ambos |
+| `/billing/plans` | Suscripción | Ambos |
 
-La Landing Page enlaza a `/registro?plan=basico|profesional|empresarial`, que abre el registro con el plan preseleccionado.
 
 ## Build de producción
 
