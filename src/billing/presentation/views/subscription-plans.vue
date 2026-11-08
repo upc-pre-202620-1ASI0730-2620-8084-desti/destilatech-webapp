@@ -9,6 +9,7 @@ import { useUserStore } from '@/shared/application/user.store.js';
 import PageHeader from '@/shared/presentation/components/page-header.vue';
 import PlanCard from '@/billing/presentation/components/plan-card.vue';
 import PaymentHistory from '@/billing/presentation/components/payment-history.vue';
+import PaymentFormDialog from '@/billing/presentation/components/payment-form-dialog.vue';
 
 
 const { t, locale } = useI18n();
@@ -38,31 +39,35 @@ const statusMessage = computed(() => {
   return t('billing.status.expired');
 });
 
-const redirecting = ref(false);
+const selectedPlan = ref(null);
+const paymentDialogVisible = ref(false);
+const paying = ref(false);
 
 
 const onSelectPlan = plan => {
-  confirm.require({
-    header: t('billing.confirm.header'),
-    message: t('billing.confirm.message', {
-      plan: t(`billing.plans.${plan.code}.name`),
-      price: plan.price.format()
-    }),
-    icon: 'pi pi-credit-card',
-    acceptProps: { label: t('billing.confirm.accept') },
-    rejectProps: { label: t('common.cancel'), outlined: true },
-    accept: async () => {
-      redirecting.value = true;
-      const checkoutUrl = await billingStore.startCheckout(plan);
-      if (checkoutUrl) {
-        window.location.assign(checkoutUrl);
-        return;
-      }
-      redirecting.value = false;
-      const error = billingStore.errors[0];
-      toast.add({ severity: 'error', summary: t('common.error'), detail: t(`billing.errors.${error}`, String(error)), life: 6000 });
-    }
-  });
+  selectedPlan.value = plan;
+  paymentDialogVisible.value = true;
+};
+
+const onPay = async ({ cardNumber }) => {
+  paying.value = true;
+  const payment = await billingStore.subscribe(selectedPlan.value, cardNumber);
+  paying.value = false;
+  if (payment) {
+    paymentDialogVisible.value = false;
+    toast.add({
+      severity: 'success',
+      summary: t('billing.payment-form.success-title'),
+      detail: t('billing.payment-form.success-detail', {
+        plan: t(`billing.plans.${selectedPlan.value.code}.name`),
+        date: billingStore.currentSubscription?.renewalDate.format(locale.value) ?? ''
+      }),
+      life: 5000
+    });
+    return;
+  }
+  const error = billingStore.errors[0];
+  toast.add({ severity: 'error', summary: t('common.error'), detail: t(`billing.errors.${error}`, String(error)), life: 6000 });
 };
 
 const onCancelSubscription = () => {
@@ -118,28 +123,11 @@ onMounted(() => billingStore.fetchBillingOverview());
 
     <payment-history/>
 
-    <div v-if="redirecting" class="redirect-overlay" role="status">
-      <i class="pi pi-spin pi-spinner" aria-hidden="true"></i>
-      <span>{{ t('billing.checkout.redirecting') }}</span>
-    </div>
+    <payment-form-dialog v-model:visible="paymentDialogVisible" :plan="selectedPlan" :saving="paying" @save="onPay"/>
   </section>
 </template>
 
 <style scoped>
-.redirect-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  background: rgba(255, 253, 249, 0.85);
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
-  color: var(--color-primary-dark);
-}
-
 .payment-note i {
   color: var(--color-success);
 }
