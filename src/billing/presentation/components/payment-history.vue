@@ -33,7 +33,7 @@ const planName = planId => {
         <template #body="{ data }">{{ data.maskedCard || '—' }}</template>
       </pv-column>
       <pv-column :header="t('billing.payments.provider')">
-        <template #body="{ data }"><pv-tag :value="data.provider" severity="secondary"/></template>
+        <template #body="{ data }"><pv-tag :value="t(`billing.payments.providers.${data.provider}`, data.provider)" severity="secondary"/></template>
       </pv-column>
       <pv-column :header="t('orders.fields.status')">
         <template #body="{ data }"><pv-tag :value="t(`billing.payments.status.${data.status}`)" severity="success"/></template>
