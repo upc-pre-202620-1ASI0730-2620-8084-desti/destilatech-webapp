@@ -48,41 +48,12 @@ export const useBillingStore = defineStore('billing', () => {
     }
 
 
-    async function startCheckout(plan) {
-        const userStore = useUserStore
-();
+    async function subscribe(plan, cardNumber) {
+        const userStore = useUserStore();
         errors.value = [];
         try {
-            const origin = window.location.origin;
-            const response = await billingApi.createCheckoutSession({
-                userId: userStore.currentUserId,
-                planId: plan.id,
-                successUrl: `${origin}/billing/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-                cancelUrl: `${origin}/billing/checkout/cancelled`
-            });
-            return response.data.url;
-        } catch (error) {
-            errors.value.push(error);
-            return null;
-        }
-    }
+            const payment = Payment.fromSimulatedCard(userStore.currentUserId, plan, cardNumber);
 
-    async function confirmCheckout(sessionId) {
-        const userStore = useUserStore
-();
-        errors.value = [];
-        try {
-            const alreadyRegistered = paymentAssembler.toEntitiesFromResponse(await billingApi.getPaymentsByReference(sessionId));
-            if (alreadyRegistered.length) {
-                await fetchBillingOverview();
-                return alreadyRegistered[0];
-            }
-
-            const sessionResponse = await billingApi.getCheckoutSession(sessionId);
-            const payment = Payment.fromConfirmedCheckout(sessionResponse.data);
-            if (payment.userId !== userStore.currentUserId) throw new Error('payment-not-completed');
-
-            await fetchBillingOverview();
             if (currentSubscription.value?.isActive()) await cancelSubscription();
 
             const subscription = Subscription.activate(payment.userId, payment.planId, payment.reference);
@@ -120,8 +91,7 @@ export const useBillingStore = defineStore('billing', () => {
         loading,
         findPlan,
         fetchBillingOverview,
-        startCheckout,
-        confirmCheckout,
+        subscribe,
         cancelSubscription
     };
 });
