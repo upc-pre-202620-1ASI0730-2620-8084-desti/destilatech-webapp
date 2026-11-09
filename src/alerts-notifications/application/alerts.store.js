@@ -64,10 +64,26 @@ export const useAlertsStore = defineStore('alerts', () => {
         }
     }
 
+
+    async function markAllAsAttended(alertsToAttend) {
+        errors.value = [];
+        let attended = 0;
+        for (const alert of alertsToAttend.filter(alert => alert.isPending())) {
+            try {
+                alert.markAsAttended();
+                await alertsApi.patchAlert(alert.id, { status: alert.status, attendedAt: alert.attendedAt.toISOString() });
+                attended++;
+            } catch (error) {
+                errors.value.push(error instanceof Error ? error.message : error);
+            }
+        }
+        return attended;
+    }
+
     function reset() {
         alerts.value = [];
         loaded.value = false;
     }
 
-    return { alerts, errors, loading, pendingAlerts, pendingCount, fetchAlerts, raiseAlert, markAsAttended, reset };
+    return { alerts, errors, loading, pendingAlerts, pendingCount, fetchAlerts, raiseAlert, markAsAttended, markAllAsAttended, reset };
 });
