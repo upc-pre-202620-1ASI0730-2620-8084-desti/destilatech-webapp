@@ -5,6 +5,7 @@ import { useAnalyticsStore } from '@/analytics-estimations/application/analytics
 import { useInventoryStore } from '@/inventory-stock/application/inventory.store.js';
 import { useUserStore } from '@/shared/application/user.store.js';
 import { Money } from '@/shared/domain/model/money.js';
+import { CsvExporter } from '@/shared/infrastructure/csv-exporter.js';
 import { formatPeriodLabel } from '@/analytics-estimations/presentation/period-label.js';
 import PageHeader from '@/shared/presentation/components/page-header.vue';
 import KpiCard from '@/shared/presentation/components/kpi-card.vue';
@@ -49,6 +50,21 @@ const topProducts = computed(() => analyticsStore.topConsumedProducts(periodDays
 
 const hasHistory = computed(() => totals.value.entries + totals.value.exits + totals.value.sales + totals.value.production > 0);
 
+const onExport = () => {
+  const series = indicators.value;
+  const columns = [
+    { header: t('analytics.indicators.period'), value: index => labels.value[index] },
+    { header: t('analytics.indicators.units-in-stock'), value: index => Math.round(series.stockLevel[index]?.value ?? 0) },
+    { header: t('analytics.indicators.entries'), value: index => Math.round(series.entries[index]?.value ?? 0) },
+    { header: t('analytics.indicators.exits'), value: index => Math.round(series.exits[index]?.value ?? 0) },
+    { header: t('analytics.indicators.sales'), value: index => series.sales[index]?.value ?? 0 }
+  ];
+  if (userStore.isProducer) {
+    columns.push({ header: t('analytics.indicators.production'), value: index => Math.round(series.production[index]?.value ?? 0) });
+  }
+  CsvExporter.download(`indicators-${periodDays.value}-days`, columns, series.stockLevel.map((_, index) => index));
+};
+
 onMounted(() => {
   analyticsStore.fetchAnalytics({ force: true });
   inventoryStore.fetchInventory();
@@ -61,6 +77,8 @@ onMounted(() => {
       <template #actions>
         <pv-select-button v-model="periodDays" :options="periodOptions" option-label="label" option-value="value"
                           :allow-empty="false" :aria-label="t('analytics.indicators.period')"/>
+        <pv-button icon="pi pi-download" :label="t('common.export-csv')" outlined :disabled="!hasHistory"
+                   @click="onExport"/>
       </template>
     </page-header>
 
