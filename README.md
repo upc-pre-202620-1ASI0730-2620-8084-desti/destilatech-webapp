@@ -38,18 +38,11 @@ json-server expone `http://localhost:3000/api/v1/...` a partir de `server/db.jso
 `/api/v1`). Todo lo que la app crea o modifica se guarda en `db.json`.
 
 ```bash
-cd server
-sh start.sh
+npm run fake-api
 ```
 
-En Windows, la terminal de WebStorm usa PowerShell, que no trae `sh`. Puedes:
-
-- Cambiar la terminal a Git Bash: *Settings → Tools → Terminal → Shell path* = `C:\Program Files\Git\bin\bash.exe`.
-- O ejecutar directamente el comando de `start.sh` dentro de `server`:
-
-  ```bash
-  npx json-server --watch db.json --routes routes.json
-  ```
+Funciona igual en PowerShell, Git Bash o la terminal de WebStorm. También se puede iniciar con `cd server` y
+`sh start.sh` (solo en Git Bash).
 
 ### 2. Web App (terminal 2)
 
@@ -67,10 +60,35 @@ Abre `http://localhost:5173`.
 | Archivo | Se usa con | URL del API |
 | :--- | :--- | :--- |
 | `.env.development` | `npm run dev` | `http://localhost:3000/api/v1` (json-server local) |
-| `.env.production` | `npm run build` | CRUD API de [Beeceptor](https://beeceptor.com) (`https://<endpoint>.free.beeceptor.com/api/v1`) |
+| `.env.production` | `npm run build` | `https://destilatech-api.onrender.com/api/v1` (json-server publicado en Render) |
 
 Ambos archivos definen la licencia de PrimeUI (`VITE_PRIME_UI_LICENSE_KEY`) y la ruta de cada endpoint
 (`VITE_*_ENDPOINT_PATH`).
+
+## Despliegue
+
+| Parte | Servicio | URL |
+| :--- | :--- | :--- |
+| Web App | Firebase Hosting | https://destilatech-webapp.web.app |
+| Fake API | Render | https://destilatech-api.onrender.com/api/v1 |
+
+Para publicar una nueva versión de la Web App:
+
+```bash
+npm run build
+firebase deploy
+```
+
+> El plan gratuito de Render apaga el Fake API cuando no se usa: la primera petición puede tardar ~1 minuto.
+
+## Pagos (simulados)
+
+La suscripción se paga con un **pago simulado**: al elegir un plan se abre un formulario de tarjeta que valida el número
+(algoritmo de Luhn), la fecha de vencimiento y el CVC, y registra el pago y la suscripción en el Fake API. No se realiza
+ningún cobro real y solo se guarda la marca y los 4 últimos dígitos de la tarjeta. Para probar se puede usar la tarjeta
+`4242 4242 4242 4242` con cualquier fecha futura y cualquier CVC.
+
+La integración con una pasarela real (Stripe) se implementa en el backend (`destilatech-platform`), no en la Web App.
 
 ## Usuarios (sin IAM en este sprint)
 
@@ -103,10 +121,11 @@ src/
 ├── shared/                        # Shared Kernel
 │   ├── domain/model/              # DateTime, Money (value objects), User, TrialPeriod, BusinessType
 │   ├── application/               # user.store (usuario actual)
-│   ├── infrastructure/            # BaseApi, BaseEndpoint, BaseAssembler, error.interceptor, users-api, user.assembler
+│   ├── infrastructure/            # BaseApi, BaseEndpoint, BaseAssembler, error.interceptor, users-api, user.assembler,
+│   │                              # csv-exporter
 │   └── presentation/              # layout, side-navigation, top-bar, user-switcher, language-switcher, kpi-card, page-header,
 │                                  # empty-state, footer-content, page-not-found
-├── billing/                       # Planes, suscripción, historial de pagos, aviso de fin de prueba
+├── billing/                       # Planes, suscripción, pago simulado, historial de pagos, aviso de fin de prueba
 ├── production-monitoring/         # Lotes, etapas, variables de proceso, lecturas IoT (simulador), anomalías
 ├── inventory-stock/               # Productos, stock, movimientos, umbrales de stock bajo
 ├── orders-replenishment/          # Clientes, pedidos, reposición a proveedores
@@ -117,7 +136,7 @@ src/
 server/                            # Fake API (json-server)
 ├── db.json                        # Datos del Fake API
 ├── routes.json                    # Prefijo /api/v1
-└── start.sh                       # Inicia json-server (cd server && sh start.sh)
+└── start.sh                       # Inicia json-server (alternativa a npm run fake-api)
 ```
 
 ### Comunicación entre bounded contexts
@@ -144,6 +163,17 @@ server/                            # Fake API (json-server)
 | `/analytics/indicators` | Indicadores históricos | Ambos |
 | `/billing/plans` | Suscripción | Ambos |
 
+### Exportar a CSV
+
+Pedidos, clientes, inventario e indicadores históricos tienen el botón **Exportar CSV**, que descarga lo que se ve en la
+tabla (con los filtros aplicados). El archivo usa `;` como separador y UTF-8 con BOM para abrirse bien en Excel.
+
+## Versiones
+
+| Versión | Entrega | Cambios principales |
+| :--- | :--- | :--- |
+| v1.0.0 | TB1 | Primera versión: 6 bounded contexts, dashboards por perfil, Fake API y despliegue en Firebase. |
+| v1.1.0 | AV2 | Pago simulado en lugar de Stripe, marcar todas las alertas como atendidas, exportación a CSV, datos de prueba en inglés y script `npm run fake-api`. |
 
 ## Build de producción
 

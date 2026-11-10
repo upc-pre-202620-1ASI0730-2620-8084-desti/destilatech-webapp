@@ -7,6 +7,7 @@ import { useInventoryStore } from '@/inventory-stock/application/inventory.store
 import { RegisterStockMovementCommand } from '@/inventory-stock/domain/model/register-stock-movement.command.js';
 import { StockStatus } from '@/inventory-stock/domain/model/stock-item.entity.js';
 import { Money } from '@/shared/domain/model/money.js';
+import { CsvExporter } from '@/shared/infrastructure/csv-exporter.js';
 import PageHeader from '@/shared/presentation/components/page-header.vue';
 import KpiCard from '@/shared/presentation/components/kpi-card.vue';
 import EmptyState from '@/shared/presentation/components/empty-state.vue';
@@ -90,6 +91,17 @@ const onSaveThreshold = async threshold => {
 
 const goToDetail = item => router.push({ name: 'product-detail', params: { productId: item.product.id } });
 
+const onExport = () => {
+  CsvExporter.download('inventory', [
+    { header: 'SKU', value: item => item.product.sku },
+    { header: t('inventory.fields.product'), value: item => item.product.name },
+    { header: t('inventory.fields.presentation'), value: item => item.product.presentation },
+    { header: t('inventory.fields.stock'), value: item => item.stockItem.currentQuantity },
+    { header: t('inventory.fields.threshold'), value: item => item.stockItem.lowStockThreshold },
+    { header: t('inventory.fields.status'), value: item => t(`inventory.status.${item.stockItem.status}`) }
+  ], filteredItems.value);
+};
+
 onMounted(() => inventoryStore.fetchInventory({ force: true }));
 </script>
 
@@ -97,6 +109,8 @@ onMounted(() => inventoryStore.fetchInventory({ force: true }));
   <section class="flex flex-column gap-4">
     <page-header :title="t('inventory.title')" :subtitle="t('inventory.subtitle')">
       <template #actions>
+        <pv-button icon="pi pi-download" :label="t('common.export-csv')" outlined :disabled="!filteredItems.length"
+                   @click="onExport"/>
         <pv-button icon="pi pi-arrow-right-arrow-left" :label="t('inventory.register-movement')" outlined
                    :disabled="!inventoryStore.inventoryItems.length" @click="openMovementDialog()"/>
         <pv-button icon="pi pi-plus" :label="t('inventory.new-product')" @click="productDialogVisible = true"/>

@@ -7,6 +7,7 @@ import { useOrdersStore } from '@/orders-replenishment/application/orders.store.
 import { useInventoryStore } from '@/inventory-stock/application/inventory.store.js';
 import { OrderStatus } from '@/orders-replenishment/domain/model/order.entity.js';
 import { Money } from '@/shared/domain/model/money.js';
+import { CsvExporter } from '@/shared/infrastructure/csv-exporter.js';
 import PageHeader from '@/shared/presentation/components/page-header.vue';
 import KpiCard from '@/shared/presentation/components/kpi-card.vue';
 import EmptyState from '@/shared/presentation/components/empty-state.vue';
@@ -97,6 +98,16 @@ const onCancel = order => {
   });
 };
 
+const onExport = () => {
+  CsvExporter.download('orders', [
+    { header: t('orders.fields.order'), value: order => order.code },
+    { header: t('orders.fields.customer'), value: order => order.customerName },
+    { header: t('common.date'), value: order => order.orderDate.toDate().toISOString().slice(0, 10) },
+    { header: t('orders.fields.total'), value: order => order.total.amount },
+    { header: t('orders.fields.status'), value: order => t(`orders.status.${order.status}`) }
+  ], filteredOrders.value);
+};
+
 onMounted(() => {
   ordersStore.fetchOrders({ force: true });
   inventoryStore.fetchInventory({ force: true });
@@ -107,6 +118,8 @@ onMounted(() => {
   <section class="flex flex-column gap-4">
     <page-header :title="t('orders.title')" :subtitle="t('orders.subtitle')">
       <template #actions>
+        <pv-button icon="pi pi-download" :label="t('common.export-csv')" outlined :disabled="!filteredOrders.length"
+                   @click="onExport"/>
         <pv-button icon="pi pi-plus" :label="t('orders.new-order')" @click="orderDialogVisible = true"/>
       </template>
     </page-header>

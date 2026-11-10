@@ -78,7 +78,7 @@
       "status": "ACTIVE",
       "startDate": "2026-09-19T15:00:00.000Z",
       "renewalDate": "2026-10-19T15:00:00.000Z",
-      "paymentReference": "cs_test_seed_producer_professional"
+      "paymentReference": "SIM-SEED-PRODUCER-PROFESSIONAL"
     }
   ],
   "payments": [
@@ -88,8 +88,8 @@
       "planId": 2,
       "amount": 110,
       "currency": "PEN",
-      "provider": "STRIPE",
-      "reference": "cs_test_seed_producer_professional",
+      "provider": "SIMULATED",
+      "reference": "SIM-SEED-PRODUCER-PROFESSIONAL",
       "status": "PAID",
       "cardBrand": "visa",
       "cardLast4": "4242",
@@ -104,7 +104,7 @@
       "variety": "Quebranta",
       "startDate": "2026-08-04T13:00:00.000Z",
       "estimatedQuantity": 900,
-      "tank": "Tanque C",
+      "tank": "Tank C",
       "stage": "BOTTLED",
       "stageHistory": [
         {
@@ -144,7 +144,7 @@
       "variety": "Torontel",
       "startDate": "2026-08-12T13:00:00.000Z",
       "estimatedQuantity": 600,
-      "tank": "Tanque D",
+      "tank": "Tank D",
       "stage": "BOTTLED",
       "stageHistory": [
         {
@@ -184,7 +184,7 @@
       "variety": "Acholado",
       "startDate": "2026-08-27T13:00:00.000Z",
       "estimatedQuantity": 750,
-      "tank": "Tinaja 2",
+      "tank": "Clay jar 2",
       "stage": "RESTING",
       "stageHistory": [
         {
@@ -219,7 +219,7 @@
       "variety": "Italia",
       "startDate": "2026-09-10T13:00:00.000Z",
       "estimatedQuantity": 680,
-      "tank": "Alambique 1",
+      "tank": "Still 1",
       "stage": "DISTILLATION",
       "stageHistory": [
         {
@@ -249,7 +249,7 @@
       "variety": "Quebranta",
       "startDate": "2026-09-17T13:00:00.000Z",
       "estimatedQuantity": 820,
-      "tank": "Tanque A",
+      "tank": "Tank A",
       "stage": "FERMENTATION",
       "stageHistory": [
         {
@@ -274,7 +274,7 @@
       "variety": "Mosto Verde",
       "startDate": "2026-09-22T13:00:00.000Z",
       "estimatedQuantity": 540,
-      "tank": "Tanque B",
+      "tank": "Tank B",
       "stage": "FERMENTATION",
       "stageHistory": [
         {
