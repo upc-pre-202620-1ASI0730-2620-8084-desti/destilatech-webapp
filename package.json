@@ -1,7 +1,7 @@
 {
   "name": "destilatech-webapp",
   "private": true,
-  "version": "0.1.0",
+  "version": "2.0.0",
   "description": "Destilatech Web Application - production, inventory and commercial management platform for the Peruvian pisco ecosystem.",
   "type": "module",
   "scripts": {
@@ -10,7 +10,16 @@
     "preview": "vite preview",
     "fake-api": "json-server --watch server/db.json --routes server/routes.json --port 3000"
   },
-  "keywords": ["vue", "vite", "primevue", "pinia", "vue-i18n", "ddd", "destilatech", "pisco"],
+  "keywords": [
+    "vue",
+    "vite",
+    "primevue",
+    "pinia",
+    "vue-i18n",
+    "ddd",
+    "destilatech",
+    "pisco"
+  ],
   "dependencies": {
     "vue": "^3.5.43",
     "axios": "^1.20.0",
