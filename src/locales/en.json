@@ -8,6 +8,7 @@
     "delete": "Delete",
     "edit": "Edit",
     "error": "Something went wrong",
+    "export-csv": "Export CSV",
     "save": "Save",
     "save-changes": "Save changes",
     "saved": "Saved",
@@ -69,17 +70,12 @@
     "current-plan": "Current plan",
     "preferred-plan": "Chosen on the website",
     "recommended": "Most popular",
-    "payment-note": "Secure card payment processed by Stripe (test mode). Destilatech never sees or stores your card details.",
+    "payment-note": "Simulated card payment: no real charge is made and only the card brand and its last 4 digits are saved.",
     "status": {
       "title": "Your access status",
       "trial": "You are on your free trial: {days} day left. | You are on your free trial: {days} days left.",
       "subscribed": "{plan} active · renews on {date}.",
       "expired": "Your free trial has ended and you have no active subscription."
-    },
-    "confirm": {
-      "header": "Pay subscription",
-      "message": "You will be redirected to the secure Stripe payment page to pay the {plan} ({price} for 30 days) with your card.",
-      "accept": "Go to payment"
     },
     "cancel": {
       "action": "Cancel subscription",
@@ -128,25 +124,29 @@
       "status": {
         "PAID": "Paid",
         "REFUNDED": "Refunded"
+      },
+      "providers": {
+        "SIMULATED": "Simulated"
       }
     },
-    "checkout": {
-      "redirecting": "Redirecting to the payment gateway…",
-      "confirming": "Confirming your payment…",
+    "payment-form": {
+      "title": "Pay subscription",
+      "simulated-notice": "This is a simulated payment for the academic demo. No real charge is made.",
+      "use-test-card": "Use test card",
+      "cardholder": "Cardholder name",
+      "card-number": "Card number",
+      "expiry": "Expiry date",
+      "cvc": "CVC",
+      "pay": "Pay {amount}",
+      "invalid-card": "Enter a valid card number.",
+      "invalid-expiry": "Enter a valid, non-expired date (MM/YY).",
+      "invalid-cvc": "Enter the 3 or 4 digits on the back of the card.",
       "success-title": "Payment confirmed!",
-      "success-detail": "Your {plan} is active until {date}.",
-      "error-title": "We could not confirm the payment",
-      "cancelled-title": "Payment cancelled",
-      "cancelled-detail": "No charge was made. You can choose a plan whenever you want.",
-      "go-dashboard": "Go to dashboard",
-      "back-to-plans": "Back to plans"
+      "success-detail": "Your {plan} is active until {date}."
     },
     "errors": {
-      "payment-gateway-not-configured": "The payment gateway is not configured. Add your Stripe test key to server/.env and restart the Fake API.",
-      "payment-not-completed": "The payment has not been completed in the gateway yet.",
-      "missing-session": "No payment session was received.",
-      "user-or-plan-not-found": "We could not find the account or the plan.",
-      "server-unreachable": "The server is not reachable. Start the Fake API in another terminal (cd server, then sh start.sh) and try again."
+      "invalid-card": "The card number is not valid.",
+      "server-unreachable": "The server is not reachable. Start the Fake API in another terminal (npm run fake-api) and try again."
     }
   },
   "dashboard": {
@@ -314,7 +314,7 @@
       "quantity-required": "The estimated quantity must be greater than zero.",
       "invalid-range": "The minimum must be lower than the maximum.",
       "batch-already-finished": "The batch has already been bottled.",
-      "server-unreachable": "The server is not reachable. Start the Fake API in another terminal (cd server, then sh start.sh) and try again."
+      "server-unreachable": "The server is not reachable. Start the Fake API in another terminal (npm run fake-api) and try again."
     }
   },
   "inventory": {
@@ -417,7 +417,7 @@
     "errors": {
       "insufficient-stock": "The exit exceeds the available stock.",
       "stock-item-not-found": "The product has no stock record.",
-      "server-unreachable": "The server is not reachable. Start the Fake API in another terminal (cd server, then sh start.sh) and try again."
+      "server-unreachable": "The server is not reachable. Start the Fake API in another terminal (npm run fake-api) and try again."
     }
   },
   "orders": {
@@ -552,7 +552,7 @@
       "quantity-required": "The quantity must be greater than zero.",
       "order-closed": "The order is already closed.",
       "replenishment-closed": "The replenishment is already closed.",
-      "server-unreachable": "The server is not reachable. Start the Fake API in another terminal (cd server, then sh start.sh) and try again."
+      "server-unreachable": "The server is not reachable. Start the Fake API in another terminal (npm run fake-api) and try again."
     }
   },
   "alerts": {
@@ -561,6 +561,13 @@
     "pending-count": "{count} pending alerts",
     "mark-attended": "Mark as attended",
     "attended-toast": "Alert marked as attended",
+    "attend-all": {
+      "action": "Mark all as attended ({count})",
+      "header": "Mark all as attended",
+      "message": "The {count} pending alert shown will be marked as attended. | The {count} pending alerts shown will be marked as attended.",
+      "accept": "Yes, mark all",
+      "done": "{count} alert marked as attended | {count} alerts marked as attended"
+    },
     "attended-on": "attended on {date}",
     "view-source": "View source",
     "titles": {

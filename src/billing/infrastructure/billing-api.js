@@ -4,21 +4,18 @@ import { BaseEndpoint } from '@/shared/infrastructure/base-endpoint.js';
 const plansEndpointPath = import.meta.env.VITE_PLANS_ENDPOINT_PATH;
 const subscriptionsEndpointPath = import.meta.env.VITE_SUBSCRIPTIONS_ENDPOINT_PATH;
 const paymentsEndpointPath = import.meta.env.VITE_PAYMENTS_ENDPOINT_PATH;
-const checkoutSessionsEndpointPath = import.meta.env.VITE_CHECKOUT_SESSIONS_ENDPOINT_PATH;
 
 
 export class BillingApi extends BaseApi {
     #plansEndpoint;
     #subscriptionsEndpoint;
     #paymentsEndpoint;
-    #checkoutSessionsEndpoint;
 
     constructor() {
         super();
         this.#plansEndpoint = new BaseEndpoint(this, plansEndpointPath);
         this.#subscriptionsEndpoint = new BaseEndpoint(this, subscriptionsEndpointPath);
         this.#paymentsEndpoint = new BaseEndpoint(this, paymentsEndpointPath);
-        this.#checkoutSessionsEndpoint = new BaseEndpoint(this, checkoutSessionsEndpointPath);
     }
 
     getPlans() {
@@ -41,11 +38,6 @@ export class BillingApi extends BaseApi {
     }
 
 
-    getPaymentsByReference(reference) {
-        return this.#paymentsEndpoint.getAll({ reference });
-    }
-
-
     createPayment(resource) {
         return this.#paymentsEndpoint.create(resource);
     }
@@ -53,15 +45,5 @@ export class BillingApi extends BaseApi {
 
     createSubscription(resource) {
         return this.#subscriptionsEndpoint.create(resource);
-    }
-
-
-    createCheckoutSession(resource) {
-        return this.#checkoutSessionsEndpoint.create(resource);
-    }
-
-
-    getCheckoutSession(sessionId) {
-        return this.#checkoutSessionsEndpoint.getById(sessionId);
     }
 }

@@ -2,6 +2,7 @@
 import { computed, onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useToast } from 'primevue/usetoast';
+import { useConfirm } from 'primevue/useconfirm';
 import { useAlertsStore } from '@/alerts-notifications/application/alerts.store.js';
 import { AlertStatus, AlertType } from '@/alerts-notifications/domain/model/alert.entity.js';
 import { useUserStore } from '@/shared/application/user.store.js';
@@ -12,6 +13,7 @@ import AlertItem from '@/alerts-notifications/presentation/components/alert-item
 
 const { t } = useI18n();
 const toast = useToast();
+const confirm = useConfirm();
 const alertsStore = useAlertsStore();
 const userStore = useUserStore
 ();
@@ -40,11 +42,33 @@ const filteredAlerts = computed(() => alertsStore.alerts
     .filter(alert => typeFilter.value === 'ALL' || alert.type === typeFilter.value)
     .filter(alert => statusFilter.value === 'ALL' || alert.status === statusFilter.value));
 
+const pendingInView = computed(() => filteredAlerts.value.filter(alert => alert.isPending()));
+const attendingAll = ref(false);
+
 
 const onAttend = async alert => {
   if (await alertsStore.markAsAttended(alert)) {
     toast.add({ severity: 'success', summary: t('alerts.attended-toast'), life: 2500 });
   }
+};
+
+const onAttendAll = () => {
+  const count = pendingInView.value.length;
+  confirm.require({
+    header: t('alerts.attend-all.header'),
+    message: t('alerts.attend-all.message', { count }, count),
+    icon: 'pi pi-check-square',
+    acceptProps: { label: t('alerts.attend-all.accept') },
+    rejectProps: { label: t('common.cancel'), outlined: true },
+    accept: async () => {
+      attendingAll.value = true;
+      const attended = await alertsStore.markAllAsAttended(pendingInView.value);
+      attendingAll.value = false;
+      if (attended) {
+        toast.add({ severity: 'success', summary: t('alerts.attend-all.done', { count: attended }, attended), life: 3000 });
+      }
+    }
+  });
 };
 
 onMounted(() => alertsStore.fetchAlerts());
@@ -58,8 +82,12 @@ onMounted(() => alertsStore.fetchAlerts());
     <div class="flex gap-3 flex-wrap justify-content-between">
       <pv-select-button v-model="typeFilter" :options="typeOptions" option-label="label" option-value="value"
                         :allow-empty="false" :aria-label="t('alerts.filters.type')"/>
-      <pv-select-button v-model="statusFilter" :options="statusOptions" option-label="label" option-value="value"
-                        :allow-empty="false" :aria-label="t('alerts.filters.status')"/>
+      <div class="flex gap-2 flex-wrap align-items-center">
+        <pv-select-button v-model="statusFilter" :options="statusOptions" option-label="label" option-value="value"
+                          :allow-empty="false" :aria-label="t('alerts.filters.status')"/>
+        <pv-button v-if="pendingInView.length" icon="pi pi-check-square" outlined :loading="attendingAll"
+                   :label="t('alerts.attend-all.action', { count: pendingInView.length })" @click="onAttendAll"/>
+      </div>
     </div>
 
     <div v-if="alertsStore.loading" class="flex flex-column gap-2">

@@ -5,6 +5,7 @@ import { useToast } from 'primevue/usetoast';
 import { useOrdersStore } from '@/orders-replenishment/application/orders.store.js';
 import { OrderStatus } from '@/orders-replenishment/domain/model/order.entity.js';
 import { Money } from '@/shared/domain/model/money.js';
+import { CsvExporter } from '@/shared/infrastructure/csv-exporter.js';
 import PageHeader from '@/shared/presentation/components/page-header.vue';
 import EmptyState from '@/shared/presentation/components/empty-state.vue';
 import CustomerFormDialog from '@/orders-replenishment/presentation/components/customer-form-dialog.vue';
@@ -49,6 +50,19 @@ const onSave = async data => {
   }
 };
 
+const onExport = () => {
+  CsvExporter.download('customers', [
+    { header: t('orders.fields.customer'), value: row => row.customer.name },
+    { header: t('orders.fields.customer-type'), value: row => t(`orders.customer-type.${row.customer.customerType}`) },
+    { header: t('orders.fields.contact-name'), value: row => row.customer.contactName },
+    { header: t('orders.fields.phone'), value: row => row.customer.phone },
+    { header: t('orders.fields.email'), value: row => row.customer.email },
+    { header: t('orders.fields.address'), value: row => row.customer.address },
+    { header: t('orders.customers.orders'), value: row => row.ordersCount },
+    { header: t('orders.customers.purchased'), value: row => row.purchased.amount }
+  ], customerRows.value);
+};
+
 onMounted(() => ordersStore.fetchOrders({ force: true }));
 </script>
 
@@ -56,6 +70,8 @@ onMounted(() => ordersStore.fetchOrders({ force: true }));
   <section class="flex flex-column gap-4">
     <page-header :title="t('orders.customers.title')" :subtitle="t('orders.customers.subtitle', { count: ordersStore.customers.length })">
       <template #actions>
+        <pv-button icon="pi pi-download" :label="t('common.export-csv')" outlined :disabled="!customerRows.length"
+                   @click="onExport"/>
         <pv-button icon="pi pi-user-plus" :label="t('orders.new-customer')" @click="openDialog()"/>
       </template>
     </page-header>
