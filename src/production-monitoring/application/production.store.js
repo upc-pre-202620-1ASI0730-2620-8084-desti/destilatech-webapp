@@ -11,10 +11,7 @@ import { SensorReading } from '@/production-monitoring/domain/model/sensor-readi
 import { BatchStage } from '@/production-monitoring/domain/model/batch-stage.js';
 import { useUserStore } from '@/shared/application/user.store.js';
 import { useAlertsStore } from '@/alerts-notifications/application/alerts.store.js';
-import { RaiseAlertCommand } from '@/alerts-notifications/domain/model/raise-alert.command.js';
-import { AlertSeverity, AlertType } from '@/alerts-notifications/domain/model/alert.entity.js';
 import { useInventoryStore } from '@/inventory-stock/application/inventory.store.js';
-import { MovementReason } from '@/inventory-stock/domain/model/stock-movement.entity.js';
 
 const productionApi = new ProductionApi();
 const batchAssembler = new ProductionBatchAssembler();
@@ -49,10 +46,16 @@ export const useProductionStore = defineStore('production', () => {
     const anomaliesForBatch = batchId => readings.value.filter(reading => reading.batchId === Number(batchId) && reading.isAnomaly());
 
 
+    /** Out of range reading of the variable closest in time to the given date (the one that raised an alert). */
+    const closestAnomaly = (variableId, date) => readings.value
+        .filter(reading => reading.processVariableId === variableId && reading.isAnomaly())
+        .reduce((closest, reading) => !closest
+            || Math.abs(reading.recordedAt.toDate() - date) < Math.abs(closest.recordedAt.toDate() - date) ? reading : closest, null);
+
+
     async function fetchProduction({ force = false } = {}) {
         if (loaded.value && !force) return;
-        const userStore = useUserStore
-();
+        const userStore = useUserStore();
         errors.value = [];
         loading.value = true;
         try {
@@ -61,9 +64,11 @@ export const useProductionStore = defineStore('production', () => {
                 productionApi.getProcessVariablesByUserId(userStore.currentUserId),
                 productionApi.getSensorReadingsByUserId(userStore.currentUserId)
             ]);
-            batches.value = batchAssembler.toEntitiesFromResponse(batchesResponse);
+            batches.value = batchAssembler.toEntitiesFromResponse(batchesResponse)
+                .sort((first, second) => second.startDate.toDate() - first.startDate.toDate());
             variables.value = variableAssembler.toEntitiesFromResponse(variablesResponse);
-            readings.value = readingAssembler.toEntitiesFromResponse(readingsResponse);
+            readings.value = readingAssembler.toEntitiesFromResponse(readingsResponse)
+                .sort((first, second) => second.recordedAt.toDate() - first.recordedAt.toDate());
             loaded.value = true;
         } catch (error) {
             errors.value.push(error);
@@ -85,12 +90,11 @@ export const useProductionStore = defineStore('production', () => {
 
 
     async function registerBatch(command) {
-        const userStore = useUserStore
-();
+        const userStore = useUserStore();
         errors.value = [];
         try {
             const batch = new ProductionBatch({ ...command, userId: userStore.currentUserId, code: nextBatchCode() });
-            const response = await productionApi.createBatch(batchAssembler.toResourceFromEntity(batch));
+            const response = await productionApi.createBatch(userStore.currentUserId, batchAssembler.toResourceFromEntity(batch));
             const createdBatch = batchAssembler.toEntityFromResponse(response);
             batches.value = [createdBatch, ...batches.value];
 
@@ -99,7 +103,7 @@ export const useProductionStore = defineStore('production', () => {
                     batchId: createdBatch.id, userId: userStore.currentUserId, type,
                     sensorId: `SNS-${createdBatch.code}-${index + 1}`
                 });
-                return productionApi.createProcessVariable(variableAssembler.toResourceFromEntity(variable));
+                return productionApi.createProcessVariable(userStore.currentUserId, variableAssembler.toResourceFromEntity(variable));
             }));
             variables.value = [...variables.value, ...createdVariables.map(item => variableAssembler.toEntityFromResponse(item))];
             return createdBatch;
@@ -112,19 +116,22 @@ export const useProductionStore = defineStore('production', () => {
 
     async function advanceBatchStage(batch, { notes = '', bottledUnits = 0, productId = null } = {}) {
         errors.value = [];
-        const snapshot = batchAssembler.toResourceFromEntity(batch);
         try {
-            const newStage = batch.advanceStage(notes);
-            if (newStage === BatchStage.BOTTLED) batch.registerBottling(bottledUnits, productId ?? batch.productId);
-            await productionApi.updateBatch(batch.id, batchAssembler.toResourceFromEntity(batch));
+            const newStage = batch.nextStage;
+            if (!newStage) throw new Error('Batch is already bottled');
+            const bottling = newStage === BatchStage.BOTTLED;
+            const response = await productionApi.advanceBatchStage(batch.userId, batch.id, {
+                stage: newStage,
+                notes,
+                productId: bottling ? (productId ?? batch.productId) : null,
+                bottledUnits: bottling ? Number(bottledUnits) : 0
+            });
+            Object.assign(batch, batchAssembler.toEntityFromResponse(response));
 
-            if (newStage === BatchStage.BOTTLED && batch.productId && batch.bottledUnits > 0) {
-                const inventoryStore = useInventoryStore();
-                await inventoryStore.addStock(batch.productId, batch.bottledUnits, MovementReason.PRODUCTION, batch.code);
-            }
+            // The platform adds the bottled units to the stock of the product.
+            if (bottling) await useInventoryStore().fetchInventory({ force: true });
             return true;
         } catch (error) {
-            Object.assign(batch, batchAssembler.toEntityFromResource(snapshot));
             errors.value.push(error instanceof Error ? error.message : error);
             return false;
         }
@@ -133,11 +140,13 @@ export const useProductionStore = defineStore('production', () => {
 
     async function configureVariableRange(variable, minRange, maxRange) {
         errors.value = [];
+        const previous = { minRange: variable.minRange, maxRange: variable.maxRange };
         try {
             variable.configureRange(minRange, maxRange);
-            await productionApi.patchProcessVariable(variable.id, { minRange: variable.minRange, maxRange: variable.maxRange });
+            await productionApi.configureVariableRange(variable.userId, variable.id, variable.minRange, variable.maxRange);
             return true;
         } catch (error) {
+            Object.assign(variable, previous);
             errors.value.push(error instanceof Error ? error.message : error);
             return false;
         }
@@ -147,31 +156,9 @@ export const useProductionStore = defineStore('production', () => {
     async function recordSensorReading(variable, value) {
         try {
             const reading = SensorReading.record(variable, value);
-            const response = await productionApi.createSensorReading(readingAssembler.toResourceFromEntity(reading));
+            const response = await productionApi.createSensorReading(variable.userId, readingAssembler.toResourceFromEntity(reading));
             const createdReading = readingAssembler.toEntityFromResponse(response);
             readings.value = [createdReading, ...readings.value];
-
-            if (createdReading.isAnomaly()) {
-                const batch = findBatch(variable.batchId);
-                const alertsStore = useAlertsStore();
-                const deviation = value < variable.minRange ? variable.minRange - value : value - variable.maxRange;
-                await alertsStore.raiseAlert(new RaiseAlertCommand({
-                    userId: variable.userId,
-                    type: AlertType.ANOMALY,
-                    sourceId: variable.id,
-                    messageKey: 'alerts.messages.anomaly',
-                    messageParams: {
-                        variableType: variable.type,
-                        batch: batch?.code ?? '',
-                        value: variable.formatValue(value),
-                        unit: variable.unit,
-                        min: variable.minRange,
-                        max: variable.maxRange
-                    },
-                    severity: deviation > (variable.maxRange - variable.minRange) * 0.15 ? AlertSeverity.CRITICAL : AlertSeverity.WARNING,
-                    link: `/production/batches/${variable.batchId}`
-                }));
-            }
             return createdReading;
         } catch (error) {
             errors.value.push(error instanceof Error ? error.message : error);
@@ -181,11 +168,14 @@ export const useProductionStore = defineStore('production', () => {
 
 
     async function simulateReadings(batchId) {
-        const results = await Promise.all(variablesForBatch(batchId).map(variable => {
+        const results = (await Promise.all(variablesForBatch(batchId).map(variable => {
             const previous = latestReading(variable.id);
             return recordSensorReading(variable, sensorSimulator.generateValue(variable, previous?.value ?? null));
-        }));
-        return results.filter(Boolean);
+        }))).filter(Boolean);
+
+        // Out of range readings raise an alert on the platform.
+        if (results.some(reading => reading.isAnomaly())) await useAlertsStore().fetchAlerts();
+        return results;
     }
 
     return {
@@ -202,6 +192,7 @@ export const useProductionStore = defineStore('production', () => {
         readingsForVariable,
         latestReading,
         anomaliesForBatch,
+        closestAnomaly,
         fetchProduction,
         registerBatch,
         advanceBatchStage,
