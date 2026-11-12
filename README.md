@@ -65,6 +65,10 @@ pagos) la resuelve la API, así que con el Fake API esas acciones no se reflejan
 
 ## Variables de entorno
 
+Cada cuenta (productor o comercializador) es un **tenant** de la API. Las listas se piden como sub-recursos del tenant
+(`GET /tenants/1/products`, con `TenantEndpoint` en `src/shared/infrastructure/tenant-endpoint.js`) y las escrituras
+envían `tenantId` en el cuerpo. La ruta base de los tenants es `VITE_TENANTS_ENDPOINT_PATH`.
+
 | Archivo | Se usa con | URL del API |
 | :--- | :--- | :--- |
 | `.env.development` | `npm run dev` | `http://localhost:5273/api/v1` (destilatech-platform local) |
@@ -198,6 +202,7 @@ tabla (con los filtros aplicados). El archivo usa `;` como separador y UTF-8 con
 | v1.0.0 | TB1 | Primera versión: 6 bounded contexts, dashboards por perfil, Fake API y despliegue en Firebase. |
 | v2.0.0 | AV2 | Pago simulado en lugar de Stripe, marcar todas las alertas como atendidas, exportación a CSV, datos de prueba en inglés y script `npm run fake-api`. |
 | v2.1.0 | AV2 | Conexión con la RESTful API destilatech-platform (Render + MySQL en Railway), pago con Stripe Checkout y script `npm run seed-api`. |
+| v2.2.0 | AV2 | Rutas por tenant de la API 1.1.0: los datos de cada cuenta se leen en `/tenants/{tenantId}/...` y las escrituras envían `tenantId` en el cuerpo. |
 
 ## Build de producción
 
