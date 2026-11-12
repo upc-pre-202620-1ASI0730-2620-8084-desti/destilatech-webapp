@@ -5,7 +5,7 @@ import { ProcessVariable } from '@/production-monitoring/domain/model/process-va
 export class ProcessVariableAssembler extends BaseAssembler {
 
     toEntityFromResource(resource) {
-        return new ProcessVariable({ ...resource, minRange: Number(resource.minRange), maxRange: Number(resource.maxRange) });
+        return new ProcessVariable({ ...resource, userId: resource.tenantId, minRange: Number(resource.minRange), maxRange: Number(resource.maxRange) });
     }
 
 
