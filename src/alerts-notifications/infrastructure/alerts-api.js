@@ -1,5 +1,6 @@
 import { BaseApi } from '@/shared/infrastructure/base-api.js';
 import { BaseEndpoint } from '@/shared/infrastructure/base-endpoint.js';
+import { TenantEndpoint } from '@/shared/infrastructure/tenant-endpoint.js';
 
 const alertsEndpointPath = import.meta.env.VITE_ALERTS_ENDPOINT_PATH;
 
@@ -11,14 +12,17 @@ const alertsEndpointPath = import.meta.env.VITE_ALERTS_ENDPOINT_PATH;
  */
 export class AlertsApi extends BaseApi {
     #alertsEndpoint;
+    #tenantAlertsEndpoint;
 
     constructor() {
         super();
         this.#alertsEndpoint = new BaseEndpoint(this, alertsEndpointPath);
+        this.#tenantAlertsEndpoint = new TenantEndpoint(this, alertsEndpointPath);
     }
 
-    getAlertsByAccountId(accountId) {
-        return this.#alertsEndpoint.getAll({ accountId });
+    /** `GET /tenants/{tenantId}/alerts` */
+    getAlertsByTenantId(tenantId) {
+        return this.#tenantAlertsEndpoint.getAll(tenantId);
     }
 
     markAlertAsAttended(id) {
