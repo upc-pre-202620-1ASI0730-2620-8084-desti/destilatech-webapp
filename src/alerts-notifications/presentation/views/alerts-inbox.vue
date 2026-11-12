@@ -15,8 +15,7 @@ const { t } = useI18n();
 const toast = useToast();
 const confirm = useConfirm();
 const alertsStore = useAlertsStore();
-const userStore = useUserStore
-();
+const userStore = useUserStore();
 
 const typeFilter = ref('ALL');
 const statusFilter = ref(AlertStatus.PENDING);
@@ -71,7 +70,7 @@ const onAttendAll = () => {
   });
 };
 
-onMounted(() => alertsStore.fetchAlerts());
+onMounted(() => Promise.all([alertsStore.fetchAlerts(), alertsStore.fetchAlertSources()]));
 </script>
 
 <template>

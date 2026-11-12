@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Alert, AlertSeverity, AlertType } from '@/alerts-notifications/domain/model/alert.entity.js';
+import { useAlertsStore } from '@/alerts-notifications/application/alerts.store.js';
 
 const props = defineProps({
   alert: { type: Alert, required: true },
@@ -9,12 +10,14 @@ const props = defineProps({
 });
 const emit = defineEmits(['attend']);
 const { t, locale } = useI18n();
+const alertsStore = useAlertsStore();
 
 const icon = computed(() => props.alert.type === AlertType.ANOMALY ? 'pi pi-wave-pulse' : 'pi pi-box');
-const messageParams = computed(() => {
-  const params = { ...props.alert.messageParams };
-  if (params.variableType) params.variable = t(`production.variables.${params.variableType}`);
-  return params;
+const description = computed(() => alertsStore.describe(props.alert));
+const message = computed(() => {
+  const { key, params } = description.value;
+  if (!key) return props.alert.message;
+  return t(key, params.variableType ? { ...params, variable: t(`production.variables.${params.variableType}`) } : params);
 });
 
 const tone = computed(() => {
@@ -34,14 +37,14 @@ const tone = computed(() => {
                 :severity="props.alert.severity === 'CRITICAL' ? 'danger' : 'warn'"/>
         <pv-tag v-if="!props.alert.isPending()" :value="t('alerts.status.ATTENDED')" severity="success"/>
       </div>
-      <p class="alert-item__message">{{ t(props.alert.messageKey, messageParams) }}</p>
+      <p class="alert-item__message">{{ message }}</p>
       <span class="alert-item__date">
         {{ props.alert.createdAt.formatWithTime(locale) }}
         <template v-if="props.alert.attendedAt"> · {{ t('alerts.attended-on', { date: props.alert.attendedAt.formatWithTime(locale) }) }}</template>
       </span>
     </div>
     <div v-if="!props.compact" class="alert-item__actions">
-      <router-link v-if="props.alert.link" :to="props.alert.link">
+      <router-link v-if="description.link" :to="description.link">
         <pv-button icon="pi pi-external-link" text rounded :aria-label="t('alerts.view-source')"
                    v-tooltip.top="t('alerts.view-source')"/>
       </router-link>
