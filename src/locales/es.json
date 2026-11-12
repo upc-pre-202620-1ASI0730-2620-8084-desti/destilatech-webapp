@@ -70,7 +70,20 @@
     "current-plan": "Plan actual",
     "preferred-plan": "Elegido en la web",
     "recommended": "Más elegido",
-    "payment-note": "Pago simulado con tarjeta: no se realiza ningún cobro real y solo se guarda la marca de la tarjeta y sus 4 últimos dígitos.",
+    "payment-note": "Pago seguro con Stripe en modo de prueba: no se realiza ningún cobro real. Usa la tarjeta 4242 4242 4242 4242, cualquier fecha futura y cualquier CVC.",
+    "checkout": {
+      "title": "Pago de la suscripción",
+      "redirecting": "Te llevamos a Stripe para pagar el {plan}…",
+      "confirming": "Confirmando tu pago con Stripe…",
+      "success-title": "¡Pago confirmado!",
+      "success-detail": "Tu {plan} está activo hasta el {date}.",
+      "failed-title": "No pudimos confirmar tu pago",
+      "missing-session": "Falta el identificador de la sesión de pago.",
+      "cancelled-title": "Pago cancelado",
+      "cancelled-detail": "No se realizó ningún cobro. Puedes elegir un plan cuando quieras.",
+      "back-to-plans": "Volver a los planes",
+      "go-dashboard": "Ir al panel"
+    },
     "status": {
       "title": "Estado de tu acceso",
       "trial": "Estás en tu prueba gratuita: te queda {days} día. | Estás en tu prueba gratuita: te quedan {days} días.",
@@ -123,30 +136,11 @@
       "reference": "Referencia",
       "status": {
         "PAID": "Pagado",
-        "REFUNDED": "Reembolsado"
+        "FAILED": "Fallido"
       },
       "providers": {
-        "SIMULATED": "Simulado"
+        "STRIPE": "Stripe"
       }
-    },
-    "payment-form": {
-      "title": "Pagar suscripción",
-      "simulated-notice": "Este es un pago simulado para la demo académica. No se realiza ningún cobro real.",
-      "use-test-card": "Usar tarjeta de prueba",
-      "cardholder": "Nombre del titular",
-      "card-number": "Número de tarjeta",
-      "expiry": "Fecha de vencimiento",
-      "cvc": "CVC",
-      "pay": "Pagar {amount}",
-      "invalid-card": "Ingresa un número de tarjeta válido.",
-      "invalid-expiry": "Ingresa una fecha válida y no vencida (MM/AA).",
-      "invalid-cvc": "Ingresa los 3 o 4 dígitos del reverso de la tarjeta.",
-      "success-title": "¡Pago confirmado!",
-      "success-detail": "Tu {plan} está activo hasta el {date}."
-    },
-    "errors": {
-      "invalid-card": "El número de tarjeta no es válido.",
-      "server-unreachable": "No hay conexión con el servidor. Inicia el Fake API en otra terminal (npm run fake-api) y vuelve a intentarlo."
     }
   },
   "dashboard": {
