@@ -6,6 +6,6 @@ import { StockItem } from '@/inventory-stock/domain/model/stock-item.entity.js';
 export class StockItemAssembler extends BaseAssembler {
 
     toEntityFromResource(resource) {
-        return new StockItem({ ...resource });
+        return new StockItem({ ...resource, userId: resource.tenantId });
     }
 }

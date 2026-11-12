@@ -6,7 +6,7 @@ import { toUtcDate } from '@/shared/infrastructure/utc-date.js';
 export class StockMovementAssembler extends BaseAssembler {
 
     toEntityFromResource(resource) {
-        return new StockMovement({ ...resource, movementDate: toUtcDate(resource.movementDate) });
+        return new StockMovement({ ...resource, userId: resource.tenantId, movementDate: toUtcDate(resource.movementDate) });
     }
 
 

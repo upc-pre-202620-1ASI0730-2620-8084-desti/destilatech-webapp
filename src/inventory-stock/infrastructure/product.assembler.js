@@ -5,7 +5,7 @@ import { Product } from '@/inventory-stock/domain/model/product.entity.js';
 export class ProductAssembler extends BaseAssembler {
 
     toEntityFromResource(resource) {
-        return new Product({ ...resource });
+        return new Product({ ...resource, userId: resource.tenantId });
     }
 
 
