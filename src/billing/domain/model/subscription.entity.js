@@ -24,10 +24,6 @@ export class Subscription {
     }
 
 
-    static activate(userId, planId, paymentReference) {
-        return new Subscription({ userId, planId, status: SubscriptionStatus.ACTIVE, startDate: new Date(), paymentReference });
-    }
-
     isActive() {
         return this.status === SubscriptionStatus.ACTIVE && this.renewalDate.isFuture();
     }

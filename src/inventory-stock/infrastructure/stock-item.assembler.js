@@ -2,21 +2,10 @@ import { BaseAssembler } from '@/shared/infrastructure/base-assembler.js';
 import { StockItem } from '@/inventory-stock/domain/model/stock-item.entity.js';
 
 
+/** Stock items are created by the server together with their product, so only the read side is needed. */
 export class StockItemAssembler extends BaseAssembler {
 
     toEntityFromResource(resource) {
         return new StockItem({ ...resource });
-    }
-
-
-    toResourceFromEntity(entity) {
-        const resource = {
-            productId: entity.productId,
-            userId: entity.userId,
-            currentQuantity: entity.currentQuantity,
-            lowStockThreshold: entity.lowStockThreshold
-        };
-        if (entity.id !== null) resource.id = entity.id;
-        return resource;
     }
 }

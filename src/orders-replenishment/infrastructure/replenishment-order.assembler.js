@@ -9,22 +9,15 @@ export class ReplenishmentOrderAssembler extends BaseAssembler {
     }
 
 
+    /** Body of `POST /replenishment-orders`. The server assigns the code, the date and the product name. */
     toResourceFromEntity(entity) {
-        const resource = {
-            userId: entity.userId,
-            code: entity.code,
+        return {
             supplierName: entity.supplierName,
             supplierContact: entity.supplierContact,
             productId: entity.productId,
-            productName: entity.productName,
             quantity: entity.quantity,
-            orderDate: entity.orderDate.toISOString(),
             expectedDate: entity.expectedDate ? entity.expectedDate.toISOString() : null,
-            receivedDate: entity.receivedDate ? entity.receivedDate.toISOString() : null,
-            status: entity.status,
             notes: entity.notes
         };
-        if (entity.id !== null) resource.id = entity.id;
-        return resource;
     }
 }

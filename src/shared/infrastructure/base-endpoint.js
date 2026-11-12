@@ -8,22 +8,23 @@ export class BaseEndpoint {
         return this.http.get(this.endpointPath, { params });
     }
 
-    getById(id) {
-        return this.http.get(`${this.endpointPath}/${id}`);
-    }
-    create(resource) {
-        return this.http.post(this.endpointPath, resource);
+    getById(id, params = {}) {
+        return this.http.get(`${this.endpointPath}/${id}`, { params });
     }
 
-    update(id, resource) {
-        return this.http.put(`${this.endpointPath}/${id}`, resource);
+    create(resource, params = {}) {
+        return this.http.post(this.endpointPath, resource, { params });
     }
 
-    patch(id, changes) {
-        return this.http.patch(`${this.endpointPath}/${id}`, changes);
+    update(id, resource, params = {}) {
+        return this.http.put(`${this.endpointPath}/${id}`, resource, { params });
     }
 
-    delete(id) {
-        return this.http.delete(`${this.endpointPath}/${id}`);
+    patch(id, changes, params = {}) {
+        return this.http.patch(`${this.endpointPath}/${id}`, changes, { params });
+    }
+
+    delete(id, params = {}) {
+        return this.http.delete(`${this.endpointPath}/${id}`, { params });
     }
 }

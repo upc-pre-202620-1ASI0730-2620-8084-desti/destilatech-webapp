@@ -4,8 +4,6 @@ import { BillingApi } from '@/billing/infrastructure/billing-api.js';
 import { PlanAssembler } from '@/billing/infrastructure/plan.assembler.js';
 import { SubscriptionAssembler } from '@/billing/infrastructure/subscription.assembler.js';
 import { PaymentAssembler } from '@/billing/infrastructure/payment.assembler.js';
-import { Payment } from '@/billing/domain/model/payment.entity.js';
-import { Subscription } from '@/billing/domain/model/subscription.entity.js';
 import { useUserStore } from '@/shared/application/user.store.js';
 
 const billingApi = new BillingApi();
@@ -26,9 +24,9 @@ export const useBillingStore = defineStore('billing', () => {
 
     const findPlan = planId => plans.value.find(plan => plan.id === planId) ?? null;
 
+
     async function fetchBillingOverview() {
-        const userStore = useUserStore
-();
+        const userStore = useUserStore();
         errors.value = [];
         loading.value = true;
         try {
@@ -38,8 +36,11 @@ export const useBillingStore = defineStore('billing', () => {
                 billingApi.getPaymentsByUserId(userStore.currentUserId)
             ]);
             plans.value = planAssembler.toEntitiesFromResponse(plansResponse);
-            currentSubscription.value = subscriptionAssembler.toEntitiesFromResponse(subscriptionsResponse)[0] ?? null;
-            payments.value = paymentAssembler.toEntitiesFromResponse(paymentsResponse);
+            const subscriptions = subscriptionAssembler.toEntitiesFromResponse(subscriptionsResponse)
+                .sort((first, second) => second.startDate.toDate() - first.startDate.toDate());
+            currentSubscription.value = subscriptions.find(subscription => subscription.isActive()) ?? subscriptions[0] ?? null;
+            payments.value = paymentAssembler.toEntitiesFromResponse(paymentsResponse)
+                .sort((first, second) => second.paidAt.toDate() - first.paidAt.toDate());
         } catch (error) {
             errors.value.push(error);
         } finally {
@@ -48,20 +49,36 @@ export const useBillingStore = defineStore('billing', () => {
     }
 
 
-    async function subscribe(plan, cardNumber) {
+    /**
+     * Starts the payment of a plan: asks the platform for a Stripe Checkout session.
+     * @returns {Promise<string|null>} URL of the Stripe page, or null when it fails.
+     */
+    async function startCheckout(plan) {
         const userStore = useUserStore();
         errors.value = [];
         try {
-            const payment = Payment.fromSimulatedCard(userStore.currentUserId, plan, cardNumber);
+            const response = await billingApi.createCheckoutSession(userStore.currentUserId, plan.id);
+            return response.data.url;
+        } catch (error) {
+            errors.value.push(error instanceof Error ? error.message : error);
+            return null;
+        }
+    }
 
-            if (currentSubscription.value?.isActive()) await cancelSubscription();
 
-            const subscription = Subscription.activate(payment.userId, payment.planId, payment.reference);
-            await billingApi.createSubscription(subscriptionAssembler.toResourceFromEntity(subscription));
-            const paymentResponse = await billingApi.createPayment(paymentAssembler.toResourceFromEntity(payment));
-            await userStore.extendAccountAccess(subscription.renewalDate);
-            await fetchBillingOverview();
-            return paymentAssembler.toEntityFromResponse(paymentResponse);
+    /**
+     * Confirms the paid Stripe session when the user comes back from Stripe. The platform registers the payment,
+     * activates the subscription and extends the access of the user.
+     * @returns {Promise<import('@/billing/domain/model/payment.entity.js').Payment|null>}
+     */
+    async function confirmCheckout(sessionId) {
+        const userStore = useUserStore();
+        errors.value = [];
+        try {
+            const response = await billingApi.confirmCheckoutSession(sessionId);
+            const payment = paymentAssembler.toEntityFromResource(response.data.payment);
+            await Promise.all([userStore.refreshCurrentUser(), fetchBillingOverview()]);
+            return payment;
         } catch (error) {
             errors.value.push(error instanceof Error ? error.message : error);
             return null;
@@ -73,8 +90,8 @@ export const useBillingStore = defineStore('billing', () => {
         if (!currentSubscription.value) return false;
         errors.value = [];
         try {
-            currentSubscription.value.cancel();
-            await billingApi.patchSubscription(currentSubscription.value.id, { status: currentSubscription.value.status });
+            const response = await billingApi.cancelSubscription(currentSubscription.value.id);
+            currentSubscription.value = subscriptionAssembler.toEntityFromResponse(response);
             return true;
         } catch (error) {
             errors.value.push(error);
@@ -91,7 +108,8 @@ export const useBillingStore = defineStore('billing', () => {
         loading,
         findPlan,
         fetchBillingOverview,
-        subscribe,
+        startCheckout,
+        confirmCheckout,
         cancelSubscription
     };
 });

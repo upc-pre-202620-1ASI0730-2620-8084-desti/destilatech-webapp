@@ -40,10 +40,18 @@ export const useUserStore = defineStore('user', () => {
     }
 
 
-    async function extendAccountAccess(until) {
+    /**
+     * Reloads the current user from the platform, for example after a payment grants paid access.
+     */
+    async function refreshCurrentUser() {
         if (!currentUser.value) return;
-        currentUser.value.extendAccessUntil(until);
-        await usersApi.patchUser(currentUser.value.id, { accessGrantedUntil: until.toISOString() });
+        try {
+            const user = userAssembler.toEntityFromResponse(await usersApi.getUserById(currentUser.value.id));
+            users.value = users.value.map(item => item.id === user.id ? user : item);
+            currentUser.value = user;
+        } catch (error) {
+            errors.value.push(error);
+        }
     }
 
     return {
@@ -56,6 +64,6 @@ export const useUserStore = defineStore('user', () => {
         hasActiveAccess,
         fetchUsers,
         selectUser,
-        extendAccountAccess
+        refreshCurrentUser
     };
 });
