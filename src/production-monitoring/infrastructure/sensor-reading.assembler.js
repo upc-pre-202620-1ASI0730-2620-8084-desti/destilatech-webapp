@@ -1,23 +1,20 @@
 import { BaseAssembler } from '@/shared/infrastructure/base-assembler.js';
 import { SensorReading } from '@/production-monitoring/domain/model/sensor-reading.entity.js';
+import { toUtcDate } from '@/shared/infrastructure/utc-date.js';
 
 
 export class SensorReadingAssembler extends BaseAssembler {
 
     toEntityFromResource(resource) {
-        return new SensorReading({ ...resource });
+        return new SensorReading({ ...resource, recordedAt: toUtcDate(resource.recordedAt) });
     }
 
+    /** Body of `POST /sensor-readings`. The server decides whether the value is within range. */
     toResourceFromEntity(entity) {
-        const resource = {
+        return {
             processVariableId: entity.processVariableId,
-            batchId: entity.batchId,
-            userId: entity.userId,
             value: entity.value,
-            withinRange: entity.withinRange,
             recordedAt: entity.recordedAt.toISOString()
         };
-        if (entity.id !== null) resource.id = entity.id;
-        return resource;
     }
 }

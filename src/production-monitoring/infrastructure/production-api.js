@@ -6,6 +6,10 @@ const processVariablesEndpointPath = import.meta.env.VITE_PROCESS_VARIABLES_ENDP
 const sensorReadingsEndpointPath = import.meta.env.VITE_SENSOR_READINGS_ENDPOINT_PATH;
 
 
+/**
+ * Production & Monitoring endpoints of the platform API.
+ * Every request is scoped to the account with the `userId` query parameter.
+ */
 export class ProductionApi extends BaseApi {
     #batchesEndpoint;
     #processVariablesEndpoint;
@@ -19,36 +23,40 @@ export class ProductionApi extends BaseApi {
     }
 
     getBatchesByUserId(userId) {
-        return this.#batchesEndpoint.getAll({ userId, _sort: 'startDate', _order: 'desc' });
+        return this.#batchesEndpoint.getAll({ userId });
     }
 
-    createBatch(resource) {
-        return this.#batchesEndpoint.create(resource);
+    createBatch(userId, resource) {
+        return this.#batchesEndpoint.create(resource, { userId });
     }
 
-    updateBatch(id, resource) {
-        return this.#batchesEndpoint.update(id, resource);
+    /**
+     * Moves the batch to its next stage. When the stage is BOTTLED, the server also adds the bottled units
+     * to the stock of the product.
+     */
+    advanceBatchStage(userId, id, resource) {
+        return this.http.patch(`${batchesEndpointPath}/${id}/status`, resource, { params: { userId } });
     }
 
     getProcessVariablesByUserId(userId) {
         return this.#processVariablesEndpoint.getAll({ userId });
     }
 
-    createProcessVariable(resource) {
-        return this.#processVariablesEndpoint.create(resource);
+    createProcessVariable(userId, resource) {
+        return this.#processVariablesEndpoint.create(resource, { userId });
     }
 
-    patchProcessVariable(id, changes) {
-        return this.#processVariablesEndpoint.patch(id, changes);
+    configureVariableRange(userId, id, minRange, maxRange) {
+        return this.#processVariablesEndpoint.patch(id, { minRange, maxRange }, { userId });
     }
 
-
+    /** Latest readings first. */
     getSensorReadingsByUserId(userId, limit = 500) {
-        return this.#sensorReadingsEndpoint.getAll({ userId, _sort: 'recordedAt', _order: 'desc', _limit: limit });
+        return this.#sensorReadingsEndpoint.getAll({ userId, _limit: limit });
     }
 
-
-    createSensorReading(resource) {
-        return this.#sensorReadingsEndpoint.create(resource);
+    /** Records the reading; the server checks the range and raises the anomaly alert. */
+    createSensorReading(userId, resource) {
+        return this.#sensorReadingsEndpoint.create(resource, { userId });
     }
 }
