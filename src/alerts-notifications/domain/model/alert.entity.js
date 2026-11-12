@@ -21,6 +21,11 @@ export const AlertSeverity = Object.freeze({
 });
 
 
+/**
+ * Alert raised by the platform.
+ * `sourceId` is the product (low stock) or the process variable (anomaly) that caused it, and `message` is the
+ * plain text sent by the server, shown when the source is no longer available.
+ */
 export class Alert {
 
     constructor({
@@ -28,28 +33,23 @@ export class Alert {
                     userId,
                     type,
                     sourceId,
-                    messageKey,
-                    messageParams = {},
+                    message = '',
                     severity = AlertSeverity.WARNING,
                     status = AlertStatus.PENDING,
                     createdAt = new Date(),
-                    attendedAt = null,
-                    link = null
+                    attendedAt = null
                 }) {
         if (!userId) throw new Error('Alert must belong to an account');
         if (!Object.values(AlertType).includes(type)) throw new Error(`Unsupported alert type: ${type}`);
-        if (!messageKey) throw new Error('Alert message is required');
         this.id = id;
         this.userId = userId;
         this.type = type;
         this.sourceId = sourceId;
-        this.messageKey = messageKey;
-        this.messageParams = messageParams;
+        this.message = message;
         this.severity = severity;
         this.status = status;
         this.createdAt = new DateTime(createdAt);
         this.attendedAt = attendedAt ? new DateTime(attendedAt) : null;
-        this.link = link;
     }
 
 
@@ -62,10 +62,5 @@ export class Alert {
         if (!this.isPending()) throw new Error('Alert was already attended');
         this.status = AlertStatus.ATTENDED;
         this.attendedAt = new DateTime();
-    }
-
-
-    isPendingFor(type, sourceId) {
-        return this.isPending() && this.type === type && this.sourceId === sourceId;
     }
 }

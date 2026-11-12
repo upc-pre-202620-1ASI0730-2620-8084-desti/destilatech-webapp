@@ -4,6 +4,11 @@ import { BaseEndpoint } from '@/shared/infrastructure/base-endpoint.js';
 const alertsEndpointPath = import.meta.env.VITE_ALERTS_ENDPOINT_PATH;
 
 
+/**
+ * Alerts & Notifications endpoints of the platform API.
+ * The platform raises the alerts itself (low stock and out of range readings), so the web app only reads them
+ * and marks them as attended.
+ */
 export class AlertsApi extends BaseApi {
     #alertsEndpoint;
 
@@ -12,17 +17,11 @@ export class AlertsApi extends BaseApi {
         this.#alertsEndpoint = new BaseEndpoint(this, alertsEndpointPath);
     }
 
-    getAlertsByUserId(userId) {
-        return this.#alertsEndpoint.getAll({ userId, _sort: 'createdAt', _order: 'desc' });
+    getAlertsByAccountId(accountId) {
+        return this.#alertsEndpoint.getAll({ accountId });
     }
 
-
-    createAlert(resource) {
-        return this.#alertsEndpoint.create(resource);
-    }
-
-
-    patchAlert(id, changes) {
-        return this.#alertsEndpoint.patch(id, changes);
+    markAlertAsAttended(id) {
+        return this.http.patch(`${alertsEndpointPath}/${id}/attended`);
     }
 }
