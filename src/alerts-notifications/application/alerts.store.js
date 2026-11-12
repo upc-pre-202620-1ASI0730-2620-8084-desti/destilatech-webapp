@@ -25,7 +25,7 @@ export const useAlertsStore = defineStore('alerts', () => {
         errors.value = [];
         loading.value = alerts.value.length === 0;
         try {
-            const response = await alertsApi.getAlertsByAccountId(userStore.currentUserId);
+            const response = await alertsApi.getAlertsByTenantId(userStore.currentUserId);
             alerts.value = alertAssembler.toEntitiesFromResponse(response)
                 .sort((first, second) => second.createdAt.toDate() - first.createdAt.toDate());
         } catch (error) {

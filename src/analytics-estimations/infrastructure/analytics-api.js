@@ -1,5 +1,5 @@
 import { BaseApi } from '@/shared/infrastructure/base-api.js';
-import { BaseEndpoint } from '@/shared/infrastructure/base-endpoint.js';
+import { TenantEndpoint } from '@/shared/infrastructure/tenant-endpoint.js';
 
 const stockMovementsEndpointPath = import.meta.env.VITE_STOCK_MOVEMENTS_ENDPOINT_PATH;
 const stockItemsEndpointPath = import.meta.env.VITE_STOCK_ITEMS_ENDPOINT_PATH;
@@ -15,25 +15,25 @@ export class AnalyticsApi extends BaseApi {
 
     constructor() {
         super();
-        this.#stockMovementsEndpoint = new BaseEndpoint(this, stockMovementsEndpointPath);
-        this.#stockItemsEndpoint = new BaseEndpoint(this, stockItemsEndpointPath);
-        this.#ordersEndpoint = new BaseEndpoint(this, ordersEndpointPath);
-        this.#batchesEndpoint = new BaseEndpoint(this, batchesEndpointPath);
+        this.#stockMovementsEndpoint = new TenantEndpoint(this, stockMovementsEndpointPath);
+        this.#stockItemsEndpoint = new TenantEndpoint(this, stockItemsEndpointPath);
+        this.#ordersEndpoint = new TenantEndpoint(this, ordersEndpointPath);
+        this.#batchesEndpoint = new TenantEndpoint(this, batchesEndpointPath);
     }
 
     getStockMovementHistory(userId) {
-        return this.#stockMovementsEndpoint.getAll({ userId });
+        return this.#stockMovementsEndpoint.getAll(userId);
     }
 
     getStockLevels(userId) {
-        return this.#stockItemsEndpoint.getAll({ userId });
+        return this.#stockItemsEndpoint.getAll(userId);
     }
 
     getOrderHistory(userId) {
-        return this.#ordersEndpoint.getAll({ userId });
+        return this.#ordersEndpoint.getAll(userId);
     }
 
     getBatchHistory(userId) {
-        return this.#batchesEndpoint.getAll({ userId });
+        return this.#batchesEndpoint.getAll(userId);
     }
 }

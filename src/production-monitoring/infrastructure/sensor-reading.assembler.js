@@ -6,7 +6,7 @@ import { toUtcDate } from '@/shared/infrastructure/utc-date.js';
 export class SensorReadingAssembler extends BaseAssembler {
 
     toEntityFromResource(resource) {
-        return new SensorReading({ ...resource, recordedAt: toUtcDate(resource.recordedAt) });
+        return new SensorReading({ ...resource, userId: resource.tenantId, recordedAt: toUtcDate(resource.recordedAt) });
     }
 
     /** Body of `POST /sensor-readings`. The server decides whether the value is within range. */

@@ -5,7 +5,7 @@ import { ReplenishmentOrder } from '@/orders-replenishment/domain/model/replenis
 export class ReplenishmentOrderAssembler extends BaseAssembler {
 
     toEntityFromResource(resource) {
-        return new ReplenishmentOrder({ ...resource });
+        return new ReplenishmentOrder({ ...resource, userId: resource.tenantId });
     }
 
 
