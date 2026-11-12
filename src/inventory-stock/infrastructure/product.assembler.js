@@ -9,9 +9,9 @@ export class ProductAssembler extends BaseAssembler {
     }
 
 
+    /** Body of `PUT /products/{id}` (and of `POST /products`, plus the low stock threshold). */
     toResourceFromEntity(entity) {
-        const resource = {
-            userId: entity.userId,
+        return {
             name: entity.name,
             presentation: entity.presentation,
             unit: entity.unit,
@@ -19,7 +19,5 @@ export class ProductAssembler extends BaseAssembler {
             unitPrice: entity.unitPrice.amount,
             sku: entity.sku
         };
-        if (entity.id !== null) resource.id = entity.id;
-        return resource;
     }
 }
