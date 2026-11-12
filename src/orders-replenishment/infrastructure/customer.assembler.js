@@ -9,8 +9,9 @@ export class CustomerAssembler extends BaseAssembler {
     }
 
 
+    /** Body of `POST /customers` and `PUT /customers/{id}`. */
     toResourceFromEntity(entity) {
-        const resource = {
+        return {
             userId: entity.userId,
             name: entity.name,
             contactName: entity.contactName,
@@ -19,7 +20,5 @@ export class CustomerAssembler extends BaseAssembler {
             address: entity.address,
             customerType: entity.customerType
         };
-        if (entity.id !== null) resource.id = entity.id;
-        return resource;
     }
 }

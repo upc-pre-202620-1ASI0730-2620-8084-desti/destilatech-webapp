@@ -70,7 +70,20 @@
     "current-plan": "Current plan",
     "preferred-plan": "Chosen on the website",
     "recommended": "Most popular",
-    "payment-note": "Simulated card payment: no real charge is made and only the card brand and its last 4 digits are saved.",
+    "payment-note": "Secure payment with Stripe in test mode: no real charge is made. Use the card 4242 4242 4242 4242, any future date and any CVC.",
+    "checkout": {
+      "title": "Subscription payment",
+      "redirecting": "Taking you to Stripe to pay the {plan}…",
+      "confirming": "Confirming your payment with Stripe…",
+      "success-title": "Payment confirmed!",
+      "success-detail": "Your {plan} is active until {date}.",
+      "failed-title": "We could not confirm your payment",
+      "missing-session": "The payment session identifier is missing.",
+      "cancelled-title": "Payment cancelled",
+      "cancelled-detail": "No charge was made. You can choose a plan whenever you want.",
+      "back-to-plans": "Back to plans",
+      "go-dashboard": "Go to dashboard"
+    },
     "status": {
       "title": "Your access status",
       "trial": "You are on your free trial: {days} day left. | You are on your free trial: {days} days left.",
@@ -123,30 +136,11 @@
       "reference": "Reference",
       "status": {
         "PAID": "Paid",
-        "REFUNDED": "Refunded"
+        "FAILED": "Failed"
       },
       "providers": {
-        "SIMULATED": "Simulated"
+        "STRIPE": "Stripe"
       }
-    },
-    "payment-form": {
-      "title": "Pay subscription",
-      "simulated-notice": "This is a simulated payment for the academic demo. No real charge is made.",
-      "use-test-card": "Use test card",
-      "cardholder": "Cardholder name",
-      "card-number": "Card number",
-      "expiry": "Expiry date",
-      "cvc": "CVC",
-      "pay": "Pay {amount}",
-      "invalid-card": "Enter a valid card number.",
-      "invalid-expiry": "Enter a valid, non-expired date (MM/YY).",
-      "invalid-cvc": "Enter the 3 or 4 digits on the back of the card.",
-      "success-title": "Payment confirmed!",
-      "success-detail": "Your {plan} is active until {date}."
-    },
-    "errors": {
-      "invalid-card": "The card number is not valid.",
-      "server-unreachable": "The server is not reachable. Start the Fake API in another terminal (npm run fake-api) and try again."
     }
   },
   "dashboard": {

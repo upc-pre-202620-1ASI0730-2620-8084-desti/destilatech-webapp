@@ -6,6 +6,10 @@ const stockItemsEndpointPath = import.meta.env.VITE_STOCK_ITEMS_ENDPOINT_PATH;
 const stockMovementsEndpointPath = import.meta.env.VITE_STOCK_MOVEMENTS_ENDPOINT_PATH;
 
 
+/**
+ * Inventory & Stock Management endpoints of the platform API.
+ * Every request is scoped to the account with the `userId` query parameter.
+ */
 export class InventoryApi extends BaseApi {
     #productsEndpoint;
     #stockItemsEndpoint;
@@ -22,31 +26,29 @@ export class InventoryApi extends BaseApi {
         return this.#productsEndpoint.getAll({ userId });
     }
 
-    createProduct(resource) {
-        return this.#productsEndpoint.create(resource);
+    /** Creates the product and, on the server, its stock item with the given low stock threshold. */
+    createProduct(userId, resource) {
+        return this.#productsEndpoint.create(resource, { userId });
     }
 
-    updateProduct(id, resource) {
-        return this.#productsEndpoint.update(id, resource);
+    updateProduct(userId, id, resource) {
+        return this.#productsEndpoint.update(id, resource, { userId });
     }
 
     getStockItemsByUserId(userId) {
         return this.#stockItemsEndpoint.getAll({ userId });
     }
 
-    createStockItem(resource) {
-        return this.#stockItemsEndpoint.create(resource);
-    }
-
-    patchStockItem(id, changes) {
-        return this.#stockItemsEndpoint.patch(id, changes);
+    configureLowStockThreshold(userId, id, lowStockThreshold) {
+        return this.#stockItemsEndpoint.patch(id, { lowStockThreshold }, { userId });
     }
 
     getStockMovementsByUserId(userId) {
-        return this.#stockMovementsEndpoint.getAll({ userId, _sort: 'movementDate', _order: 'desc' });
+        return this.#stockMovementsEndpoint.getAll({ userId });
     }
 
-    createStockMovement(resource) {
-        return this.#stockMovementsEndpoint.create(resource);
+    /** Registers the movement; the server updates the stock item and raises the low stock alert. */
+    createStockMovement(userId, resource) {
+        return this.#stockMovementsEndpoint.create(resource, { userId });
     }
 }

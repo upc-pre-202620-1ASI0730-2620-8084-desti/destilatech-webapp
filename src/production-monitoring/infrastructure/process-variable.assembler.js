@@ -5,20 +5,18 @@ import { ProcessVariable } from '@/production-monitoring/domain/model/process-va
 export class ProcessVariableAssembler extends BaseAssembler {
 
     toEntityFromResource(resource) {
-        return new ProcessVariable({ ...resource });
+        return new ProcessVariable({ ...resource, minRange: Number(resource.minRange), maxRange: Number(resource.maxRange) });
     }
 
 
+    /** Body of `POST /process-variables`. */
     toResourceFromEntity(entity) {
-        const resource = {
+        return {
             batchId: entity.batchId,
-            userId: entity.userId,
             type: entity.type,
             minRange: entity.minRange,
             maxRange: entity.maxRange,
             sensorId: entity.sensorId
         };
-        if (entity.id !== null) resource.id = entity.id;
-        return resource;
     }
 }

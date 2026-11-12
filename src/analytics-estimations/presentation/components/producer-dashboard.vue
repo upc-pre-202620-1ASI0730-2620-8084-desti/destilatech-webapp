@@ -43,13 +43,17 @@ const activityItems = computed(() => {
     tone: 'success',
     to: `/production/batches/${batch.id}`
   })));
-  const alertItems = alertsStore.alerts.slice(0, 10).map(alert => ({
-    key: `alert-${alert.id}`,
-    date: alert.createdAt,
-    text: t(`alerts.titles.${alert.type}`) + (alert.messageParams.product ? ` · ${alert.messageParams.product}` : alert.messageParams.batch ? ` · ${alert.messageParams.batch}` : ''),
-    tone: alert.isPending() ? 'danger' : 'warn',
-    to: '/alerts'
-  }));
+  const alertItems = alertsStore.alerts.slice(0, 10).map(alert => {
+    const { params } = alertsStore.describe(alert);
+    const source = params.product ?? params.batch;
+    return {
+      key: `alert-${alert.id}`,
+      date: alert.createdAt,
+      text: t(`alerts.titles.${alert.type}`) + (source ? ` · ${source}` : ''),
+      tone: alert.isPending() ? 'danger' : 'warn',
+      to: '/alerts'
+    };
+  });
   const orderItems = ordersStore.orders.slice(0, 10).map(order => ({
     key: `order-${order.id}`,
     date: order.orderDate,

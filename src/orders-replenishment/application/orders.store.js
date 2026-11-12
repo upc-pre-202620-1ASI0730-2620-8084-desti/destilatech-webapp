@@ -10,7 +10,6 @@ import { OrderLine } from '@/orders-replenishment/domain/model/order-line.js';
 import { ReplenishmentOrder } from '@/orders-replenishment/domain/model/replenishment-order.entity.js';
 import { useUserStore } from '@/shared/application/user.store.js';
 import { useInventoryStore } from '@/inventory-stock/application/inventory.store.js';
-import { MovementReason } from '@/inventory-stock/domain/model/stock-movement.entity.js';
 
 const ordersApi = new OrdersApi();
 const customerAssembler = new CustomerAssembler();
@@ -47,8 +46,7 @@ export const useOrdersStore = defineStore('orders', () => {
 
     async function fetchOrders({ force = false } = {}) {
         if (loaded.value && !force) return;
-        const userStore = useUserStore
-();
+        const userStore = useUserStore();
         errors.value = [];
         loading.value = true;
         try {
@@ -57,9 +55,11 @@ export const useOrdersStore = defineStore('orders', () => {
                 ordersApi.getOrdersByUserId(userStore.currentUserId),
                 ordersApi.getReplenishmentOrdersByUserId(userStore.currentUserId)
             ]);
-            customers.value = customerAssembler.toEntitiesFromResponse(customersResponse);
-            orders.value = orderAssembler.toEntitiesFromResponse(ordersResponse);
-            replenishmentOrders.value = replenishmentAssembler.toEntitiesFromResponse(replenishmentResponse);
+            const newestFirst = (first, second) => second.orderDate.toDate() - first.orderDate.toDate();
+            customers.value = customerAssembler.toEntitiesFromResponse(customersResponse)
+                .sort((first, second) => first.name.localeCompare(second.name));
+            orders.value = orderAssembler.toEntitiesFromResponse(ordersResponse).sort(newestFirst);
+            replenishmentOrders.value = replenishmentAssembler.toEntitiesFromResponse(replenishmentResponse).sort(newestFirst);
             loaded.value = true;
         } catch (error) {
             errors.value.push(error);
@@ -70,15 +70,14 @@ export const useOrdersStore = defineStore('orders', () => {
 
 
     async function saveCustomer(data) {
-        const userStore = useUserStore
-();
+        const userStore = useUserStore();
         errors.value = [];
         try {
             const customer = new Customer({ ...data, userId: userStore.currentUserId });
             const resource = customerAssembler.toResourceFromEntity(customer);
             const response = customer.id
-                ? await ordersApi.updateCustomer(customer.id, resource)
-                : await ordersApi.createCustomer(resource);
+                ? await ordersApi.updateCustomer(userStore.currentUserId, customer.id, resource)
+                : await ordersApi.createCustomer(userStore.currentUserId, resource);
             const saved = customerAssembler.toEntityFromResponse(response);
             customers.value = customer.id
                 ? customers.value.map(item => item.id === saved.id ? saved : item)
@@ -90,15 +89,8 @@ export const useOrdersStore = defineStore('orders', () => {
         }
     }
 
-    function nextOrderCode() {
-        const last = orders.value.map(order => Number(order.code.replace('#', '')) || 0).reduce((max, value) => Math.max(max, value), 1000);
-        return `#${last + 1}`;
-    }
-
-
     async function registerOrder(command) {
-        const userStore = useUserStore
-();
+        const userStore = useUserStore();
         const inventoryStore = useInventoryStore();
         errors.value = [];
         try {
@@ -117,19 +109,17 @@ export const useOrdersStore = defineStore('orders', () => {
             });
             const order = new Order({
                 userId: userStore.currentUserId,
-                code: nextOrderCode(),
                 customerId: command.customerId,
                 customerName: customer?.name ?? '',
                 lines,
                 notes: command.notes ?? ''
             });
-            const response = await ordersApi.createOrder(orderAssembler.toResourceFromEntity(order));
+            const response = await ordersApi.createOrder(userStore.currentUserId, orderAssembler.toResourceFromEntity(order));
             const createdOrder = orderAssembler.toEntityFromResponse(response);
             orders.value = [createdOrder, ...orders.value];
 
-            for (const line of createdOrder.lines) {
-                await inventoryStore.discountStock(line.productId, line.quantity, createdOrder.code);
-            }
+            // The platform discounted the stock of each product.
+            await inventoryStore.fetchInventory({ force: true });
             return createdOrder;
         } catch (error) {
             errors.value.push(toErrorMessage(error));
@@ -143,7 +133,7 @@ export const useOrdersStore = defineStore('orders', () => {
         const previousStatus = order.status;
         try {
             order.advanceStatus();
-            await ordersApi.patchOrder(order.id, { status: order.status });
+            await ordersApi.updateOrderStatus(order.userId, order.id, order.status);
             return true;
         } catch (error) {
             order.status = previousStatus;
@@ -159,10 +149,10 @@ export const useOrdersStore = defineStore('orders', () => {
         const previousStatus = order.status;
         try {
             order.cancel();
-            await ordersApi.patchOrder(order.id, { status: order.status });
-            for (const line of order.lines) {
-                await inventoryStore.addStock(line.productId, line.quantity, MovementReason.RETURN, order.code);
-            }
+            await ordersApi.updateOrderStatus(order.userId, order.id, order.status);
+
+            // The platform returned the units of the order to the stock.
+            await inventoryStore.fetchInventory({ force: true });
             return true;
         } catch (error) {
             order.status = previousStatus;
@@ -173,20 +163,18 @@ export const useOrdersStore = defineStore('orders', () => {
 
 
     async function requestReplenishment(command) {
-        const userStore = useUserStore
-();
+        const userStore = useUserStore();
         const inventoryStore = useInventoryStore();
         errors.value = [];
         try {
             const product = inventoryStore.products.find(item => item.id === command.productId);
-            const sequence = replenishmentOrders.value.length + 1;
             const replenishment = new ReplenishmentOrder({
                 ...command,
                 userId: userStore.currentUserId,
-                code: `RP-${String(sequence).padStart(4, '0')}`,
                 productName: product?.displayName ?? ''
             });
-            const response = await ordersApi.createReplenishmentOrder(replenishmentAssembler.toResourceFromEntity(replenishment));
+            const response = await ordersApi.createReplenishmentOrder(userStore.currentUserId,
+                replenishmentAssembler.toResourceFromEntity(replenishment));
             const created = replenishmentAssembler.toEntityFromResponse(response);
             replenishmentOrders.value = [created, ...replenishmentOrders.value];
             return created;
@@ -202,11 +190,12 @@ export const useOrdersStore = defineStore('orders', () => {
         errors.value = [];
         try {
             replenishment.receive();
-            await ordersApi.patchReplenishmentOrder(replenishment.id, {
-                status: replenishment.status,
-                receivedDate: replenishment.receivedDate.toISOString()
-            });
-            await inventoryStore.addStock(replenishment.productId, replenishment.quantity, MovementReason.PURCHASE, replenishment.code);
+            const response = await ordersApi.updateReplenishmentOrderStatus(replenishment.userId, replenishment.id,
+                replenishment.status);
+            Object.assign(replenishment, replenishmentAssembler.toEntityFromResponse(response));
+
+            // The platform added the received units to the stock.
+            await inventoryStore.fetchInventory({ force: true });
             return true;
         } catch (error) {
             errors.value.push(toErrorMessage(error));
@@ -219,7 +208,7 @@ export const useOrdersStore = defineStore('orders', () => {
         errors.value = [];
         try {
             replenishment.cancel();
-            await ordersApi.patchReplenishmentOrder(replenishment.id, { status: replenishment.status });
+            await ordersApi.updateReplenishmentOrderStatus(replenishment.userId, replenishment.id, replenishment.status);
             return true;
         } catch (error) {
             errors.value.push(toErrorMessage(error));

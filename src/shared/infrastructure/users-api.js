@@ -18,7 +18,7 @@ export class UsersApi extends BaseApi {
     }
 
 
-    patchUser(id, changes) {
-        return this.#usersEndpoint.patch(id, changes);
+    getUserById(id) {
+        return this.#usersEndpoint.getById(id);
     }
 }

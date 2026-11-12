@@ -9,7 +9,6 @@ import { useUserStore } from '@/shared/application/user.store.js';
 import PageHeader from '@/shared/presentation/components/page-header.vue';
 import PlanCard from '@/billing/presentation/components/plan-card.vue';
 import PaymentHistory from '@/billing/presentation/components/payment-history.vue';
-import PaymentFormDialog from '@/billing/presentation/components/payment-form-dialog.vue';
 
 
 const { t, locale } = useI18n();
@@ -17,8 +16,7 @@ const route = useRoute();
 const confirm = useConfirm();
 const toast = useToast();
 const billingStore = useBillingStore();
-const userStore = useUserStore
-();
+const userStore = useUserStore();
 
 const user = computed(() => userStore.currentUser);
 const trialExpired = computed(() => route.query.reason === 'trial-expired' || !userStore.hasActiveAccess);
@@ -39,35 +37,20 @@ const statusMessage = computed(() => {
   return t('billing.status.expired');
 });
 
-const selectedPlan = ref(null);
-const paymentDialogVisible = ref(false);
-const paying = ref(false);
+const redirectingPlan = ref(null);
 
 
-const onSelectPlan = plan => {
-  selectedPlan.value = plan;
-  paymentDialogVisible.value = true;
-};
-
-const onPay = async ({ cardNumber }) => {
-  paying.value = true;
-  const payment = await billingStore.subscribe(selectedPlan.value, cardNumber);
-  paying.value = false;
-  if (payment) {
-    paymentDialogVisible.value = false;
-    toast.add({
-      severity: 'success',
-      summary: t('billing.payment-form.success-title'),
-      detail: t('billing.payment-form.success-detail', {
-        plan: t(`billing.plans.${selectedPlan.value.code}.name`),
-        date: billingStore.currentSubscription?.renewalDate.format(locale.value) ?? ''
-      }),
-      life: 5000
-    });
+/** Sends the user to the Stripe Checkout page; Stripe brings them back to /billing/checkout/success. */
+const onSelectPlan = async plan => {
+  if (redirectingPlan.value) return;
+  redirectingPlan.value = plan;
+  const checkoutUrl = await billingStore.startCheckout(plan);
+  if (checkoutUrl) {
+    window.location.assign(checkoutUrl);
     return;
   }
-  const error = billingStore.errors[0];
-  toast.add({ severity: 'error', summary: t('common.error'), detail: t(`billing.errors.${error}`, String(error)), life: 6000 });
+  redirectingPlan.value = null;
+  toast.add({ severity: 'error', summary: t('common.error'), detail: String(billingStore.errors[0] ?? ''), life: 6000 });
 };
 
 const onCancelSubscription = () => {
@@ -108,6 +91,10 @@ onMounted(() => billingStore.fetchBillingOverview());
                  @click="onCancelSubscription"/>
     </div>
 
+    <pv-message v-if="redirectingPlan" severity="info" :closable="false">
+      {{ t('billing.checkout.redirecting', { plan: t(`billing.plans.${redirectingPlan.code}.name`) }) }}
+    </pv-message>
+
     <div v-if="billingStore.loading" class="plans-grid">
       <pv-skeleton v-for="index in 3" :key="index" height="24rem" border-radius="22px"/>
     </div>
@@ -122,8 +109,6 @@ onMounted(() => billingStore.fetchBillingOverview());
     </p>
 
     <payment-history/>
-
-    <payment-form-dialog v-model:visible="paymentDialogVisible" :plan="selectedPlan" :saving="paying" @save="onPay"/>
   </section>
 </template>
 
