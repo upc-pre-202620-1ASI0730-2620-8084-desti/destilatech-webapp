@@ -5,7 +5,7 @@ import { Order } from '@/orders-replenishment/domain/model/order.entity.js';
 export class OrderAssembler extends BaseAssembler {
 
     toEntityFromResource(resource) {
-        return new Order({ ...resource });
+        return new Order({ ...resource, userId: resource.tenantId });
     }
 
 
