@@ -1,5 +1,6 @@
 import { BaseApi } from '@/shared/infrastructure/base-api.js';
 import { BaseEndpoint } from '@/shared/infrastructure/base-endpoint.js';
+import { TenantEndpoint } from '@/shared/infrastructure/tenant-endpoint.js';
 
 const plansEndpointPath = import.meta.env.VITE_PLANS_ENDPOINT_PATH;
 const subscriptionsEndpointPath = import.meta.env.VITE_SUBSCRIPTIONS_ENDPOINT_PATH;
@@ -15,14 +16,16 @@ const checkoutSessionsEndpointPath = import.meta.env.VITE_CHECKOUT_SESSIONS_ENDP
 export class BillingApi extends BaseApi {
     #plansEndpoint;
     #subscriptionsEndpoint;
-    #paymentsEndpoint;
+    #tenantSubscriptionsEndpoint;
+    #tenantPaymentsEndpoint;
     #checkoutSessionsEndpoint;
 
     constructor() {
         super();
         this.#plansEndpoint = new BaseEndpoint(this, plansEndpointPath);
         this.#subscriptionsEndpoint = new BaseEndpoint(this, subscriptionsEndpointPath);
-        this.#paymentsEndpoint = new BaseEndpoint(this, paymentsEndpointPath);
+        this.#tenantSubscriptionsEndpoint = new TenantEndpoint(this, subscriptionsEndpointPath);
+        this.#tenantPaymentsEndpoint = new TenantEndpoint(this, paymentsEndpointPath);
         this.#checkoutSessionsEndpoint = new BaseEndpoint(this, checkoutSessionsEndpointPath);
     }
 
@@ -31,7 +34,7 @@ export class BillingApi extends BaseApi {
     }
 
     getSubscriptionsByUserId(userId) {
-        return this.#subscriptionsEndpoint.getAll({ userId });
+        return this.#tenantSubscriptionsEndpoint.getAll(userId);
     }
 
     cancelSubscription(id) {
@@ -39,12 +42,12 @@ export class BillingApi extends BaseApi {
     }
 
     getPaymentsByUserId(userId) {
-        return this.#paymentsEndpoint.getAll({ userId });
+        return this.#tenantPaymentsEndpoint.getAll(userId);
     }
 
     /** Returns `{ sessionId, url }`; `url` is the Stripe page where the user pays. */
     createCheckoutSession(userId, planId) {
-        return this.#checkoutSessionsEndpoint.create({ userId, planId });
+        return this.#checkoutSessionsEndpoint.create({ tenantId: userId, planId });
     }
 
     /** Returns `{ payment, subscription }` once Stripe reports the session as paid. */

@@ -5,7 +5,7 @@ import { Subscription } from '@/billing/domain/model/subscription.entity.js';
 export class SubscriptionAssembler extends BaseAssembler {
 
     toEntityFromResource(resource) {
-        return new Subscription({ ...resource });
+        return new Subscription({ ...resource, userId: resource.tenantId });
     }
 
 

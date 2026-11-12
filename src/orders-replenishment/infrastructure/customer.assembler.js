@@ -5,14 +5,13 @@ import { Customer } from '@/orders-replenishment/domain/model/customer.entity.js
 export class CustomerAssembler extends BaseAssembler {
 
     toEntityFromResource(resource) {
-        return new Customer({ ...resource });
+        return new Customer({ ...resource, userId: resource.tenantId });
     }
 
 
     /** Body of `POST /customers` and `PUT /customers/{id}`. */
     toResourceFromEntity(entity) {
         return {
-            userId: entity.userId,
             name: entity.name,
             contactName: entity.contactName,
             phone: entity.phone,

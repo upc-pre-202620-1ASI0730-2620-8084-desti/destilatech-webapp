@@ -20,9 +20,8 @@ const MONITORED = ['FERMENTATION', 'DISTILLATION', 'RESTING'];
 const ORDER_FLOW = ['PENDING', 'PREPARING', 'SHIPPED', 'DELIVERED'];
 
 
-async function request(method, path, { userId, body } = {}) {
+async function request(method, path, { body } = {}) {
     const url = new URL(`${apiUrl}${path}`);
-    if (userId) url.searchParams.set('userId', userId);
     const response = await fetch(url, {
         method,
         headers: body ? { 'Content-Type': 'application/json', 'Accept-Language': 'en' } : { 'Accept-Language': 'en' },
@@ -34,13 +33,14 @@ async function request(method, path, { userId, body } = {}) {
     return data;
 }
 
-const post = (path, userId, body) => request('POST', path, { userId, body });
-const patch = (path, userId, body) => request('PATCH', path, { userId, body });
+// Writes send the tenant (the account that owns the data) in the body.
+const post = (path, tenantId, body) => request('POST', path, { body: { tenantId, ...body } });
+const patch = (path, tenantId, body) => request('PATCH', path, { body: { tenantId, ...body } });
 
 
 async function seedAccount(user) {
     const userId = user.id;
-    const existing = await request('GET', '/products', { userId });
+    const existing = await request('GET', `/tenants/${userId}/products`);
     if (existing.length > 0) {
         console.log(`- ${user.email}: already has ${existing.length} products, skipped.`);
         return;
@@ -155,7 +155,6 @@ async function seedAccount(user) {
     const customerIds = new Map();
     for (const customer of db.customers.filter(item => item.userId === userId)) {
         const created = await post('/customers', userId, {
-            userId,
             name: customer.name,
             contactName: customer.contactName,
             phone: customer.phone,
@@ -168,7 +167,6 @@ async function seedAccount(user) {
     const oldestFirst = [...orders].sort((first, second) => new Date(first.orderDate) - new Date(second.orderDate));
     for (const order of oldestFirst) {
         const created = await post('/orders', userId, {
-            userId,
             customerId: customerIds.get(order.customerId),
             lines: order.lines.map(line => ({ productId: productIds.get(line.productId), quantity: line.quantity })),
             notes: order.notes
@@ -180,7 +178,7 @@ async function seedAccount(user) {
 
     // Some products were sold before the demo period (the bottled units are more than the stock left), so an
     // adjustment leaves the same stock as db.json. Adjustments do not count as consumption in the estimates.
-    const stockItems = await request('GET', '/stock-items', { userId });
+    const stockItems = await request('GET', `/tenants/${userId}/stock-items`);
     let adjustments = 0;
     for (const item of db['stock-items'].filter(stockItem => stockItem.userId === userId)) {
         const current = stockItems.find(stockItem => stockItem.productId === productIds.get(item.productId));

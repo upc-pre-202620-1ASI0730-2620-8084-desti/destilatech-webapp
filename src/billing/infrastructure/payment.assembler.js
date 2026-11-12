@@ -4,7 +4,7 @@ import { Payment } from '@/billing/domain/model/payment.entity.js';
 
 export class PaymentAssembler extends BaseAssembler {
     toEntityFromResource(resource) {
-        return new Payment({ ...resource });
+        return new Payment({ ...resource, userId: resource.tenantId });
     }
 
 

@@ -8,6 +8,7 @@ export class ProductionBatchAssembler extends BaseAssembler {
     toEntityFromResource(resource) {
         return new ProductionBatch({
             ...resource,
+            userId: resource.tenantId,
             productId: resource.productId ?? null,
             startDate: toUtcDate(resource.startDate),
             stageHistory: (resource.stageHistory ?? []).map(change => ({
