@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n';
 import { useUserStore } from '@/shared/application/user.store.js';
 import { useAlertsStore } from '@/alerts-notifications/application/alerts.store.js';
 import LanguageSwitcher from './language-switcher.vue';
-import UserSwitcher from './user-switcher.vue';
+import AccountMenu from '@/iam/presentation/components/account-menu.vue';
 
 const emit = defineEmits(['toggle-navigation']);
 const { t } = useI18n();
@@ -33,7 +33,7 @@ const pendingAlerts = computed(() => alertsStore.pendingCount);
         <pv-badge v-if="pendingAlerts > 0" :value="pendingAlerts" severity="danger" class="top-bar__alerts-badge"/>
       </router-link>
       <language-switcher/>
-      <user-switcher/>
+      <account-menu/>
     </div>
   </header>
 </template>
