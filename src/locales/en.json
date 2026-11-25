@@ -24,14 +24,45 @@
     "language-switcher": "Language selector",
     "footer": {
       "rights": "All rights reserved.",
-      "website": "Visit website"
+      "website": "Visit website",
+      "terms": "Terms and conditions",
+      "links": "Footer links"
     },
     "business-type": {
       "PRODUCER": "Producer",
       "RETAILER": "Retailer"
+    }
+  },
+  "iam": {
+    "fields": {
+      "email": "Email",
+      "password": "Password",
+      "full-name": "Full name",
+      "business-name": "Business name",
+      "business-type": "Type of business"
     },
-    "user-switcher": {
-      "label": "View as"
+    "sign-in": {
+      "title": "Sign in",
+      "subtitle": "Welcome back to Destilatech.",
+      "action": "Sign in",
+      "no-account": "Don't have an account?",
+      "go-sign-up": "Start your free trial",
+      "session-expired": "Your session has ended. Please sign in again."
+    },
+    "sign-up": {
+      "title": "Create your account",
+      "subtitle": "Try Destilatech free for {days} days. No card required.",
+      "action": "Start my {days}-day free trial",
+      "has-account": "Already have an account?",
+      "go-sign-in": "Sign in",
+      "choose-business-type": "Choose your type of business.",
+      "chosen-plan": "Plan chosen on the website: {plan}. You can subscribe to it when your trial ends.",
+      "terms-notice": "By creating your account you accept the Terms and conditions of Destilatech."
+    },
+    "account": {
+      "menu": "Account menu of {name}",
+      "plans": "Subscription",
+      "sign-out": "Sign out"
     }
   },
   "page-not-found": {
@@ -99,7 +130,9 @@
     },
     "trial-banner": {
       "message": "Your free trial ends in {days} day. | Your free trial ends in {days} days.",
-      "action": "See plans"
+      "action": "See plans",
+      "expired": "Your free trial has ended. Choose a plan to keep using Destilatech.",
+      "choose-plan": "Choose a plan"
     },
     "plans": {
       "BASIC": {

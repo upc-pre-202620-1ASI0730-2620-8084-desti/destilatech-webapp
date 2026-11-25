@@ -24,14 +24,45 @@
     "language-switcher": "Selector de idioma",
     "footer": {
       "rights": "Todos los derechos reservados.",
-      "website": "Visitar sitio web"
+      "website": "Visitar sitio web",
+      "terms": "Términos y condiciones",
+      "links": "Enlaces del pie de página"
     },
     "business-type": {
       "PRODUCER": "Productor",
       "RETAILER": "Comercializador"
+    }
+  },
+  "iam": {
+    "fields": {
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "full-name": "Nombre completo",
+      "business-name": "Nombre del negocio",
+      "business-type": "Tipo de negocio"
     },
-    "user-switcher": {
-      "label": "Ver como"
+    "sign-in": {
+      "title": "Iniciar sesión",
+      "subtitle": "Bienvenido de nuevo a Destilatech.",
+      "action": "Iniciar sesión",
+      "no-account": "¿No tienes una cuenta?",
+      "go-sign-up": "Empieza tu prueba gratis",
+      "session-expired": "Tu sesión terminó. Vuelve a iniciar sesión."
+    },
+    "sign-up": {
+      "title": "Crea tu cuenta",
+      "subtitle": "Prueba Destilatech gratis durante {days} días. Sin tarjeta.",
+      "action": "Empezar mi prueba gratis de {days} días",
+      "has-account": "¿Ya tienes una cuenta?",
+      "go-sign-in": "Inicia sesión",
+      "choose-business-type": "Elige tu tipo de negocio.",
+      "chosen-plan": "Plan elegido en la página web: {plan}. Podrás suscribirte cuando termine tu prueba.",
+      "terms-notice": "Al crear tu cuenta aceptas los Términos y condiciones de Destilatech."
+    },
+    "account": {
+      "menu": "Menú de la cuenta de {name}",
+      "plans": "Suscripción",
+      "sign-out": "Cerrar sesión"
     }
   },
   "page-not-found": {
@@ -98,8 +129,10 @@
       "done": "Suscripción cancelada"
     },
     "trial-banner": {
-      "message": "Tu prueba gratuita termina en {days} día. | Tu prueba gratuita termina en {days} días.",
-      "action": "Ver planes"
+      "message": "Tu prueba gratis termina en {days} día. | Tu prueba gratis termina en {days} días.",
+      "action": "Ver planes",
+      "expired": "Tu prueba gratis terminó. Elige un plan para seguir usando Destilatech.",
+      "choose-plan": "Elegir un plan"
     },
     "plans": {
       "BASIC": {

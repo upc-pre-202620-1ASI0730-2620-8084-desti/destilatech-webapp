@@ -43,8 +43,11 @@ La primera vez, carga los datos de demostración de `server/db.json` en la API (
 pedidos y reposiciones). El script usa los endpoints de la API, así que las reglas del backend se aplican igual que en la
 app; si una cuenta ya tiene productos, no la vuelve a cargar:
 
-```bash
-npm run seed-api
+El script inicia sesión con las dos cuentas de demostración, así que necesita su contraseña (la variable
+`DemoAccounts__Password` de la API):
+
+```powershell
+$env:SEED_DEMO_PASSWORD="LA_CONTRASEÑA_DE_DEMOSTRACIÓN"; npm run seed-api
 ```
 
 ### 2. Web App (terminal 2)
@@ -53,7 +56,7 @@ npm run seed-api
 npm run dev
 ```
 
-Abre `http://localhost:5173`.
+Abre `http://localhost:5173`: sin sesión, la app lleva a `/login`.
 
 > Si aparece *"No response received from the server"*, la API no está corriendo en el puerto 5273.
 
@@ -94,8 +97,8 @@ firebase deploy
 
 Para cargar los datos de demostración en la API desplegada (solo una vez):
 
-```bash
-npm run seed-api -- https://destilatech-platform.onrender.com/api/v1
+```powershell
+$env:SEED_DEMO_PASSWORD="LA_CONTRASEÑA_DE_DEMOSTRACIÓN"; npm run seed-api -- https://destilatech-platform.onrender.com/api/v1
 ```
 
 > El plan gratuito de Render apaga la API cuando no se usa: la primera petición puede tardar ~1 minuto.
@@ -112,19 +115,33 @@ La suscripción se paga con **Stripe Checkout en modo de prueba**:
 No se realiza ningún cobro real. Para probar se usa la tarjeta `4242 4242 4242 4242` con cualquier fecha futura y
 cualquier CVC. La clave de Stripe solo vive en la API (variables de entorno), nunca en la Web App.
 
-## Usuarios (sin IAM en este sprint)
+## Registro, inicio de sesión y prueba gratuita (IAM)
 
-El inicio de sesión y el registro (bounded context **IAM**) no forman parte de este sprint. Mientras tanto, la app trabaja
-con los usuarios de la API y se cambia de uno a otro con los botones **Productor / Comercializador** de la barra
-superior. El usuario elegido se recuerda al recargar la página.
+El bounded context **IAM** (`src/iam/`) sigue el IAM del curso (`learning-center`):
 
-| Botón | Usuario | Qué ve |
+| Paso | Ruta de la app | Endpoint de la API |
 | :--- | :--- | :--- |
-| Productor | Mario Fernández · Bodega Santa Rosa | Lotes, monitoreo IoT, inventario, pedidos, alertas e indicadores. |
-| Comercializador | Carlos Mendoza · Licorería El Cóndor | Inventario, pedidos, clientes, reposición, alertas e indicadores. |
+| Registro con tipo de negocio (productor o comercializador) | `/register` | `POST /users` |
+| Inicio de sesión | `/login` | `POST /tokens` (devuelve la cuenta y el token JWT) |
 
-El usuario actual vive en `src/shared/application/user.store.js` y se carga desde `/users` con
-`src/shared/infrastructure/users-api.js`.
+- `iam.store.js` (Pinia) abre y cierra la sesión; el token, el id de la cuenta y su expiración se guardan en
+  `localStorage` (`destilatech.session`), así la sesión sigue al recargar o al volver de Stripe.
+- `iam.interceptor.js` agrega `Authorization: Bearer <token>` a cada petición. Si la API responde `401` (token
+  vencido), cierra la sesión y vuelve a `/login`.
+- `authentication.guard.js` protege todas las rutas salvo `/login` y `/register`. Si la prueba gratuita terminó y no hay
+  un plan pagado, solo deja entrar a `/billing/plans` y a las páginas de regreso de Stripe.
+- La landing page enlaza a `/register?type=producer|retailer` (elige el tipo de negocio) y a
+  `/register?plan=basic|professional|enterprise` (guarda el plan preferido).
+- El banner superior muestra los días que quedan de la prueba, avisa en sus 3 últimos días y, al terminar, invita a elegir
+  un plan.
+- El pie de página enlaza a los Términos y condiciones de la landing page.
+
+Cuentas de demostración (su contraseña la tiene el equipo; es la variable `DemoAccounts__Password` de la API):
+
+| Cuenta | Usuario | Estado |
+| :--- | :--- | :--- |
+| `productor@destilatech.pe` | Mario Fernández · Bodega Santa Rosa | Plan pagado: lotes, monitoreo IoT, inventario, pedidos, alertas e indicadores. |
+| `comercializador@destilatech.pe` | Carlos Mendoza · Licorería El Cóndor | Prueba terminada: entra a Suscripción para elegir un plan (tarjeta de prueba de Stripe). |
 
 ## Arquitectura (Domain-Driven Design)
 
@@ -142,11 +159,12 @@ para un sprint posterior). Cada uno se organiza en cuatro capas:
 src/
 ├── shared/                        # Shared Kernel
 │   ├── domain/model/              # DateTime, Money (value objects), User, TrialPeriod, BusinessType
-│   ├── application/               # user.store (usuario actual)
+│   ├── application/               # user.store (cuenta con sesión iniciada)
 │   ├── infrastructure/            # BaseApi, BaseEndpoint, BaseAssembler, error.interceptor, users-api, user.assembler,
 │   │                              # csv-exporter
-│   └── presentation/              # layout, side-navigation, top-bar, user-switcher, language-switcher, kpi-card, page-header,
+│   └── presentation/              # layout, side-navigation, top-bar, language-switcher, kpi-card, page-header,
 │                                  # empty-state, footer-content, page-not-found
+├── iam/                           # Registro, inicio de sesión (JWT), sesión, guardia de rutas, menú de la cuenta
 ├── billing/                       # Planes, suscripción, pago con Stripe Checkout, historial de pagos, aviso de fin de prueba
 ├── production-monitoring/         # Lotes, etapas, variables de proceso, lecturas IoT (simulador), anomalías
 ├── inventory-stock/               # Productos, stock, movimientos, umbrales de stock bajo
@@ -180,6 +198,7 @@ afectados después de cada acción.
 
 | Ruta | Vista | Perfil |
 | :--- | :--- | :--- |
+| `/login`, `/register` | Inicio de sesión y registro con prueba gratuita | Público |
 | `/dashboard` | Dashboard Productor / Comercial | Ambos |
 | `/production/monitoring` | Monitoreo IoT (simulación en vivo) | Productor |
 | `/production/batches`, `/production/batches/:id` | Gestión y trazabilidad de lotes | Productor |
@@ -203,6 +222,7 @@ tabla (con los filtros aplicados). El archivo usa `;` como separador y UTF-8 con
 | v2.0.0 | AV2 | Pago simulado en lugar de Stripe, marcar todas las alertas como atendidas, exportación a CSV, datos de prueba en inglés y script `npm run fake-api`. |
 | v2.1.0 | AV2 | Conexión con la RESTful API destilatech-platform (Render + MySQL en Railway), pago con Stripe Checkout y script `npm run seed-api`. |
 | v2.2.0 | AV2 | Rutas por tenant de la API 1.1.0: los datos de cada cuenta se leen en `/tenants/{tenantId}/...` y las escrituras envían `tenantId` en el cuerpo. |
+| v3.0.0 | TF | IAM: registro con prueba gratuita de 14 días, inicio de sesión con JWT, guardia de rutas, banner de la prueba y enlace a Términos y condiciones. |
 
 ## Build de producción
 
