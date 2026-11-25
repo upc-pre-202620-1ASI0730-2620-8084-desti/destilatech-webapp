@@ -2,14 +2,16 @@ import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import { UsersApi } from '@/shared/infrastructure/users-api.js';
 import { UserAssembler } from '@/shared/infrastructure/user.assembler.js';
-import { STORAGE_KEYS } from '@/shared/infrastructure/base-api.js';
 
 const usersApi = new UsersApi();
 const userAssembler = new UserAssembler();
 
 
+/**
+ * The signed-in account (the tenant) that every bounded context uses to read and write its data.
+ * The IAM store opens the session; this store keeps the account and its free trial up to date.
+ */
 export const useUserStore = defineStore('user', () => {
-    const users = ref([]);
     const currentUser = ref(null);
     const errors = ref([]);
 
@@ -19,24 +21,26 @@ export const useUserStore = defineStore('user', () => {
     const hasActiveAccess = computed(() => currentUser.value?.hasActiveAccess() ?? false);
 
 
-    async function fetchUsers() {
-        if (users.value.length > 0) return;
-        errors.value = [];
-        try {
-            users.value = userAssembler.toEntitiesFromResponse(await usersApi.getUsers());
-            const storedUserId = Number(localStorage.getItem(STORAGE_KEYS.userId));
-            currentUser.value = users.value.find(user => user.id === storedUserId) ?? users.value[0] ?? null;
-        } catch (error) {
-            errors.value.push(error);
-        }
+    /** Sets the account returned by the sign-in, without a new request. */
+    function setCurrentUserFromResource(resource) {
+        currentUser.value = userAssembler.toEntityFromResource(resource);
     }
 
 
-    function selectUser(userId) {
-        const user = users.value.find(item => item.id === userId);
-        if (!user) return;
-        currentUser.value = user;
-        localStorage.setItem(STORAGE_KEYS.userId, String(userId));
+    /**
+     * Loads the account of the session, for example after a page reload.
+     * @returns {Promise<boolean>} Whether the account could be loaded.
+     */
+    async function loadCurrentUser(userId) {
+        if (currentUser.value?.id === userId) return true;
+        errors.value = [];
+        try {
+            currentUser.value = userAssembler.toEntityFromResponse(await usersApi.getUserById(userId));
+            return true;
+        } catch (error) {
+            errors.value.push(error);
+            return false;
+        }
     }
 
 
@@ -46,24 +50,27 @@ export const useUserStore = defineStore('user', () => {
     async function refreshCurrentUser() {
         if (!currentUser.value) return;
         try {
-            const user = userAssembler.toEntityFromResponse(await usersApi.getUserById(currentUser.value.id));
-            users.value = users.value.map(item => item.id === user.id ? user : item);
-            currentUser.value = user;
+            currentUser.value = userAssembler.toEntityFromResponse(await usersApi.getUserById(currentUser.value.id));
         } catch (error) {
             errors.value.push(error);
         }
     }
 
+
+    function clearCurrentUser() {
+        currentUser.value = null;
+    }
+
     return {
-        users,
         currentUser,
         errors,
         currentUserId,
         isProducer,
         isRetailer,
         hasActiveAccess,
-        fetchUsers,
-        selectUser,
-        refreshCurrentUser
+        setCurrentUserFromResource,
+        loadCurrentUser,
+        refreshCurrentUser,
+        clearCurrentUser
     };
 });

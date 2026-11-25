@@ -9,6 +9,12 @@
  * sensor readings (out of range readings raise their alerts), orders and replenishment orders.
  * Users and plans already exist in the platform. Accounts that already have products are skipped, so running
  * the script twice does not duplicate data.
+ *
+ * The API requires an access token, so the script signs in with each demo account (POST /tokens). Their password
+ * is the DemoAccounts__Password of the platform, given in the SEED_DEMO_PASSWORD environment variable:
+ *
+ *   PowerShell: $env:SEED_DEMO_PASSWORD="..."; npm run seed-api
+ *   Bash:       SEED_DEMO_PASSWORD="..." npm run seed-api
  */
 import { readFile } from 'node:fs/promises';
 
@@ -19,12 +25,25 @@ const STAGES = ['RECEIVED', 'FERMENTATION', 'DISTILLATION', 'RESTING', 'BOTTLED'
 const MONITORED = ['FERMENTATION', 'DISTILLATION', 'RESTING'];
 const ORDER_FLOW = ['PENDING', 'PREPARING', 'SHIPPED', 'DELIVERED'];
 
+const demoPassword = process.env.SEED_DEMO_PASSWORD;
+if (!demoPassword) {
+    console.error('Set SEED_DEMO_PASSWORD with the password of the demo accounts (DemoAccounts__Password of the platform).');
+    process.exit(1);
+}
+
+/** Access token of the account being seeded. */
+let accessToken = null;
+
 
 async function request(method, path, { body } = {}) {
     const url = new URL(`${apiUrl}${path}`);
     const response = await fetch(url, {
         method,
-        headers: body ? { 'Content-Type': 'application/json', 'Accept-Language': 'en' } : { 'Accept-Language': 'en' },
+        headers: {
+            'Accept-Language': 'en',
+            ...(body ? { 'Content-Type': 'application/json' } : {}),
+            ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {})
+        },
         body: body ? JSON.stringify(body) : undefined
     });
     const text = await response.text();
@@ -199,8 +218,16 @@ async function seedAccount(user) {
 
 
 console.log(`Seeding ${apiUrl}`);
-const users = await request('GET', '/users');
-for (const user of users) {
-    if (db.users.some(item => item.id === user.id)) await seedAccount(user);
+for (const demoUser of db.users) {
+    accessToken = null;
+    const { user, token } = await request('POST', '/tokens', {
+        body: { email: demoUser.email, password: demoPassword }
+    });
+    if (user.id !== demoUser.id) {
+        console.log(`- ${demoUser.email}: has id ${user.id} in the platform instead of ${demoUser.id}, skipped.`);
+        continue;
+    }
+    accessToken = token;
+    await seedAccount(user);
 }
 console.log('Done.');

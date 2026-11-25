@@ -13,11 +13,6 @@ export class UsersApi extends BaseApi {
     }
 
 
-    getUsers() {
-        return this.#usersEndpoint.getAll();
-    }
-
-
     getUserById(id) {
         return this.#usersEndpoint.getById(id);
     }

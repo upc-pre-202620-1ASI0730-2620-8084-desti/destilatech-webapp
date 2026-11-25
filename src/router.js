@@ -7,12 +7,15 @@ import inventoryStockRoutes from './inventory-stock/presentation/inventory-stock
 import ordersReplenishmentRoutes from './orders-replenishment/presentation/orders-replenishment-routes.js';
 import alertsNotificationsRoutes from './alerts-notifications/presentation/alerts-notifications-routes.js';
 import analyticsEstimationsRoutes from './analytics-estimations/presentation/analytics-estimations-routes.js';
+import iamRoutes from './iam/presentation/iam-routes.js';
+import { authenticationGuard } from './iam/infrastructure/authentication.guard.js';
 import { useUserStore } from './shared/application/user.store.js';
 
 const pageNotFound = () => import('./shared/presentation/views/page-not-found.vue');
 
 
 const routes = [
+    ...iamRoutes,
     {
         path: '/',
         component: Layout,
@@ -26,7 +29,7 @@ const routes = [
             ...billingRoutes
         ]
     },
-    { path: '/:pathMatch(.*)*', name: 'not-found', component: pageNotFound, meta: { title: 'page-not-found.title' } }
+    { path: '/:pathMatch(.*)*', name: 'not-found', component: pageNotFound, meta: { title: 'page-not-found.title', public: true } }
 ];
 
 const router = createRouter({
@@ -35,9 +38,10 @@ const router = createRouter({
     scrollBehavior: () => ({ top: 0 })
 });
 
-router.beforeEach(async to => {
+router.beforeEach(authenticationGuard);
+
+router.beforeEach(to => {
     const userStore = useUserStore();
-    await userStore.fetchUsers();
     const allowedBusinessTypes = to.meta['businessTypes'];
     if (allowedBusinessTypes && !allowedBusinessTypes.includes(userStore.currentUser?.businessType)) {
         return { path: '/dashboard' };

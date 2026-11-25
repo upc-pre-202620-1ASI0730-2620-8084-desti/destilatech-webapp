@@ -9,7 +9,10 @@ const currentYear = new Date().getFullYear();
 <template>
   <div class="footer-content">
     <span>&copy; {{ currentYear }} Destilatech · FuturosSeniors. {{ t('shared.footer.rights') }}</span>
-    <a v-if="landingPageUrl" :href="landingPageUrl" target="_blank" rel="noopener">{{ t('shared.footer.website') }}</a>
+    <nav class="footer-content__links" :aria-label="t('shared.footer.links')">
+      <a v-if="landingPageUrl" :href="`${landingPageUrl}terms.html`" target="_blank" rel="noopener">{{ t('shared.footer.terms') }}</a>
+      <a v-if="landingPageUrl" :href="landingPageUrl" target="_blank" rel="noopener">{{ t('shared.footer.website') }}</a>
+    </nav>
   </div>
 </template>
 
@@ -23,6 +26,11 @@ const currentYear = new Date().getFullYear();
   color: var(--color-text-muted);
   padding: var(--spacing-02) var(--spacing-03);
   border-top: 1px solid var(--color-border);
+}
+
+.footer-content__links {
+  display: flex;
+  gap: var(--spacing-02);
 }
 
 .footer-content a {
